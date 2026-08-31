@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutor Flow — Feedback, Scheduling & Student Tracking for Ringle Tutors</title>
+<meta name="description" content="Tutor Flow is a Chrome extension for Ringle tutors that speeds up feedback reports, protects your calendar from booking conflicts, and keeps a searchable history of every student — all inside Ringle." />
+<link rel="canonical" href="https://www.nativeflow.me/tutor-flow/" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#10595B" />
+<link rel="icon" type="image/png" href="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.nativeflow.me/tutor-flow/" />
+<meta property="og:site_name" content="Tutor Flow" />
+<meta property="og:title" content="Tutor Flow — Less hassle, more flow." />
+<meta property="og:description" content="Finish your feedback reports faster, protect your calendar from booking conflicts, and never start a lesson cold. A Chrome extension built by a Ringle tutor, for Ringle tutors." />
+<meta property="og:image" content="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png" />
+<meta property="og:image:alt" content="Tutor Flow logo: a rounded teal square icon representing the Tutor Flow Chrome extension for Ringle tutors." />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Tutor Flow — Less hassle, more flow." />
+<meta name="twitter:description" content="Finish your feedback reports faster, protect your calendar from booking conflicts, and never start a lesson cold. A Chrome extension built by a Ringle tutor, for Ringle tutors." />
+<meta name="twitter:image" content="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png" />
+<meta name="twitter:image:alt" content="Tutor Flow logo: a rounded teal square icon representing the Tutor Flow Chrome extension for Ringle tutors." />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Tutor Flow",
+  "applicationCategory": "BrowserApplication",
+  "operatingSystem": "Chrome",
+  "description": "A Chrome extension for Ringle tutors that speeds up feedback reports, protects your calendar from booking conflicts, and keeps a searchable history of every student.",
+  "url": "https://www.nativeflow.me/tutor-flow/",
+  "image": "https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Annual",
+      "price": "76.89",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Monthly",
+      "price": "6.99",
+      "priceCurrency": "USD"
+    }
+  ]
+}
+</script>
+
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;500&display=swap" />
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #FBF7F0; font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  a { color: #10595B; text-decoration: none; }
+  a:hover { color: #0A3D3F; text-decoration: underline; }
+  @keyframes tfblink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+  h1, h2, h3, p { text-wrap: pretty; }
+</style>
+<script src="./image-slot.js"></script>
+</helmet>
+
+<div style="width:100%;background:#ffffff;color:#1A1A1A">
+
+  <header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);border-bottom:1px solid #E6DCCF">
+    <div style="max-width:1120px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;gap:32px">
+      <a href="#top" style="display:flex;align-items:center;gap:10px;color:#1A1A1A;text-decoration:none">
+        <img src="assets/tutor-flow-mark.png" alt="Tutor Flow" style="width:30px;height:30px;border-radius:12px;display:block" />
+        <span style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Tutor Flow</span>
+      </a>
+      <nav style="display:flex;align-items:center;gap:28px;margin-left:auto">
+        <a href="#features" style="font-size:14px;font-weight:500;color:#6B6258;text-decoration:none" style-hover="color:#1A1A1A">Features</a>
+        <a href="#how" style="font-size:14px;font-weight:500;color:#6B6258;text-decoration:none" style-hover="color:#1A1A1A">How it works</a>
+        <a href="#pricing" style="font-size:14px;font-weight:500;color:#6B6258;text-decoration:none" style-hover="color:#1A1A1A">Pricing</a>
+        <a href="#faq" style="font-size:14px;font-weight:500;color:#6B6258;text-decoration:none" style-hover="color:#1A1A1A">FAQ</a>
+        <a href="[Chrome Web Store link]" style="font-size:14px;font-weight:600;color:#ffffff;background:#10595B;padding:10px 16px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="top" style="max-width:1120px;margin:0 auto;padding:120px 24px 104px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
+    <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:76px;height:76px;border-radius:18px;display:block;box-shadow:0 2px 8px rgba(10,61,63,0.06)" />
+    <div style="display:flex;flex-direction:column;gap:20px;align-items:center;max-width:840px">
+      <h1 style="margin:0;font-size:clamp(44px,6.4vw,68px);font-weight:700;letter-spacing:-0.035em;line-height:1.05">Less hassle, more flow.</h1>
+      <p style="margin:0;font-size:20px;line-height:1.55;color:#6B6258;max-width:620px">Finish your feedback reports faster — and keep your calendar and your students straight while you’re at it.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:4px">
+      <a href="[Chrome Web Store link]" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
+      <a href="#features" style="font-size:15px;font-weight:600;color:#10595B;background:#FFFFFF;border:1px solid #E6DCCF;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#F6EFE6;text-decoration:none">See how it works</a>
+    </div>
+    <p style="margin:0;font-size:13px;color:#6B6258">Built for Ringle tutors. Chrome extension, installed in one click.</p>
+  </section>
+
+  <section style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
+    <div style="max-width:1120px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:48px">
+      <h2 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.02em;max-width:640px">The teaching is the easy part.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
+        <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
+          <h3 style="margin:0;font-size:16px;font-weight:700">Feedback takes as long as the lesson</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">You write the paraphrase once, then copy it, paste it, and split it apart again for the key expressions list.</p>
+        </div>
+        <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
+          <h3 style="margin:0;font-size:16px;font-weight:700">Formatting breaks your typing</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Every bold or correction means reaching for the toolbar mid-sentence, while the student is still talking.</p>
+        </div>
+        <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
+          <h3 style="margin:0;font-size:16px;font-weight:700">Slots open when you’re busy</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Ringle can’t see the rest of your week, so a private slot can open over something you already committed to.</p>
+        </div>
+        <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
+          <h3 style="margin:0;font-size:16px;font-weight:700">You’ve met this student before</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Their level, their habits, what you worked on last time — all of it is buried in an old feedback report somewhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Feedback Exporter</span>
+      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Bold the phrase. It arrives as a key expression.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">While you write a paraphrase in the lesson doc, bold the exact phrase you want the student to walk away with. One click — or one keystroke, with no hunting for Ringle’s own small control — sends it across to the Feedback Report.</p>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Tutor Flow reads the bolding and pulls out each bolded phrase as its own key expression, split out rather than lumped in. Nothing to copy, nothing to retype, no second pass.</p>
+      <div style="border-left:3px solid #B8841C;padding:4px 0 4px 18px;margin-top:4px">
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#1A1A1A;font-weight:600">I’ve personally cut my feedback time in half.</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+        <image-slot id="tf-exporter-doc" shape="rect" fit="cover" style="width:100%;aspect-ratio:16/10;display:block" placeholder="Shot 5 — lesson doc, one phrase bolded"></image-slot>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding-left:4px">
+        <span style="font-size:20px;color:#6B6258">↓</span>
+        <span style="font-size:13px;color:#6B6258">one click, or one keystroke</span>
+      </div>
+      <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+        <image-slot id="tf-exporter-report" shape="rect" fit="cover" style="width:100%;aspect-ratio:16/10;display:block" placeholder="Shot 6 — feedback report, key expressions split out"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
+    <div style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:16px;order:2">
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Formatting Shortcuts</span>
+        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Write feedback at typing speed.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Feedback docs written the way tutors actually think — asterisks for bold, brackets for corrections, no reaching for a toolbar.</p>
+        <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">*word*</span><span>becomes bold as you close the second asterisk. No toolbar click.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">[ ] —</span><span>bracket and hyphen shortcuts mark up insertions and corrections inline, the way you’d mark up a paper by hand.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">“ ”</span><span>quotation marks pair themselves as you type.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">hl</span><span>a highlight toggle marks a phrase for emphasis instantly.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌄</span><span>active-line centering keeps the line you’re writing comfortably in view instead of drifting to the bottom of the screen.</span></li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;order:1">
+        <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;cursor:text;position:relative;min-height:180px" onClick="{{ focusDemo }}">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Lesson doc</span>
+            <span style="font-size:11px;color:#6B6258">{{ demoHint }}</span>
+          </div>
+          <div style="font-size:17px;line-height:1.7;color:#1A1A1A;min-height:96px">{{ demoRendered }}</div>
+          <textarea ref="{{ demoRef }}" value="{{ demoSrc }}" onChange="{{ onDemoChange }}" onFocus="{{ onDemoFocus }}" spellcheck="false" style="position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;left:22px;bottom:22px"></textarea>
+        </div>
+        <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+          <image-slot id="tf-shortcuts-doc" shape="rect" fit="cover" style="width:100%;aspect-ratio:4/3;display:block" placeholder="Shot 7 — marked-up feedback doc"></image-slot>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Calendar Defender</span>
+      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Offer a recurring slot with confidence.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Connect your Google Calendar and your existing commitments appear right on Ringle’s booking grid, so the time you’re already busy stops being bookable.</p>
+      <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+        <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Separate Regular and Holiday overlays, each with its own colour.</span></li>
+        <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Manual blocks for one-off unavailability.</span></li>
+        <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Recurring offers — “every Monday 4:00–4:40pm” — are checked against weeks of your calendar at once, and clashes are flagged before you offer the slot. No paging through the calendar week by week.</span></li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+        <image-slot id="tf-calendar-grid" shape="rect" fit="cover" style="width:100%;aspect-ratio:16/9;display:block" placeholder="Shot 1 — booking grid, overlays and a flagged conflict"></image-slot>
+      </div>
+      <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;max-width:340px">
+        <image-slot id="tf-calendar-popup" shape="rect" fit="cover" style="width:100%;aspect-ratio:3/4;display:block" placeholder="Shot 2 — extension popup, calendar connect and overlays"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
+    <div style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:20px;order:2">
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Student Tracker</span>
+        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Never start a lesson cold.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Search your roster by name, student ID, or lesson ID and find anyone you’ve taught before. Every student’s history is one search away.</p>
+        <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Per-student notes persist across lessons, so you’re not re-learning someone’s level and quirks every session, or digging through old feedback reports to remember the name of a student you haven’t seen in months.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;order:1">
+        <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+          <image-slot id="tf-tracker-roster" shape="rect" fit="cover" style="width:100%;aspect-ratio:16/10;display:block" placeholder="Shot 3 — roster search results"></image-slot>
+        </div>
+        <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+          <image-slot id="tf-tracker-profile" shape="rect" fit="cover" style="width:100%;aspect-ratio:16/10;display:block" placeholder="Shot 4 — one student’s profile and notes"></image-slot>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#EFE5D7">
+    <div style="max-width:820px;margin:0 auto;padding:104px 24px;display:flex;flex-direction:column;gap:24px">
+      <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em;line-height:1.2">Built by a tutor, maintained alongside Ringle.</h2>
+      <p style="margin:0;font-size:18px;line-height:1.65;color:#6B6258">Tutor Flow was built by a working Ringle tutor and used in real lessons, every teaching day, for about a year before release. The developer is still an active Ringle tutor.</p>
+      <p style="margin:0;font-size:18px;line-height:1.65;color:#6B6258">Ringle changes its site from time to time. Tutor Flow is maintained in step with those changes, and the changelog is public — if something shifts, the person who made this notices the same day you would.</p>
+      <a href="[Changelog link]" style="font-size:15px;font-weight:600;align-self:flex-start">Read the changelog →</a>
+    </div>
+  </section>
+
+  <section id="how" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:52px">
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:620px">
+      <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">How it works</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">Install first, activate second. Four steps, then it runs inside Ringle.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #0A3D3F">
+        <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">01</span>
+        <h3 style="margin:0;font-size:17px;font-weight:700">Install from the Chrome Web Store</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">One click, like any other extension.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
+        <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">02</span>
+        <h3 style="margin:0;font-size:17px;font-weight:700">Activate your license</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Paste the key from your purchase confirmation into the extension.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
+        <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">03</span>
+        <h3 style="margin:0;font-size:17px;font-weight:700">Connect Google Calendar</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">A one-time authorisation so Calendar Defender can see your existing commitments.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
+        <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">04</span>
+        <h3 style="margin:0;font-size:17px;font-weight:700">Teach</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Everything runs inside Ringle from that point on.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:#0A3D3F;color:#F4FBFA">
+    <div style="max-width:1120px;margin:0 auto;padding:88px 24px;display:flex;flex-direction:column;gap:36px">
+      <h2 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-0.02em">Your calendar and your students, handled carefully.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px">
+        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">Calendar access is read-only, through your own Google account.</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">Calendar data is used to draw overlays on Ringle’s booking grid. It isn’t shared with Ringle and it isn’t sent anywhere else.</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">Student notes and records stay in your own browser.</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">The only thing that leaves your browser is license verification.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:44px;align-items:center;text-align:center">
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:560px">
+      <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Pricing</h2>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">One licence, every feature. Annual works out to one month free.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;width:100%;max-width:720px;text-align:left">
+      <div style="{{ annualCardStyle }}" onClick="{{ pickAnnual }}">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <span style="font-size:15px;font-weight:700">Annual</span>
+          <span style="{{ annualPillStyle }}">{{ annualPillText }}</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:6px">
+          <span style="font-size:40px;font-weight:700;letter-spacing:-0.03em">$76.89</span>
+          <span style="font-size:15px;color:#6B6258">/ year</span>
+        </div>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">One month free, compared with paying monthly.</p>
+      </div>
+      <div style="{{ monthlyCardStyle }}" onClick="{{ pickMonthly }}">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <span style="font-size:15px;font-weight:700">Monthly</span>
+          <span style="{{ monthlyPillStyle }}">{{ monthlyPillText }}</span>
+        </div>
+        <div style="display:flex;align-items:baseline;gap:6px">
+          <span style="font-size:40px;font-weight:700;letter-spacing:-0.03em">$6.99</span>
+          <span style="font-size:15px;color:#6B6258">/ month</span>
+        </div>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Month to month, cancel whenever you like.</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
+      <a href="[Chrome Web Store link]" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
+      <p style="margin:0;font-size:13px;color:#6B6258">Prices in USD. Taxes handled at checkout. Cancel anytime.</p>
+      <p style="margin:0;font-size:13px;color:#6B6258">Already installed? <a href="[Creem checkout link]">Get your activation license here.</a></p>
+    </div>
+  </section>
+
+  <section id="faq" style="background:#F6EFE6;border-top:1px solid #E6DCCF">
+    <div style="max-width:760px;margin:0 auto;padding:104px 24px;display:flex;flex-direction:column;gap:36px">
+      <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Questions</h2>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="4">
+          <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+            <div style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer" onClick="{{ item.toggle }}">
+              <h3 style="margin:0;font-size:16px;font-weight:600">{{ item.q }}</h3>
+              <span style="font-size:18px;color:#6B6258;line-height:1">{{ item.sign }}</span>
+            </div>
+            <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">{{ item.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #E6DCCF">
+    <div style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center">
+      <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:56px;height:56px;border-radius:14px;display:block" />
+      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.03em">Less hassle, more flow.</h2>
+      <p style="margin:0;font-size:17px;color:#6B6258;max-width:460px">Scheduling, student tracking, and faster feedback for your Ringle lessons.</p>
+      <a href="[Chrome Web Store link]" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none;margin-top:4px" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid #E6DCCF;background:#F6EFE6">
+    <div style="max-width:1120px;margin:0 auto;padding:40px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:24px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:24px;height:24px;border-radius:8px;display:block" />
+        <span style="font-size:14px;font-weight:600">Tutor Flow</span>
+      </div>
+      <nav style="display:flex;flex-wrap:wrap;gap:20px;margin-left:auto">
+        <a href="[Support link]" style="font-size:14px;color:#6B6258">Support</a>
+        <a href="[Changelog link]" style="font-size:14px;color:#6B6258">Changelog</a>
+        <a href="[Privacy link]" style="font-size:14px;color:#6B6258">Privacy</a>
+        <a href="mailto:support@nativeflow.me" style="font-size:14px;color:#6B6258">support@nativeflow.me</a>
+      </nav>
+      <p style="margin:0;font-size:13px;color:#6B6258;width:100%">A <a href="[Native Flow link]" style="color:#6B6258">Native Flow</a> product.</p>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultPlan&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;annual&quot;,&quot;monthly&quot;],&quot;default&quot;:&quot;annual&quot;,&quot;tsType&quot;:&quot;'annual'|'monthly'&quot;,&quot;section&quot;:&quot;Pricing&quot;},&quot;demoAutoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Formatting demo&quot;}}">
+const DEMO = 'You said “I will finish it until Friday.” More natural: *by Friday*.';
+
+class Component extends DCLogic {
+  state = { src: '', typing: true, taken: false, plan: null, openFaq: 0 };
+
+  componentDidMount() {
+    this.demoEl = null;
+    if (this.props.demoAutoplay === false) { this.setState({ src: DEMO, typing: false }); return; }
+    this.i = 0;
+    this.tick = setInterval(() => {
+      if (this.state.taken) return;
+      if (this.i > DEMO.length) { this.i = 0; this.setState({ src: '' }); return; }
+      this.setState({ src: DEMO.slice(0, this.i) });
+      this.i += 1;
+    }, 55);
+  }
+
+  componentWillUnmount() { clearInterval(this.tick); }
+
+  parse(src) {
+    const out = [];
+    let buf = '';
+    let i = 0;
+    let k = 0;
+    while (i < src.length) {
+      if (src[i] === '*') {
+        const end = src.indexOf('*', i + 1);
+        if (end > i) {
+          if (buf) { out.push(buf); buf = ''; }
+          out.push(React.createElement('strong', { key: 'b' + k++, style: { fontWeight: 700 } }, src.slice(i + 1, end)));
+          i = end + 1;
+          continue;
+        }
+      }
+      buf += src[i];
+      i += 1;
+    }
+    if (buf) out.push(buf);
+    if (!this.state.taken) {
+      out.push(React.createElement('span', {
+        key: 'caret',
+        style: { display: 'inline-block', width: '2px', height: '1.05em', background: '#10595B', marginLeft: '2px', verticalAlign: '-0.15em', animation: 'tfblink 1s step-end infinite' }
+      }));
+    }
+    return out;
+  }
+
+  renderVals() {
+    const plan = this.state.plan || this.props.defaultPlan || 'annual';
+    const card = (on) => ({
+      background: '#ffffff',
+      border: on ? '2px solid #10595B' : '1px solid #E6DCCF',
+      borderRadius: '16px',
+      padding: on ? '25px' : '26px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '14px',
+      cursor: 'pointer',
+      boxShadow: on ? '0 4px 16px rgba(10,61,63,0.06)' : 'none'
+    });
+    const pill = (on) => ({
+      fontSize: '11px',
+      fontWeight: 700,
+      letterSpacing: '0.04em',
+      textTransform: 'uppercase',
+      color: on ? '#ffffff' : '#6B6258',
+      background: on ? '#10595B' : '#EFE5D7',
+      borderRadius: '999px',
+      padding: '4px 10px'
+    });
+    const faqData = [
+      ['Does this work outside Ringle?', 'No. Tutor Flow only runs on Ringle’s own pages — it’s built for that one workflow.'],
+      ['Which browsers?', 'Chrome, and Chromium-based browsers like Edge, Brave, and Arc.'],
+      ['What happens if Ringle changes something?', 'Tutor Flow is maintained alongside Ringle’s updates. The developer teaches on Ringle too, so changes get noticed and fixed quickly, and the changelog records them.'],
+      ['Can I cancel?', 'Yes, anytime. Monthly and annual both cancel from your purchase confirmation.']
+    ];
+    return {
+      demoSrc: this.state.src,
+      demoRendered: this.parse(this.state.src),
+      demoHint: this.state.taken ? 'your turn — try *bolding* something' : 'click to type it yourself',
+      demoRef: (el) => { this.demoEl = el; },
+      focusDemo: () => { if (this.demoEl) this.demoEl.focus(); },
+      onDemoFocus: () => { if (!this.state.taken) this.setState({ taken: true }); },
+      onDemoChange: (e) => this.setState({ src: e.target.value, taken: true }),
+      annualCardStyle: card(plan === 'annual'),
+      monthlyCardStyle: card(plan === 'monthly'),
+      annualPillStyle: pill(plan === 'annual'),
+      monthlyPillStyle: pill(plan === 'monthly'),
+      annualPillText: plan === 'annual' ? 'Selected' : 'One month free',
+      monthlyPillText: plan === 'monthly' ? 'Selected' : 'Flexible',
+      pickAnnual: () => this.setState({ plan: 'annual' }),
+      pickMonthly: () => this.setState({ plan: 'monthly' }),
+      faqs: faqData.map(([q, a], idx) => ({
+        q, a,
+        open: this.state.openFaq === idx,
+        sign: this.state.openFaq === idx ? '–' : '+',
+        toggle: () => this.setState((s) => ({ openFaq: s.openFaq === idx ? -1 : idx }))
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
