@@ -94,10 +94,14 @@
   <p>No data is sent to any analytics service, advertiser, or third party beyond Google, Ringle, and our own license server as described above.</p>
 
   <h2>Your Google Account data</h2>
-  <p>If you choose to connect your Google account for calendar features:</p>
+  <p>If you choose to connect your Google account, we request two scopes:</p>
   <ul>
-    <li>We request two scopes: <code>calendar.readonly</code>, so the extension can read (but never create, edit, or delete) your calendar events, and <code>userinfo.profile</code>, so it can show your name and email in the extension to confirm which Google account is connected.</li>
-    <li>Your Google data is used solely to display your schedule and connected-account info inside the extension. It is not stored on any external server, shared with any third party, or used for advertising.</li>
+    <li>
+      <strong><code>calendar.readonly</code></strong> — this powers "Calendar Defender," the feature that displays your existing Google Calendar events directly alongside your Ringle teaching schedule so you can immediately see and avoid double-booking. We request read-only access because the feature only needs to detect and display conflicts — it never creates, modifies, or deletes calendar events. Calendar data is read and rendered locally in the extension's own UI; it is not transmitted to, or stored on, any server we operate, and is not shared with third parties. We considered a narrower, per-calendar scope, but tutors need conflicts checked across every calendar they maintain (personal and professional), so calendar-level scoping wouldn't support the feature as designed.
+    </li>
+    <li>
+      <strong><code>userinfo.profile</code></strong> — this identifies which Google account is connected, so the extension can show you the correct account context and confirm the calendar being read belongs to the account you intended to connect. Your name and email are shown only inside the extension; no profile data is stored on our servers or shared with third parties.
+    </li>
     <li>You can disconnect at any time from the extension's settings; disconnecting revokes the extension's access via Google's own revocation endpoint immediately.</li>
     <li>Our use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
   </ul>
