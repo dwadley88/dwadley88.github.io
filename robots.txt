@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /tutor-flow/legal-notice
+Disallow: /tutor-flow/terms-of-service
+Disallow: /tutor-flow/privacy-policy
