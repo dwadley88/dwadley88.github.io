@@ -40,16 +40,6 @@
 </head>
 <body>
 
-<!--
-  Draft note (remove once confirmed): this policy has been cross-checked directly
-  against the extension source (manifest.json, background.js, popup.js) and the
-  Tutor Flow License Server repo as of the `dev` branch. The retention-window and
-  one-click-wipe parts of the S4 remediation have shipped and are described
-  accurately below. The license key is now explicitly masked before it's logged,
-  but general message-payload logging is not yet allowlisted by field name --
-  that's reflected in the wording below rather than left as an open question.
--->
-
 <header>
   <div class="nav-inner">
     <a href="./" class="brand">
@@ -60,71 +50,70 @@
 </header>
 
 <main>
-  <h1>Privacy Policy — Ringle Tutor Toolkit</h1>
-  <!-- TODO(Dante): confirm publish date before this goes live -->
+  <h1>Privacy Policy — Tutor Flow</h1>
   <p class="updated">Last updated: 2026-08-31</p>
   <p class="contact">Contact: <a href="mailto:support@nativeflow.me">support@nativeflow.me</a></p>
 
   <h2>Overview</h2>
-  <p>Ringle Tutor Toolkit is a Chrome extension that helps tutors on the Ringle platform manage lessons, track student progress, and streamline in-lesson workflows. This policy explains what data the extension handles, where it lives, and what control you have over it.</p>
-  <p>The short version: your lesson content, student notes, and diagnostic logs stay on your own computer. We do operate one small backend — the Tutor Flow License Server — but it only ever sees your license key and subscription status, never your lesson or student data. See "Where data leaves your device" below for the full picture.</p>
+  <p>Tutor Flow is a Chrome extension that helps tutors on the Ringle platform manage lessons, track student progress, and streamline in-lesson workflows. This policy explains what data the extension handles, where it lives, and what control you have over it.</p>
+  <p>The short version: your lesson content, student notes, and diagnostic logs stay on your own computer. We run one small backend service for licensing, and it only ever sees your license key and subscription status — never your lesson or student data. See “Where data leaves your device” below for the full picture.</p>
 
   <h2>What data the extension collects</h2>
-  <p>While you use the extension during Ringle tutoring sessions, it may store the following locally on your device:</p>
+  <p>While you use the extension during Ringle tutoring sessions, it may store the following on your own device:</p>
   <ul>
     <li><strong>Student information</strong> you enter or that appears during lessons — student names, private notes, ratings, and lesson history.</li>
     <li><strong>Lesson content</strong> — question text, tutor responses, and paraphrase data generated during feedback workflows.</li>
-    <li><strong>Draft content</strong> — in-progress text from the lesson editor, saved locally so it isn't lost if the page reloads.</li>
-    <li><strong>Diagnostic and error logs</strong> — a rolling log of extension activity (errors, warnings, and message activity between the extension's own components) used for troubleshooting. Entries are capped at a fixed count and the oldest are dropped automatically as new ones arrive. Known-sensitive values, such as your license key, are masked before they're written to this log. Beyond that specific masking, entries are not currently filtered field-by-field, so other message content can appear in a log entry if it's part of an error or warning; log entries are size-limited and never sent anywhere unless you choose to export the file yourself.</li>
-    <li><strong>License and subscription status</strong> — your license key, activation status, and expiry date, stored locally so the extension knows whether it's activated. The key is masked (only the last few characters shown) anywhere it's displayed or logged.</li>
-    <li><strong>Google Calendar data</strong> — if you connect your Google account, the extension reads your calendar list and events to display your schedule, and reads your Google name and email address to show which account is connected. It does not read, write, or modify anything else in your Google account.</li>
+    <li><strong>Draft content</strong> — in-progress text from the lesson editor, saved locally so it isn’t lost if the page reloads.</li>
+    <li><strong>Diagnostic and error logs</strong> — a rolling record of extension activity used for troubleshooting, capped at a fixed size so older entries drop off automatically. Your license key is always masked before anything is logged. Beyond that specific masking, other message content isn’t filtered field-by-field, so an error or warning entry can occasionally include page-related text — but this log is never sent anywhere unless you choose to export and share it yourself.</li>
+    <li><strong>License and subscription status</strong> — your license key, activation status, and expiry date, so the extension knows it’s activated. The key is masked (only the last few characters shown) anywhere it appears.</li>
+    <li><strong>Google Calendar data</strong> — if you connect your Google account, the extension reads your calendar list and events to display your schedule, and your Google name and email so you can see which account is connected. It doesn’t read, write, or modify anything else in your Google account.</li>
   </ul>
-  <p>The extension does <strong>not</strong> collect analytics, usage telemetry, advertising identifiers, or browsing history outside of the Ringle platform pages it operates on.</p>
+  <p>The extension does <strong>not</strong> collect analytics, usage tracking, advertising identifiers, or browsing history outside of the Ringle platform pages it operates on.</p>
 
   <h2>Where this data is stored</h2>
-  <p>Your lesson content, student notes, drafts, and diagnostic logs are stored locally in your browser's extension storage (<code>chrome.storage.local</code>) on your own device. None of that is transmitted to, or stored on, any server we operate — it never leaves your machine except in the situations below. The one exception is your license key and subscription status, which we do need to verify against our license server; see below for exactly what that involves.</p>
+  <p>Your lesson content, student notes, drafts, and diagnostic logs are stored locally in your browser, on your own device. None of it is transmitted to or stored on any server we operate — it never leaves your machine except in the situations below. The one exception is your license key and subscription status, which we do need to verify against our license server.</p>
 
   <h2>Where data leaves your device</h2>
   <p>Data leaves your device in three situations:</p>
   <ol style="padding-left: 22px;">
-    <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Google Calendar API calls</strong> (<code>googleapis.com</code>) — read-only requests to display your calendar and connected-account name/email, sent only when you have connected your Google account, and only to Google's servers.</li>
-    <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Ringle's own platform</strong> (<code>ringletutor.com</code>, <code>ringleplus.com</code>, <code>ringleserver.com</code>, and <code>ringlefront.com</code> subdomains) — the extension reads and writes data on Ringle's own pages as part of normal tutoring functionality, in the same way any browser extension interacts with the page it's installed on.</li>
-    <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>The Tutor Flow License Server</strong> (a Cloudflare Worker we operate, at <code>tutor-flow-license-server.native-flow-online.workers.dev</code>) — your license key is sent here to activate and periodically re-verify your subscription. This server talks to Creem, our payment processor, on our behalf; it never sees your lesson content, student notes, or calendar data. It stores only what's needed to run licensing and an optional referral-reward program: your license key's associated customer ID, subscription/activation status, and (if you use a referral code) which customer referred which. It does not receive or store the content of your lessons, student records, or calendar.</li>
+    <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Google Calendar</strong> — read-only requests to display your calendar and connected-account name/email, sent only when you’ve connected your Google account, and only to Google’s own servers.</li>
+    <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Ringle’s own platform</strong> — the extension reads and writes data on Ringle’s pages as part of normal tutoring functionality, the same way any browser extension interacts with the page it’s installed on.</li>
+    <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>The Tutor Flow license server</strong> (a small backend service we run) — your license key is sent here to activate and periodically re-verify your subscription. This service talks to Creem, our payment processor, on our behalf. It never sees your lesson content, student notes, or calendar data — it only stores your license key’s associated customer ID, subscription/activation status, and (if you use a referral code) which customer referred which.</li>
   </ol>
   <p>No data is sent to any analytics service, advertiser, or third party beyond Google, Ringle, and our own license server as described above.</p>
 
   <h2>Your Google Account data</h2>
-  <p>If you choose to connect your Google account, we request two scopes:</p>
+  <p>If you choose to connect your Google account, we request two permissions:</p>
   <ul>
     <li>
-      <strong><code>calendar.readonly</code></strong> — this powers "Calendar Defender," the feature that displays your existing Google Calendar events directly alongside your Ringle teaching schedule so you can immediately see and avoid double-booking. We request read-only access because the feature only needs to detect and display conflicts — it never creates, modifies, or deletes calendar events. Calendar data is read and rendered locally in the extension's own UI; it is not transmitted to, or stored on, any server we operate, and is not shared with third parties. We considered a narrower, per-calendar scope, but tutors need conflicts checked across every calendar they maintain (personal and professional), so calendar-level scoping wouldn't support the feature as designed.
+      <strong>Read-only calendar access</strong> — this powers “Calendar Defender,” the feature that shows your existing Google Calendar events alongside your Ringle teaching schedule so you can spot double-bookings immediately. We only ever request read access, because the feature only needs to detect and display conflicts — it never creates, modifies, or deletes anything on your calendar. Calendar data is read and shown locally inside the extension; it’s never sent to or stored on any server we operate, and never shared with third parties. We looked at a narrower, per-calendar version of this permission, but tutors need conflicts checked across every calendar they keep (personal and professional), so a narrower scope wouldn’t support the feature as designed. <em>(Technical scope: <code>calendar.readonly</code>.)</em>
     </li>
     <li>
-      <strong><code>userinfo.profile</code></strong> — this identifies which Google account is connected, so the extension can show you the correct account context and confirm the calendar being read belongs to the account you intended to connect. Your name and email are shown only inside the extension; no profile data is stored on our servers or shared with third parties.
+      <strong>Basic profile info (name and email)</strong> — this confirms which Google account is connected, so you can see at a glance that the calendar being read is the one you meant to connect. Shown only inside the extension; never stored on our servers or shared with anyone. <em>(Technical scope: <code>userinfo.profile</code>.)</em>
     </li>
-    <li>You can disconnect at any time from the extension's settings; disconnecting revokes the extension's access via Google's own revocation endpoint immediately.</li>
-    <li>Our use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</li>
+    <li>You can disconnect at any time from the extension’s settings — this immediately revokes access through Google’s own systems.</li>
+    <li>Our use of Google data follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements.</li>
   </ul>
 
   <h2>Data retention and your control over it</h2>
   <ul>
-    <li>All locally stored data persists on your device until you remove it — either by uninstalling the extension, clearing your browser's extension storage, or using the extension's built-in tools.</li>
-    <li>Diagnostic and error logs are automatically capped and rotated: the oldest entries are dropped once the log reaches its size limit, so it can't grow without bound. You can clear the stored error log at any time from the extension's popup ("Clear stored errors").</li>
-    <li>Student tracker records (names, notes, ratings, and lesson history) can be cleared at any time from the extension's popup ("Reset all tracker data").</li>
-    <li>The extension includes an "Export error log" feature that saves a diagnostic file to your Downloads folder for troubleshooting purposes. This file is created locally and only exists if you explicitly choose to export it. Treat exported files the same as you would any file containing student information — store and delete them accordingly.</li>
+    <li>Everything stored locally stays on your device until you remove it — by uninstalling the extension, clearing your browser’s extension storage, or using the extension’s built-in tools.</li>
+    <li>Diagnostic and error logs are capped and rotate automatically as new entries arrive. You can clear the stored log anytime from the extension’s popup (“Clear stored errors”).</li>
+    <li>Student tracker records (names, notes, ratings, lesson history) can be cleared anytime from the popup (“Reset all tracker data”).</li>
+    <li>The “Export error log” feature saves a diagnostic file to your Downloads folder for troubleshooting. It’s created locally and only exists if you choose to export it — treat exported files the same way you’d treat any file containing student information.</li>
   </ul>
 
-  <h2>Data we do not collect</h2>
-  <p>We do not collect, and the extension has no capability to collect: payment information (Creem, our payment processor, handles that directly — we never see your card details), passwords, browsing history outside Ringle's platform, contacts, location data, or any data from websites other than the Ringle, Google, and license-server domains described above.</p>
+  <h2>Data we don’t collect</h2>
+  <p>We don’t collect, and the extension has no way to collect: payment details (Creem, our payment processor, handles that directly — we never see your card), passwords, browsing history outside Ringle’s platform, contacts, location data, or anything from websites other than the Ringle, Google, and license-server systems described above.</p>
 
-  <h2>Children's privacy</h2>
-  <p>The extension is a professional tool intended for use by adult tutors. It is not directed at children, and we do not knowingly collect data from children.</p>
+  <h2>Children’s privacy</h2>
+  <p>Tutor Flow is a professional tool intended for adult tutors. It’s not directed at children, and we don’t knowingly collect data from children.</p>
 
   <h2>Changes to this policy</h2>
-  <p>If this policy changes, the "Last updated" date above will be revised and, where the change is material, we will note it in the extension's release notes.</p>
+  <p>If this policy changes, the “Last updated” date above will be revised, and material changes will be noted in the extension’s release notes.</p>
 
   <h2>Contact</h2>
-  <p>Questions about this policy or your data can be sent to <a href="mailto:support@nativeflow.me">support@nativeflow.me</a>.</p>
+  <p>Questions about this policy or your data: <a href="mailto:support@nativeflow.me">support@nativeflow.me</a></p>
 </main>
 
 <footer>
@@ -138,6 +127,7 @@
       <a href="./support.html">Support</a>
       <a href="./changelog.html">Changelog</a>
       <a href="./terms-of-service.html">Terms</a>
+      <a href="./legal-notice.html">Legal</a>
       <a href="mailto:support@nativeflow.me">support@nativeflow.me</a>
     </nav>
     <p>A <a href="/">Native Flow</a> product.</p>
