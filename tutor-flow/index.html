@@ -128,31 +128,7 @@
     </div>
   </section>
 
-  <section id="features" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
-    <div style="display:flex;flex-direction:column;gap:20px">
-      <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Feedback Exporter</span>
-      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Bold the phrase. It arrives as a key expression.</h2>
-      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">While you write a paraphrase in the lesson doc, bold the exact phrase you want the student to walk away with. One click — or one keystroke, with no hunting for Ringle’s own small control — sends it across to the Feedback Report.</p>
-      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Tutor Flow reads the bolding and pulls out each bolded phrase as its own key expression, split out rather than lumped in. Nothing to copy, nothing to retype, no second pass.</p>
-      <div style="border-left:3px solid #B8841C;padding:4px 0 4px 18px;margin-top:4px">
-        <p style="margin:0;font-size:17px;line-height:1.6;color:#1A1A1A;font-weight:600">I’ve personally cut my feedback time in half.</p>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-        <image-slot id="tf-exporter-doc" shape="rect" fit="cover" style="width:100%;aspect-ratio:16/10;display:block" placeholder="Shot 5 — lesson doc, one phrase bolded"></image-slot>
-      </div>
-      <div style="display:flex;align-items:center;gap:12px;padding-left:4px">
-        <span style="font-size:20px;color:#6B6258">↓</span>
-        <span style="font-size:13px;color:#6B6258">one click, or one keystroke</span>
-      </div>
-      <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-        <image-slot id="tf-exporter-report" shape="rect" fit="cover" style="width:100%;aspect-ratio:16/10;display:block" placeholder="Shot 6 — feedback report, key expressions split out"></image-slot>
-      </div>
-    </div>
-  </section>
-
-  <section style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
+  <section id="features" style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
     <div style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px;order:2">
         <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Formatting Shortcuts</span>
@@ -174,12 +150,88 @@
             <span style="font-size:11px;color:#6B6258">{{ demoHint }}</span>
           </div>
           <div style="font-size:17px;line-height:1.7;color:#1A1A1A;min-height:96px">{{ demoRendered }}</div>
-          <textarea ref="{{ demoRef }}" value="{{ demoSrc }}" onChange="{{ onDemoChange }}" onFocus="{{ onDemoFocus }}" spellcheck="false" style="position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;left:22px;bottom:22px"></textarea>
+          <textarea ref="{{ demoRef }}" value="{{ demoSrc }}" onChange="{{ onDemoChange }}" onFocus="{{ onDemoFocus }}" onKeyDown="{{ onDemoKeyDown }}" spellcheck="false" style="position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;left:22px;bottom:22px"></textarea>
         </div>
         <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
           <image-slot id="tf-shortcuts-doc" shape="rect" fit="cover" style="width:100%;aspect-ratio:4/3;display:block" placeholder="Shot 7 — marked-up feedback doc"></image-slot>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
+      <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Feedback Exporter</span>
+      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Bold the phrase. It arrives as a key expression.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">While you write a paraphrase in the lesson doc, bold the exact phrase you want the student to walk away with, then click the purple arrow — the same one Ringle already puts there — to send the block to the Feedback Report.</p>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Tutor Flow reads the bolding and pulls out each bolded phrase as its own key expression, split out rather than lumped in. Nothing to copy, nothing to retype, no second pass. Try it below.</p>
+      <div style="border-left:3px solid #B8841C;padding:4px 0 4px 18px;margin-top:4px">
+        <p style="margin:0;font-size:17px;line-height:1.6;color:#1A1A1A;font-weight:600">I’ve personally cut my feedback time in half.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
+      <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:14px 16px;border-bottom:1px solid #E6DCCF;display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Lesson doc</span>
+          <span style="font-size:11px;color:#9A9084">try it — click the arrow, or ＋ new paraphrase</span>
+        </div>
+        <div style="padding:8px 16px;border-bottom:1px solid #E6DCCF;display:flex;align-items:center;gap:8px;background:#FBF7F0">
+          <button onClick="{{ applyBoldToFocused }}" title="Bold the selected text" style="width:28px;height:28px;border-radius:6px;border:1px solid #E6DCCF;background:#ffffff;font-weight:700;font-size:13px;color:#1A1A1A;cursor:pointer;line-height:1">B</button>
+          <span style="font-size:11px;color:#9A9084">select a phrase and bold it to mark it as a key expression</span>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ blocksView }}" as="blk" hint-placeholder-count="2">
+            <div style="background:#FBF7F0;border:1px solid #E6DCCF;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+              <p style="margin:0;font-size:13px;line-height:1.6;color:#9A9084;font-style:italic;border-left:2px solid #E6DCCF;padding-left:10px">{{ blk.before }}</p>
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <div style="flex:1;min-width:0;position:relative;cursor:text" onClick="{{ blk.focus }}">
+                  <div style="font-size:15px;line-height:1.6;color:#1A1A1A;min-height:22px">{{ blk.afterRendered }}</div>
+                  <textarea ref="{{ blk.setRef }}" value="{{ blk.afterSrc }}" onChange="{{ blk.onChange }}" onFocus="{{ blk.onFocusFn }}" onKeyDown="{{ blk.onKeyDown }}" spellcheck="false" style="position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;left:0;bottom:0"></textarea>
+                </div>
+                <button onClick="{{ blk.exportBlock }}" title="{{ blk.arrowTitle }}" style="{{ blk.arrowStyle }}">{{ blk.arrowLabel }}</button>
+              </div>
+            </div>
+          </sc-for>
+          <button onClick="{{ addBlock }}" style="align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#10595B;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:10px;padding:8px 14px;cursor:pointer">
+            <span style="font-size:15px;line-height:1">＋</span>
+            <span>New paraphrase</span>
+            <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:11px;color:#6B6258;background:#ffffff;border:1px solid #E6DCCF;border-radius:6px;padding:1px 6px">⌘/Ctrl 1</span>
+          </button>
+        </div>
+      </div>
+      <div style="background:#F6EFE6;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:14px 16px;border-bottom:1px solid #E6DCCF;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffffff">
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Feedback Report</span>
+          <span style="font-size:11px;color:#9A9084">key expressions import automatically</span>
+        </div>
+        <div style="padding:16px;display:flex;flex-direction:column;gap:12px;min-height:220px">
+          <sc-if value="{{ noExports }}" hint-placeholder-val="{{ true }}">
+            <div style="border:1px dashed #D8CBB8;border-radius:12px;padding:28px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;color:#9A9084">
+              <span style="font-size:20px;color:#442DC9">→</span>
+              <span style="font-size:13px;line-height:1.6;max-width:220px">Click the purple arrow next to a paraphrase to export it here.</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ hasExports }}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{ exportedView }}" as="card" hint-placeholder-count="0">
+              <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9A9084">Paraphrase</span>
+                <p style="margin:0;font-size:13px;line-height:1.6;color:#6B6258;font-style:italic">{{ card.before }}</p>
+                <p style="margin:0;font-size:15px;line-height:1.6;color:#1A1A1A">{{ card.afterRendered }}</p>
+                <sc-if value="{{ card.hasKeyExpr }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px">
+                    <sc-for list="{{ card.keyExpressions }}" as="ke" hint-placeholder-count="1">
+                      <span style="font-size:12px;font-weight:600;color:#442DC9;background:#EFEAFB;border:1px solid #DCD2F5;border-radius:999px;padding:4px 10px">{{ ke }}</span>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+    <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+      <image-slot id="tf-exporter-doc" shape="rect" fit="cover" style="width:100%;aspect-ratio:21/9;display:block" placeholder="Shot 5 — the real Feedback Report in Ringle"></image-slot>
     </div>
   </section>
 
@@ -358,10 +410,31 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;defaultPlan&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;annual&quot;,&quot;monthly&quot;],&quot;default&quot;:&quot;annual&quot;,&quot;tsType&quot;:&quot;'annual'|'monthly'&quot;,&quot;section&quot;:&quot;Pricing&quot;},&quot;demoAutoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Formatting demo&quot;}}">
-const DEMO = 'You said “I will finish it until Friday.” More natural: *by Friday*.';
+const DEMO = 'You said “I will finish it -until->by Friday.” That’s *by Friday*, plus a [tense] fix and a ¶Yhighlight¶ to remember.';
+
+const HILITE_COLORS = { Y: '#FFF8B6', P: '#FFE4F8', G: '#E8FFB6' };
+const ORANGE = '#FF6C1A';
+const BRAND_PURPLE = '#442DC9';
+
+const EXPORTER_TRANSCRIPT_POOL = [
+  '“I am so exciting for the trip next week.”',
+  '“He explained me the homework after class.”',
+  '“I look forward to see you again soon.”'
+];
 
 class Component extends DCLogic {
-  state = { src: '', typing: true, taken: false, plan: null, openFaq: 0 };
+  state = {
+    src: '', typing: true, taken: false, plan: null, openFaq: 0,
+    blocks: [
+      { id: 1, before: '“I think I want to buying a new laptop for my work.”', afterSrc: 'You could say you’re *thinking about getting* a new laptop for work.', exported: false },
+      { id: 2, before: '“She don’t like doing homework so much.”', afterSrc: 'A more natural way to put it: she’s *not really a fan of* homework.', exported: false }
+    ],
+    nextBlockId: 3,
+    transcriptIndex: 0,
+    focusedBlockId: null
+  };
+
+  afterRefs = {};
 
   componentDidMount() {
     this.demoEl = null;
@@ -377,32 +450,169 @@ class Component extends DCLogic {
 
   componentWillUnmount() { clearInterval(this.tick); }
 
-  parse(src) {
+  // Shared renderer for both the Formatting Shortcuts typing demo and the
+  // Feedback Exporter's after-paraphrase fields. Not a port of Quill's real
+  // formatting model (see bracketFormatter.js / boldExportPipeline.js for
+  // that) — a small markup dialect chosen only to make each shortcut
+  // demonstrable inside a plain textarea:
+  //   *word*        -> bold
+  //   [word]        -> in-line correction (orange)
+  //   -wrong->right -> hyphen correction trigger (struck original, orange fix)
+  //   ¶Yword¶       -> yellow highlight (Ctrl/Cmd+3)
+  //   ¶Pword¶ / ¶Gword¶ -> pink / green highlight (Ctrl/Cmd+4 cycle)
+  renderMarkup(src, withCaret) {
     const out = [];
     let buf = '';
     let i = 0;
     let k = 0;
+    const flush = () => { if (buf) { out.push(buf); buf = ''; } };
     while (i < src.length) {
-      if (src[i] === '*') {
+      const ch = src[i];
+
+      if (ch === '*') {
         const end = src.indexOf('*', i + 1);
         if (end > i) {
-          if (buf) { out.push(buf); buf = ''; }
+          flush();
           out.push(React.createElement('strong', { key: 'b' + k++, style: { fontWeight: 700 } }, src.slice(i + 1, end)));
           i = end + 1;
           continue;
         }
       }
-      buf += src[i];
+
+      if (ch === '[') {
+        const end = src.indexOf(']', i + 1);
+        if (end > i) {
+          flush();
+          out.push(React.createElement('span', { key: 'c' + k++, style: { color: ORANGE } }, src.slice(i + 1, end)));
+          i = end + 1;
+          continue;
+        }
+      }
+
+      if (ch === '-') {
+        const m = /^-(\S+?)->(\S+)/.exec(src.slice(i));
+        if (m) {
+          flush();
+          out.push(React.createElement('span', { key: 'w' + k++, style: { color: '#9A9084', textDecoration: 'line-through' } }, m[1]));
+          out.push(React.createElement('span', { key: 'a' + k++, style: { color: '#9A9084', fontSize: '0.85em', margin: '0 2px' } }, '→'));
+          out.push(React.createElement('span', { key: 'r' + k++, style: { color: ORANGE } }, m[2]));
+          i += m[0].length;
+          continue;
+        }
+      }
+
+      if (ch === '¶') {
+        const tag = src[i + 1];
+        const bg = HILITE_COLORS[tag];
+        const end = bg ? src.indexOf('¶', i + 2) : -1;
+        if (bg && end > i) {
+          flush();
+          out.push(React.createElement('span', { key: 'h' + k++, style: { background: bg, borderRadius: '3px', padding: '0 2px' } }, src.slice(i + 2, end)));
+          i = end + 1;
+          continue;
+        }
+      }
+
+      buf += ch;
       i += 1;
     }
-    if (buf) out.push(buf);
-    if (!this.state.taken) {
+    flush();
+    if (withCaret) {
       out.push(React.createElement('span', {
         key: 'caret',
         style: { display: 'inline-block', width: '2px', height: '1.05em', background: '#10595B', marginLeft: '2px', verticalAlign: '-0.15em', animation: 'tfblink 1s step-end infinite' }
       }));
     }
     return out;
+  }
+
+  // Ctrl/Cmd+3 (single-color toggle) and Ctrl/Cmd+4 (pink -> green -> off
+  // cycle) — mirrors highlightToggleShortcut.js's cycle logic, applied here
+  // to the selected range of a plain textarea instead of a Quill range.
+  applyHighlightShortcut(el, cycle) {
+    const { selectionStart: s, selectionEnd: e, value } = el;
+    if (s === e) return;
+    let start = s;
+    let end = e;
+    let inner = value.slice(s, e);
+    if (value[s - 2] === '¶' && value[e] === '¶') {
+      start = s - 2;
+      end = e + 1;
+      inner = value.slice(s, e);
+    }
+    const currentTag = value[start] === '¶' ? value[start + 1] : null;
+    const idx = cycle.indexOf(currentTag);
+    const nextTag = idx === -1 ? cycle[0] : cycle[idx + 1] || null;
+    const replacement = nextTag ? ('¶' + nextTag + inner + '¶') : inner;
+    const next = value.slice(0, start) + replacement + value.slice(end);
+    const caretPos = start + replacement.length;
+    this.setState({ src: next, taken: true });
+    requestAnimationFrame(() => { el.focus(); el.setSelectionRange(caretPos, caretPos); });
+  }
+
+  onDemoKeyDown(e) {
+    if (!(e.ctrlKey || e.metaKey)) return;
+    if (e.key === '3') { e.preventDefault(); this.applyHighlightShortcut(e.target, ['Y']); }
+    else if (e.key === '4') { e.preventDefault(); this.applyHighlightShortcut(e.target, ['P', 'G']); }
+  }
+
+  // ---------- Feedback Exporter demo ----------
+
+  extractBoldPhrases(src) {
+    const phrases = [];
+    const seen = new Set();
+    const re = /\*([^*]+)\*/g;
+    let m;
+    while ((m = re.exec(src))) {
+      const phrase = m[1].trim();
+      if (phrase && !seen.has(phrase)) { seen.add(phrase); phrases.push(phrase); }
+    }
+    return phrases;
+  }
+
+  updateBlockSrc(id, value) {
+    this.setState((s) => ({ blocks: s.blocks.map((b) => (b.id === id ? { ...b, afterSrc: value } : b)) }));
+  }
+
+  handleExportBlock(id) {
+    this.setState((s) => ({ blocks: s.blocks.map((b) => (b.id === id ? { ...b, exported: true } : b)) }));
+  }
+
+  // Cmd/Ctrl+1 — Ringle's own paraphrase-block shortcut (see
+  // numpadShortcuts.js). Appends a fresh block seeded with the next
+  // transcript line so there's always a "before" quote to paraphrase.
+  addBlock() {
+    const idx = this.state.transcriptIndex % EXPORTER_TRANSCRIPT_POOL.length;
+    const id = this.state.nextBlockId;
+    const before = EXPORTER_TRANSCRIPT_POOL[idx];
+    this.setState((s) => ({
+      blocks: [...s.blocks, { id, before, afterSrc: '', exported: false }],
+      nextBlockId: s.nextBlockId + 1,
+      transcriptIndex: s.transcriptIndex + 1,
+      focusedBlockId: id
+    }));
+    requestAnimationFrame(() => { const el = this.afterRefs[id]; if (el) el.focus(); });
+  }
+
+  handleAfterKeyDown(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === '1') {
+      e.preventDefault();
+      this.addBlock();
+    }
+  }
+
+  // Toolbar "B" button — bolds the current selection in whichever
+  // after-field last had focus, same idea as clicking Ringle's own toolbar.
+  applyBoldToFocused() {
+    const id = this.state.focusedBlockId;
+    if (!id) return;
+    const el = this.afterRefs[id];
+    if (!el) return;
+    const { selectionStart: s, selectionEnd: e, value } = el;
+    if (s === e) return;
+    const next = value.slice(0, s) + '*' + value.slice(s, e) + '*' + value.slice(e);
+    this.updateBlockSrc(id, next);
+    requestAnimationFrame(() => { el.focus(); el.setSelectionRange(e + 2, e + 2); });
   }
 
   renderVals() {
@@ -434,14 +644,61 @@ class Component extends DCLogic {
       ['What happens if Ringle changes something?', 'Tutor Flow is maintained alongside Ringle’s updates. The developer teaches on Ringle too, so changes get noticed and fixed quickly, and the changelog records them.'],
       ['Can I cancel?', 'Yes, anytime. Monthly and annual both cancel from your purchase confirmation.']
     ];
+    const arrowStyle = (exported) => ({
+      flexShrink: 0,
+      width: '30px',
+      height: '30px',
+      borderRadius: '8px',
+      border: exported ? '1px solid #DCD2F5' : ('1px solid ' + BRAND_PURPLE),
+      background: exported ? '#EFEAFB' : BRAND_PURPLE,
+      color: exported ? BRAND_PURPLE : '#ffffff',
+      fontSize: '14px',
+      fontWeight: 700,
+      cursor: 'pointer',
+      lineHeight: 1
+    });
+
+    const blocksView = this.state.blocks.map((b) => ({
+      id: b.id,
+      before: b.before,
+      afterSrc: b.afterSrc,
+      afterRendered: b.afterSrc
+        ? this.renderMarkup(b.afterSrc, this.state.focusedBlockId === b.id)
+        : (this.state.focusedBlockId === b.id
+          ? this.renderMarkup('', true)
+          : [React.createElement('span', { key: 'ph', style: { color: '#B8AFA2' } }, 'Type a paraphrase — *bold* the phrase to export')]),
+      setRef: (el) => { this.afterRefs[b.id] = el; },
+      onChange: (e) => this.updateBlockSrc(b.id, e.target.value),
+      onFocusFn: () => this.setState({ focusedBlockId: b.id }),
+      onKeyDown: (e) => this.handleAfterKeyDown(e),
+      focus: () => { const el = this.afterRefs[b.id]; if (el) el.focus(); },
+      exportBlock: () => this.handleExportBlock(b.id),
+      arrowLabel: b.exported ? '✓' : '→',
+      arrowTitle: b.exported ? 'Exported to Feedback Report' : 'Export to Feedback Report',
+      arrowStyle: arrowStyle(b.exported)
+    }));
+
+    const exportedBlocks = this.state.blocks.filter((b) => b.exported);
+    const exportedView = exportedBlocks.map((b) => {
+      const keyExpressions = this.extractBoldPhrases(b.afterSrc);
+      return {
+        id: b.id,
+        before: b.before,
+        afterRendered: this.renderMarkup(b.afterSrc, false),
+        keyExpressions,
+        hasKeyExpr: keyExpressions.length > 0
+      };
+    });
+
     return {
       demoSrc: this.state.src,
-      demoRendered: this.parse(this.state.src),
-      demoHint: this.state.taken ? 'your turn — try *bolding* something' : 'click to type it yourself',
+      demoRendered: this.renderMarkup(this.state.src, !this.state.taken),
+      demoHint: this.state.taken ? 'your turn — *bold*, [brackets], -word->fix, or select + ⌃/⌘3' : 'click to type it yourself',
       demoRef: (el) => { this.demoEl = el; },
       focusDemo: () => { if (this.demoEl) this.demoEl.focus(); },
       onDemoFocus: () => { if (!this.state.taken) this.setState({ taken: true }); },
       onDemoChange: (e) => this.setState({ src: e.target.value, taken: true }),
+      onDemoKeyDown: (e) => this.onDemoKeyDown(e),
       annualCardStyle: card(plan === 'annual'),
       monthlyCardStyle: card(plan === 'monthly'),
       annualPillStyle: pill(plan === 'annual'),
@@ -455,7 +712,13 @@ class Component extends DCLogic {
         open: this.state.openFaq === idx,
         sign: this.state.openFaq === idx ? '–' : '+',
         toggle: () => this.setState((s) => ({ openFaq: s.openFaq === idx ? -1 : idx }))
-      }))
+      })),
+      blocksView,
+      exportedView,
+      hasExports: exportedView.length > 0,
+      noExports: exportedView.length === 0,
+      addBlock: () => this.addBlock(),
+      applyBoldToFocused: () => this.applyBoldToFocused()
     };
   }
 }
