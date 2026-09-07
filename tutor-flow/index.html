@@ -69,6 +69,17 @@
   a:hover { color: #0A3D3F; text-decoration: underline; }
   @keyframes tfblink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
   h1, h2, h3, p { text-wrap: pretty; }
+
+  /* Mobile-only visual adjustments. Desktop layout above is untouched. */
+  @media (max-width: 680px) {
+    header > div { gap: 14px !important; }
+    header nav { gap: 14px !important; }
+    header nav a:not(:last-child) { display: none !important; }
+    header nav a:last-child { padding: 9px 14px !important; font-size: 13px !important; }
+    .tf-hero { padding: 88px 20px 56px !important; }
+    .tf-section { padding-top: 56px !important; padding-bottom: 56px !important; padding-left: 20px !important; padding-right: 20px !important; }
+    .tf-gap-lg { gap: 28px !important; }
+  }
 </style>
 <script src="./image-slot.js"></script>
 </helmet>
@@ -91,7 +102,7 @@
     </div>
   </header>
 
-  <section id="top" style="max-width:1120px;margin:0 auto;padding:120px 24px 104px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
+  <section id="top" class="tf-hero" style="max-width:1120px;margin:0 auto;padding:120px 24px 104px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
     <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:76px;height:76px;border-radius:18px;display:block;box-shadow:0 2px 8px rgba(10,61,63,0.06)" />
     <div style="display:flex;flex-direction:column;gap:20px;align-items:center;max-width:840px">
       <h1 style="margin:0;font-size:clamp(44px,6.4vw,68px);font-weight:700;letter-spacing:-0.035em;line-height:1.05">Less hassle, more flow.</h1>
@@ -105,7 +116,7 @@
   </section>
 
   <section style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
-    <div style="max-width:1120px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:48px">
+    <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:48px">
       <h2 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.02em;max-width:640px">The teaching is the easy part.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
         <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
@@ -129,7 +140,7 @@
   </section>
 
   <section id="features" style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
-    <div style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+    <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px;order:2">
         <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Formatting Shortcuts</span>
         <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Write feedback at typing speed.</h2>
@@ -181,7 +192,7 @@
     </div>
   </section>
 
-  <section style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
+  <section class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
       <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Feedback Exporter</span>
       <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Bold the phrase. It arrives as a key expression.</h2>
@@ -272,13 +283,13 @@
     </div>
   </section>
 
-  <section style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:80px">
+  <section class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:80px">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
       <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Calendar Defender</span>
       <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Never double-book yourself.</h2>
       <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Connect your Google Calendar and your existing commitments appear right on Ringle’s booking grid, so the time you’re already busy stops being bookable — and stays that way even when you’re offering a slot weeks out.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+    <div class="tf-gap-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px">
         <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Your real calendar, right on the grid.</h3>
         <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
@@ -290,7 +301,7 @@
         <img src="assets/screenshots/tf-calendar-overlays.png" alt="Ringle’s booking grid with the tutor’s Google Calendar overlaid — a pinned holiday, personal events in blue, and the Manual blocks panel open in the sidebar." style="width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;display:block" loading="lazy" />
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+    <div class="tf-gap-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px;order:2">
         <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Conflicts flagged before you offer.</h3>
         <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
@@ -305,7 +316,7 @@
   </section>
 
   <section style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
-    <div style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+    <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:20px;order:2">
         <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Student Tracker</span>
         <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Never start a lesson cold.</h2>
@@ -324,7 +335,7 @@
   </section>
 
   <section style="background:#EFE5D7">
-    <div style="max-width:1120px;margin:0 auto;padding:104px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:center">
+    <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:104px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:24px;max-width:560px">
         <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em;line-height:1.2">Built by a tutor, maintained alongside Ringle.</h2>
         <p style="margin:0;font-size:18px;line-height:1.65;color:#6B6258">Tutor Flow was built by a working Ringle tutor and used in real lessons, every teaching day, for about a year before release. The developer is still an active Ringle tutor.</p>
@@ -342,7 +353,7 @@
     </div>
   </section>
 
-  <section id="how" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:52px">
+  <section id="how" class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:52px">
     <div style="display:flex;flex-direction:column;gap:14px;max-width:620px">
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">How it works</h2>
       <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">Install first, activate second. Four steps, then it runs inside Ringle.</p>
@@ -372,7 +383,7 @@
   </section>
 
   <section style="background:#0A3D3F;color:#F4FBFA">
-    <div style="max-width:1120px;margin:0 auto;padding:88px 24px;display:flex;flex-direction:column;gap:36px">
+    <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:88px 24px;display:flex;flex-direction:column;gap:36px">
       <h2 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-0.02em">Your calendar and your students, handled carefully.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px">
         <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">Calendar access is read-only, through your own Google account.</p>
@@ -383,7 +394,7 @@
     </div>
   </section>
 
-  <section id="pricing" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:44px;align-items:center;text-align:center">
+  <section id="pricing" class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:44px;align-items:center;text-align:center">
     <div style="display:flex;flex-direction:column;gap:14px;max-width:560px">
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Pricing</h2>
       <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">One licence, every feature. Annual works out to one month free.</p>
@@ -420,7 +431,7 @@
   </section>
 
   <section id="faq" style="background:#F6EFE6;border-top:1px solid #E6DCCF">
-    <div style="max-width:760px;margin:0 auto;padding:104px 24px;display:flex;flex-direction:column;gap:36px">
+    <div class="tf-section" style="max-width:760px;margin:0 auto;padding:104px 24px;display:flex;flex-direction:column;gap:36px">
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Questions</h2>
       <div style="display:flex;flex-direction:column;gap:12px">
         <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="4">
@@ -439,7 +450,7 @@
   </section>
 
   <section style="border-top:1px solid #E6DCCF">
-    <div style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center">
+    <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center">
       <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:56px;height:56px;border-radius:14px;display:block" />
       <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.03em">Less hassle, more flow.</h2>
       <p style="margin:0;font-size:17px;color:#6B6258;max-width:460px">Scheduling, student tracking, and faster feedback for your Ringle lessons.</p>
