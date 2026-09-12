@@ -52,12 +52,12 @@
 
 <main>
   <h1>Privacy Policy — Tutor Flow</h1>
-  <p class="updated">Last updated: 2026-08-31</p>
+  <p class="updated">Last updated: 2026-09-12</p>
   <p class="contact">Contact: <a href="mailto:support@nativeflow.me">support@nativeflow.me</a></p>
 
   <h2>Overview</h2>
   <p>Tutor Flow is a Chrome extension that helps tutors on the Ringle platform manage lessons, track student progress, and streamline in-lesson workflows. This policy explains what data the extension handles, where it lives, and what control you have over it.</p>
-  <p>The short version: your lesson content, student notes, and diagnostic logs stay on your own computer. We run one small backend service for licensing, and it only ever sees your license key and subscription status — never your lesson or student data. See “Where data leaves your device” below for the full picture.</p>
+  <p>The short version: your lesson content and student notes stay on your own computer, always. We run one small backend service for licensing, and it only ever sees your license key and subscription status — never your lesson or student data. Error reporting is switched <strong>off</strong> unless you turn it on, and even then it sends only technical details about what failed — never anything you or your student typed. See “Where data leaves your device” below for the full picture.</p>
 
   <h2>What data the extension collects</h2>
   <p>While you use the extension during Ringle tutoring sessions, it may store the following on your own device:</p>
@@ -65,23 +65,24 @@
     <li><strong>Student information</strong> you enter or that appears during lessons — student names, private notes, ratings, and lesson history.</li>
     <li><strong>Lesson content</strong> — question text, tutor responses, and paraphrase data generated during feedback workflows.</li>
     <li><strong>Draft content</strong> — in-progress text from the lesson editor, saved locally so it isn’t lost if the page reloads.</li>
-    <li><strong>Diagnostic and error logs</strong> — a rolling record of extension activity used for troubleshooting, capped at a fixed size so older entries drop off automatically. Your license key is always masked before anything is logged. Beyond that specific masking, other message content isn’t filtered field-by-field, so an error or warning entry can occasionally include page-related text — but this log is never sent anywhere unless you choose to export and share it yourself.</li>
+    <li><strong>Diagnostic and error logs</strong> — a rolling record of extension activity used for troubleshooting, capped at a fixed size so older entries drop off automatically. Your license key is always masked before anything is logged. Beyond that specific masking, other message content isn’t filtered field-by-field, so an error or warning entry can occasionally include page-related text. This log stays on your device: it is never sent anywhere unless you choose to export and share it yourself. If you switch on error reporting (see below), a separate, more heavily redacted version of an error is sent — not this log.</li>
     <li><strong>License and subscription status</strong> — your license key, activation status, and expiry date, so the extension knows it’s activated. The key is masked (only the last few characters shown) anywhere it appears.</li>
     <li><strong>Google Calendar data</strong> — if you connect your Google account, the extension reads your calendar list and events to display your schedule, and your Google name and email so you can see which account is connected. It doesn’t read, write, or modify anything else in your Google account.</li>
   </ul>
   <p>The extension does <strong>not</strong> collect analytics, usage tracking, advertising identifiers, or browsing history outside of the Ringle platform pages it operates on.</p>
 
   <h2>Where this data is stored</h2>
-  <p>Your lesson content, student notes, drafts, and diagnostic logs are stored locally in your browser, on your own device. None of it is transmitted to or stored on any server we operate — it never leaves your machine except in the situations below. The one exception is your license key and subscription status, which we do need to verify against our license server.</p>
+  <p>Your lesson content, student notes, drafts, and diagnostic logs are stored locally in your browser, on your own device. None of it is transmitted to or stored on any server we operate — it never leaves your machine except in the situations below. Two things do leave: your license key and subscription status, which we need to verify against our license server, and — only if you switch error reporting on — redacted technical details of a failure, which go to Sentry and never include your lesson or student data.</p>
 
   <h2>Where data leaves your device</h2>
-  <p>Data leaves your device in three situations:</p>
+  <p>Data leaves your device in four situations, one of which is off unless you turn it on:</p>
   <ol style="padding-left: 22px;">
     <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Google Calendar</strong> — read-only requests to display your calendar and connected-account name/email, sent only when you’ve connected your Google account, and only to Google’s own servers.</li>
     <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Ringle’s own platform</strong> — the extension reads and writes data on Ringle’s pages as part of normal tutoring functionality, the same way any browser extension interacts with the page it’s installed on.</li>
     <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>The Tutor Flow license server</strong> (a small backend service we run) — your license key is sent here to activate and periodically re-verify your subscription. This service talks to Creem, our payment processor, on our behalf. It never sees your lesson content, student notes, or calendar data — it only stores your license key’s associated customer ID, subscription/activation status, and (if you use a referral code) which customer referred which.</li>
+    <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Sentry, our error-tracking service</strong> — <strong>only if you switch on “Send error reports” in the extension’s Settings tab.</strong> It is off by default and stays off until you turn it on; you can turn it off again at any time, and nothing is sent while it is off. See “Error reporting” below for exactly what an error report contains.</li>
   </ol>
-  <p>No data is sent to any analytics service, advertiser, or third party beyond Google, Ringle, and our own license server as described above.</p>
+  <p>No data is sent to any analytics service or advertiser, and none to any third party beyond Google, Ringle, our own license server, and — only with error reporting switched on — Sentry, as described above. The extension has no usage tracking, no advertising identifiers, and no way to report on what you do with it.</p>
 
   <h2>Your Google Account data</h2>
   <p>If you choose to connect your Google account, we request two permissions:</p>
@@ -96,10 +97,24 @@
     <li>Our use of Google data follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including its Limited Use requirements.</li>
   </ul>
 
+  <h2>Error reporting</h2>
+  <p>Tutor Flow sits on top of Ringle’s own pages, which means a change on Ringle’s side can stop a feature working without anything visibly breaking — a button quietly stops responding, a shortcut does nothing. Error reporting exists so those failures can be found and fixed rather than waiting for someone to notice and write in.</p>
+  <p><strong>It is off by default.</strong> Nothing is sent unless you switch on “Send error reports” in the extension’s Settings tab, and you can switch it off again at any time. While it is off, errors are still recorded in the local log on your own device, exactly as described above, and go nowhere else.</p>
+  <p>When it is on, an error report is sent to <a href="https://sentry.io/">Sentry</a>, an error-tracking service, and contains:</p>
+  <ul>
+    <li>What failed — the name of the feature and the specific step, plus the technical error message and stack trace from the extension’s own code.</li>
+    <li>Which kind of page it happened on, as a template rather than a real address: a lesson at <code>…/classroom/3052606</code> is reported as <code>…/classroom/:id</code>, so the page type is recorded and the lesson identifier is not. Anything after the address (query strings and the like) is discarded entirely.</li>
+    <li>The version of Tutor Flow, and Ringle’s own build identifier, so a breakage can be matched to the Ringle release that caused it.</li>
+    <li>A random identifier generated once on your install. It is not derived from your Ringle account, your Google account, your email, or anything else about you. Its only purpose is to tell “this broke for one person” apart from “this broke for everyone”.</li>
+  </ul>
+  <p>What an error report never contains: your lesson content, your students’ names or writing, your own feedback text, notes, drafts, calendar entries, your Google account details, or your license key. The details attached to a failure are deliberately limited to counts, positions, and status values rather than text. On top of that, any field whose name indicates it could hold writing is removed before sending and replaced with a character count — so a report can say whether something was empty or unexpectedly long without carrying what it said — and every remaining value is truncated to a short length.</p>
+  <p>Sentry processes this data on our behalf as a service provider, on servers in the European Union. Turning the setting off stops anything further being sent; reports already sent are retained by Sentry for a limited period and then deleted. If you would like a report deleted sooner, email <a href="mailto:support@nativeflow.me">support@nativeflow.me</a>.</p>
+
   <h2>Data retention and your control over it</h2>
   <ul>
     <li>Everything stored locally stays on your device until you remove it — by uninstalling the extension, clearing your browser’s extension storage, or using the extension’s built-in tools.</li>
-    <li>Diagnostic and error logs are capped and rotate automatically as new entries arrive. You can clear the stored log anytime from the extension’s popup (“Clear stored errors”).</li>
+    <li>Diagnostic and error logs are capped and rotate automatically as new entries arrive. You can clear the stored log anytime from the extension’s popup (“Clear stored errors”). Clearing the local log does not affect any error report already sent to Sentry — see “Error reporting” above.</li>
+    <li>Error reporting can be switched on and off at any time from the extension’s Settings tab (“Send error reports”). It is off until you turn it on.</li>
     <li>Student tracker records (names, notes, ratings, lesson history) can be cleared anytime from the popup (“Reset all tracker data”).</li>
     <li>The “Export error log” feature saves a diagnostic file to your Downloads folder for troubleshooting. It’s created locally and only exists if you choose to export it — treat exported files the same way you’d treat any file containing student information.</li>
   </ul>
