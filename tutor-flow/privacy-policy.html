@@ -52,7 +52,7 @@
 
 <main>
   <h1>Privacy Policy — Tutor Flow</h1>
-  <p class="updated">Last updated: 2026-09-12</p>
+  <p class="updated">Last updated: 2026-09-14</p>
   <p class="contact">Contact: <a href="mailto:support@nativeflow.me">support@nativeflow.me</a></p>
 
   <h2>Overview</h2>
@@ -80,7 +80,7 @@
     <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Google Calendar</strong> — read-only requests to display your calendar and connected-account name/email, sent only when you’ve connected your Google account, and only to Google’s own servers.</li>
     <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Ringle’s own platform</strong> — the extension reads and writes data on Ringle’s pages as part of normal tutoring functionality, the same way any browser extension interacts with the page it’s installed on.</li>
     <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>The Tutor Flow license server</strong> (a small backend service we run) — your license key is sent here to activate and periodically re-verify your subscription. This service talks to Creem, our payment processor, on our behalf. It never sees your lesson content, student notes, or calendar data — it only stores your license key’s associated customer ID, subscription/activation status, and (if you use a referral code) which customer referred which.</li>
-    <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Sentry, our error-tracking service</strong> — <strong>only if you switch on “Send error reports” in the extension’s Settings tab.</strong> It is off by default and stays off until you turn it on; you can turn it off again at any time, and nothing is sent while it is off. See “Error reporting” below for exactly what an error report contains.</li>
+    <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Sentry, our error-tracking service</strong> — <strong>only if you switch on “Send error reports” in the extension’s Settings tab.</strong> It is off by default and stays off until you turn it on; you can turn it off again at any time, and nothing is sent while it is off. See “Error reporting” below for exactly what an error report contains, and “Sending a diagnostic” for the separate, more detailed report you can choose to send when a feature stops working.</li>
   </ol>
   <p>No data is sent to any analytics service or advertiser, and none to any third party beyond Google, Ringle, our own license server, and — only with error reporting switched on — Sentry, as described above. The extension has no usage tracking, no advertising identifiers, and no way to report on what you do with it.</p>
 
@@ -103,11 +103,19 @@
   <p>When it is on, an error report is sent to <a href="https://sentry.io/">Sentry</a>, an error-tracking service, and contains:</p>
   <ul>
     <li>What failed — the name of the feature and the specific step, plus the technical error message and stack trace from the extension’s own code.</li>
-    <li>Which kind of page it happened on, as a template rather than a real address: a lesson at <code>…/classroom/3052606</code> is reported as <code>…/classroom/:id</code>, so the page type is recorded and the lesson identifier is not. Anything after the address (query strings and the like) is discarded entirely.</li>
+    <li>Which part of the extension it happened in, using our own names for our own features — <code>feedback</code>, <code>classroom</code>, <code>docs</code> and so on. <strong>No web address is included.</strong> Not the page you were on, not a shortened or templated version of it, not the domain. Any value that looks like an address is removed before a report is sent, whatever field it arrived in.</li>
     <li>The version of Tutor Flow, and Ringle’s own build identifier, so a breakage can be matched to the Ringle release that caused it.</li>
     <li>A random identifier generated once on your install. It is not derived from your Ringle account, your Google account, your email, or anything else about you. Its only purpose is to tell “this broke for one person” apart from “this broke for everyone”.</li>
+    <li>Whether a feature that used to run has stopped running. The extension notes, on your device, which features ran on a given day; if some stop while others carry on, that is reported. It records nothing about which pages you visited.</li>
   </ul>
-  <p>What an error report never contains: your lesson content, your students’ names or writing, your own feedback text, notes, drafts, calendar entries, your Google account details, or your license key. The details attached to a failure are deliberately limited to counts, positions, and status values rather than text. On top of that, any field whose name indicates it could hold writing is removed before sending and replaced with a character count — so a report can say whether something was empty or unexpectedly long without carrying what it said — and every remaining value is truncated to a short length.</p>
+  <p>What an error report never contains: your lesson content, your students’ names or writing, your own feedback text, notes, drafts, calendar entries, your Google account details, your license key, or the web address of any page. The details attached to a failure are deliberately limited to counts, positions, and status values rather than text. On top of that, any field whose name indicates it could hold writing is removed before sending and replaced with a character count — so a report can say whether something was empty or unexpectedly long without carrying what it said — and every remaining value is truncated to a short length.</p>
+
+  <h2>Sending a diagnostic</h2>
+  <p>Automatic error reports say that something broke. They cannot say what to change, because fixing a broken feature means seeing how Ringle’s page is now built. That is what a diagnostic is for, and it is only ever sent because you chose to send it.</p>
+  <p>When a feature can’t find something it needs on a Ringle page, the extension records <em>the structure of that page</em> and keeps it on your device. It waits there until you open the extension and decide. You’ll see a small number on the Tutor Flow icon, and a row in Settings naming the feature and when it happened, with <strong>Send</strong> and <strong>Discard</strong> beside it. Nothing is sent if you do nothing, and anything you don’t act on is deleted automatically after 24 hours.</p>
+  <p>“Structure” means the skeleton of the page and nothing written on it: the names of the HTML elements, the identifiers Ringle puts on its own buttons and panels, how the elements are nested, and how many there are. <strong>Every piece of text is removed.</strong> Where knowing that a label changed is useful, the extension stores a short scrambled fingerprint of that text instead, from which the original cannot be read. Your students’ writing, your feedback, and anything else you or they typed are not part of it.</p>
+  <p>There is also a <strong>Report the page I’m on</strong> button in Settings. It exists for the case where Ringle has moved something to an address the extension doesn’t recognise at all, so nothing is recorded automatically. Pressing it reads the page currently open in front of you — once, only when pressed — and sends its structure along with that page’s web address, because in that situation the address is the answer we need. This is the only circumstance in which Tutor Flow sends an address anywhere, and it never happens without you pressing that button.</p>
+  <p>Diagnostics require error reporting to be switched on. Switching it off deletes anything still waiting to be sent.</p>
   <p>Sentry processes this data on our behalf as a service provider, on servers in the European Union. Turning the setting off stops anything further being sent; reports already sent are retained by Sentry for a limited period and then deleted. If you would like a report deleted sooner, email <a href="mailto:support@nativeflow.me">support@nativeflow.me</a>.</p>
 
   <h2>Data retention and your control over it</h2>
@@ -115,12 +123,20 @@
     <li>Everything stored locally stays on your device until you remove it — by uninstalling the extension, clearing your browser’s extension storage, or using the extension’s built-in tools.</li>
     <li>Diagnostic and error logs are capped and rotate automatically as new entries arrive. You can clear the stored log anytime from the extension’s popup (“Clear stored errors”). Clearing the local log does not affect any error report already sent to Sentry — see “Error reporting” above.</li>
     <li>Error reporting can be switched on and off at any time from the extension’s Settings tab (“Send error reports”). It is off until you turn it on.</li>
+    <li>Diagnostics waiting to be sent are listed in Settings, can be discarded individually, are deleted automatically after 24 hours, and are all deleted the moment you switch error reporting off.</li>
     <li>Student tracker records (names, notes, ratings, lesson history) can be cleared anytime from the popup (“Reset all tracker data”).</li>
     <li>The “Export error log” feature saves a diagnostic file to your Downloads folder for troubleshooting. It’s created locally and only exists if you choose to export it — treat exported files the same way you’d treat any file containing student information.</li>
   </ul>
 
   <h2>Data we don’t collect</h2>
   <p>We don’t collect, and the extension has no way to collect: payment details (Creem, our payment processor, handles that directly — we never see your card), passwords, browsing history outside Ringle’s platform, contacts, location data, or anything from websites other than the Ringle, Google, and license-server systems described above.</p>
+
+  <h2>Emails we may send you</h2>
+  <p>When you buy a licence, Creem collects your email address in order to send you your activation key. We may also use that address to tell you about problems affecting the extension — for example, if a change on Ringle’s side has stopped a feature working and we need to let you know, or ask for your help diagnosing it.</p>
+  <p>These are service messages about something you’re using, not marketing. We won’t send you promotional email on the basis of a purchase, and we won’t share your address with anyone for their own use.</p>
+
+  <h2>Chrome Web Store Limited Use</h2>
+  <p>Tutor Flow’s use of information received from Google APIs adheres to the <a href="https://developer.chrome.com/docs/webstore/program-policies/user-data-faq">Chrome Web Store User Data Policy</a>, including the <a href="https://developer.chrome.com/docs/webstore/program-policies/limited-use">Limited Use</a> requirements. We use the data the extension handles only to provide and improve the features described on this site and in the extension itself. We don’t transfer it to anyone except as set out above, we never use it for advertising or to build a profile of you, and no human reads it except where you’ve asked us to look at something.</p>
 
   <h2>Children’s privacy</h2>
   <p>Tutor Flow is a professional tool intended for adult tutors. It’s not directed at children, and we don’t knowingly collect data from children.</p>
