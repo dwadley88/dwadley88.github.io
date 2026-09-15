@@ -52,7 +52,7 @@
 
 <main>
   <h1>Privacy Policy — Tutor Flow</h1>
-  <p class="updated">Last updated: 2026-09-14</p>
+  <p class="updated">Last updated: 2026-09-15</p>
   <p class="contact">Contact: <a href="mailto:support@nativeflow.me">support@nativeflow.me</a></p>
 
   <h2>Overview</h2>
@@ -83,6 +83,16 @@
     <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Sentry, our error-tracking service</strong> — <strong>only if you switch on “Send error reports” in the extension’s Settings tab.</strong> It is off by default and stays off until you turn it on; you can turn it off again at any time, and nothing is sent while it is off. See “Error reporting” below for exactly what an error report contains, and “Sending a diagnostic” for the separate, more detailed report you can choose to send when a feature stops working.</li>
   </ol>
   <p>No data is sent to any analytics service or advertiser, and none to any third party beyond Google, Ringle, our own license server, and — only with error reporting switched on — Sentry, as described above. The extension has no usage tracking, no advertising identifiers, and no way to report on what you do with it.</p>
+
+  <h2>How we protect your data</h2>
+  <p>The data at stake here is your Google Calendar data and profile, and your license key. Here’s what protects each of them:</p>
+  <ul>
+    <li><strong>Encrypted in transit.</strong> Every network request the extension makes — to Google’s Calendar API, to Ringle’s platform, to our license server, and to Sentry when error reporting is on — travels over HTTPS/TLS. The extension is only permitted to contact <code>https://</code> origins; it has no way to make an unencrypted request.</li>
+    <li><strong>Your Google Calendar data and profile never reach a server we run.</strong> As described above, that data is read, displayed, and stored only inside Chrome’s own local extension storage on your device, which Chrome isolates from other extensions and websites. We keep no copy of it, so there’s nothing on our side to expose, lose, or have accessed by anyone else.</li>
+    <li><strong>What our license server holds is deliberately minimal.</strong> It stores your license key’s associated customer ID, subscription/activation status, and (if applicable) referral relationship — never your lesson content, student notes, or Google data. It runs behind Cloudflare, which enforces TLS on every connection to it.</li>
+    <li><strong>Error reports are stripped of sensitive content before they ever leave your device.</strong> See “Error reporting” above for exactly what is redacted; what reaches Sentry never includes your lesson content, student information, calendar data, or Google account details.</li>
+    <li>Only the people running Tutor Flow can access the license server and our Sentry project, and neither one holds anything that would let us read your lessons, your students’ work, or your Google data.</li>
+  </ul>
 
   <h2>Your Google Account data</h2>
   <p>If you choose to connect your Google account, we request two permissions:</p>
