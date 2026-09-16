@@ -237,24 +237,42 @@ const tokenBtn = document.getElementById('tokenBtn');
 const statusEl = document.getElementById('status');
 const iframe = document.getElementById('preview');
 
-const BUILD = 'build 3';
+const BUILD = 'build 4';
+const MARKER = 'data-nf-edit';
 
-let state = { path: '', sha: '', rawText: '', dirty: new Map(), leaves: [] };
-let baselines = new Map();
+// regions[] is the source of truth: each entry is a byte range in the
+// pristine file plus the content that range held at load. Elements in the
+// live preview are matched back to it by marker attribute, never by tree
+// position — page scripts and browser extensions (Grammarly injects into
+// contenteditable) reshape the rendered DOM, so its structure cannot be
+// assumed to match the file's.
+let state = { path: '', sha: '', rawText: '', dirty: new Map() };
+let regions = [];
 let pollTimer = null;
+let wireObserved = false;
 
 function setDiag(msg) { document.getElementById('diag').textContent = msg; }
+
+// Extensions inject their own nodes inside contenteditable elements. Those
+// must never reach the saved file.
+function cleanHTML(el) {
+  const clone = el.cloneNode(true);
+  const junk = clone.querySelectorAll('grammarly-extension, [data-gramm], [data-gramm_editor], [class*="grammarly"], [class*="gramm_"]');
+  for (const node of junk) node.remove();
+  return clone.innerHTML;
+}
 
 // Compares every editable region against the content it had at load and
 // recomputes the unsaved-changes set. Cheap enough to run on a timer, and
 // called from every plausible edit signal so no single browser quirk can
 // leave an edit undetected.
 function recheck() {
-  if (!state.leaves.length) return;
-  for (const { path, el } of state.leaves) {
-    if (!el.isConnected) continue;
-    if (el.innerHTML !== baselines.get(path)) state.dirty.set(path, el.innerHTML);
-    else state.dirty.delete(path);
+  if (!regions.length) return;
+  for (const r of regions) {
+    if (!r.el || !r.el.isConnected) continue;
+    const current = cleanHTML(r.el);
+    if (current !== r.baseline) state.dirty.set(r.id, current);
+    else state.dirty.delete(r.id);
   }
   markDirtyState();
 }
@@ -288,7 +306,7 @@ async function loadPage(path) {
   setStatus('Loading…');
   try {
     const { sha, text } = await ghGet(path);
-    state = { path, sha, rawText: text, dirty: new Map(), leaves: [] };
+    state = { path, sha, rawText: text, dirty: new Map() };
     renderPreview();
     setStatus('Loaded');
   } catch (err) {
@@ -303,32 +321,65 @@ function dirName(path) {
 }
 
 function renderPreview() {
-  const base = SITE_BASE + dirName(state.path);
-  let html = state.rawText;
-  // Inject a <base> tag so relative assets/links resolve against the live
-  // site, without ever writing this tag back to the saved source.
-  html = html.replace(/<head(\s[^>]*)?>/i, (m) => m + '<base href="' + base + '">');
-
   if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
-  baselines = new Map();
+
+  const src = state.rawText;
+
+  // Locate every editable region in the pristine file. Parsing a detached
+  // copy means no page script or extension has had a chance to touch it, so
+  // these offsets describe the file exactly as it will be saved.
+  const pristine = new DOMParser().parseFromString(src, 'text/html');
+  const scope = pristine.querySelector('main') || pristine.body;
+  regions = [];
+  if (scope) {
+    for (const { path } of collectEditableLeaves(scope, pristine.documentElement)) {
+      const range = findElementRange(src, path);
+      if (!range || range.isVoid) continue;
+      regions.push({
+        id: String(regions.length),
+        innerStart: range.innerStart,
+        innerEnd: range.innerEnd,
+        baseline: src.slice(range.innerStart, range.innerEnd),
+        el: null,
+      });
+    }
+  }
+
+  // Build the preview copy: stamp each region's opening tag with its id so
+  // the live element can be found by attribute later. Walking backwards
+  // keeps the earlier offsets valid as the string grows.
+  let html = src;
+  for (let i = regions.length - 1; i >= 0; i--) {
+    const at = regions[i].innerStart - 1; // the '>' closing the opening tag
+    html = html.slice(0, at) + ' ' + MARKER + '="' + regions[i].id + '"' + html.slice(at);
+  }
+  // Strip scripts: the component runtime on some pages rewrites the DOM,
+  // which is fine for visitors but would mean editing something other than
+  // what's in the file. Preview only — the saved file keeps its scripts.
+  html = html.replace(/<script\b[\s\S]*?<\/script>/gi, '');
+  const base = SITE_BASE + dirName(state.path);
+  html = html.replace(/<head(\s[^>]*)?>/i, (m) => m + '<base href="' + base + '">');
 
   iframe.contentDocument.open();
   iframe.contentDocument.write(html);
   iframe.contentDocument.close();
 
-  // Baselines survive re-wiring, so an edit made before a later wire pass
-  // is never mistaken for the original content.
   const wire = () => {
     const doc = iframe.contentDocument;
-    if (!doc) return;
-    const scope = doc.querySelector('main') || doc.body;
-    if (!scope) return;
-    const leaves = collectEditableLeaves(scope, doc.documentElement);
-    state.leaves = leaves;
-    for (const { path, el } of leaves) {
-      if (!baselines.has(path)) baselines.set(path, el.innerHTML);
+    if (!doc || !doc.body) return;
+    let wired = 0;
+    for (const r of regions) {
+      const el = doc.querySelector('[' + MARKER + '="' + r.id + '"]');
+      if (!el) continue;
+      r.el = el;
+      wired++;
       if (el.getAttribute('contenteditable') === 'true') continue;
       el.setAttribute('contenteditable', 'true');
+      // Ask Grammarly and friends to keep out of the editable regions.
+      el.setAttribute('data-gramm', 'false');
+      el.setAttribute('data-gramm_editor', 'false');
+      el.setAttribute('data-enable-grammarly', 'false');
+      el.setAttribute('spellcheck', 'false');
       el.style.cursor = 'text';
       el.addEventListener('mouseenter', () => { if (doc.activeElement !== el) el.style.outline = '2px dashed #10595B'; });
       el.addEventListener('mouseleave', () => { if (doc.activeElement !== el) el.style.outline = ''; });
@@ -341,20 +392,21 @@ function renderPreview() {
     // Construct the observer from the iframe's own realm — a parent-realm
     // observer watching a child-realm node is not reliable in every browser.
     const MO = (iframe.contentWindow && iframe.contentWindow.MutationObserver) || window.MutationObserver;
-    if (MO) {
+    if (MO && !wireObserved) {
       try {
-        const observer = new MO(recheck);
-        observer.observe(scope, { childList: true, characterData: true, subtree: true });
+        new MO(recheck).observe(doc.body, { childList: true, characterData: true, subtree: true });
+        wireObserved = true;
       } catch (err) {
         console.warn('MutationObserver unavailable, relying on polling', err);
       }
     }
-    setDiag(leaves.length + ' editable regions · ' + BUILD);
+    setDiag(wired + ' of ' + regions.length + ' editable regions · ' + BUILD);
   };
 
   // `document.write` is not reliably finished parsing across browsers by the
   // time close() returns, so wire eagerly and again once the iframe settles.
   // wire() is idempotent.
+  wireObserved = false;
   wire();
   iframe.onload = wire;
   setTimeout(wire, 300);
@@ -369,23 +421,35 @@ async function save() {
   saveBtn.disabled = true;
   setStatus('Saving…');
   try {
-    let working = state.rawText;
-    const editedPaths = [];
-    for (const [path, newInner] of state.dirty) {
-      const range = findElementRange(working, path);
-      if (!range) { console.error('Could not locate', path, 'in current source — skipping'); continue; }
-      working = working.slice(0, range.innerStart) + newInner + working.slice(range.innerEnd);
-      editedPaths.push(path);
+    // Apply from the end of the file backwards so each splice leaves the
+    // earlier offsets untouched.
+    const edits = [];
+    for (const [id, newInner] of state.dirty) {
+      const region = regions.find((r) => r.id === id);
+      if (region) edits.push({ region, newInner });
     }
+    edits.sort((a, b) => b.region.innerStart - a.region.innerStart);
+
+    let working = state.rawText;
+    for (const { region, newInner } of edits) {
+      working = working.slice(0, region.innerStart) + newInner + working.slice(region.innerEnd);
+    }
+
+    if (working === state.rawText) {
+      state.dirty = new Map();
+      markDirtyState();
+      setStatus('Nothing to save');
+      return;
+    }
+
     const newSha = await ghPut(state.path, working, state.sha, 'Edit ' + state.path + ' via site editor');
-    state.rawText = working;
     state.sha = newSha;
     state.dirty = new Map();
-    for (const path of editedPaths) {
-      const leaf = state.leaves.find((l) => l.path === path);
-      if (leaf) baselines.set(path, leaf.el.innerHTML);
-    }
     stickyStatusUntil = Date.now() + 6000;
+    // Region offsets describe the file we just replaced, so re-derive them
+    // against the saved content rather than letting them drift.
+    state.rawText = working;
+    renderPreview();
     markDirtyState();
     setStatus('Saved — live site updates shortly');
   } catch (err) {
