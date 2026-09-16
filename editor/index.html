@@ -295,20 +295,31 @@ function renderPreview() {
     const scope = doc.querySelector('main') || doc.body;
     const leaves = collectEditableLeaves(scope, doc.documentElement);
     state.leaves = leaves;
+    const baselines = new Map();
     for (const { path, el } of leaves) {
-      const baseline = el.innerHTML;
+      baselines.set(path, el.innerHTML);
       el.setAttribute('contenteditable', 'true');
       el.style.cursor = 'text';
       el.addEventListener('mouseenter', () => { if (doc.activeElement !== el) el.style.outline = '2px dashed #10595B'; });
       el.addEventListener('mouseleave', () => { if (doc.activeElement !== el) el.style.outline = ''; });
       el.addEventListener('focus', () => { el.style.outline = '2px solid #10595B'; });
       el.addEventListener('blur', () => { el.style.outline = ''; });
-      el.addEventListener('input', () => {
+    }
+    // Watch the DOM directly rather than relying on the 'input' event —
+    // contenteditable's 'input' firing is inconsistent across browsers
+    // (notably Safari and mobile webviews), but a real edit always shows up
+    // as a mutation regardless of how it got there (typing, IME, paste,
+    // autocorrect).
+    const recheck = () => {
+      for (const { path, el } of leaves) {
+        const baseline = baselines.get(path);
         if (el.innerHTML !== baseline) state.dirty.set(path, el.innerHTML);
         else state.dirty.delete(path);
-        markDirtyState();
-      });
-    }
+      }
+      markDirtyState();
+    };
+    const observer = new MutationObserver(recheck);
+    observer.observe(scope, { childList: true, characterData: true, subtree: true });
   };
   // contentDocument.write is synchronous; DOM is ready immediately after close().
   wire();
