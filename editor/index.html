@@ -64,6 +64,11 @@ const VOID_TAGS = new Set(['AREA','BASE','BR','COL','EMBED','HR','IMG','INPUT','
 const SKIP_TAGS = new Set(['SCRIPT','STYLE','SVG','IMG','VIDEO','AUDIO','IFRAME','CANVAS','NOSCRIPT','TEXTAREA','SELECT','BUTTON','LINK','META','BASE']);
 const NEVER_DESCEND = new Set(['HEADER','FOOTER','NAV']);
 const CONTAINER_TAGS = new Set(['DIV','SECTION','MAIN','UL','OL','TABLE','TBODY','THEAD','TFOOT','TR','ARTICLE','FIGURE','FORM','ASIDE','DETAILS','X-DC','HELMET','BODY','HTML','HEAD']);
+const BLOCK_TAGS = new Set(['P','H1','H2','H3','H4','H5','H6','LI','BLOCKQUOTE','PRE','DL','DT','DD','SUMMARY','ADDRESS','HR','FIELDSET']);
+// Elements whose content model is text and inline markup only. Dropping a
+// <div> into one of these is invalid: the parser closes the element early,
+// so the text ends up outside it and loses the element's styling.
+const PHRASING_ONLY_HOSTS = new Set(['P','H1','H2','H3','H4','H5','H6','SPAN','A','STRONG','EM','B','I','LABEL','SUMMARY','DT','CAPTION']);
 
 function elTagIndex(el) {
   let idx = 0, sib = el.previousElementSibling;
@@ -79,14 +84,21 @@ function hasDirectText(el) {
   for (const node of el.childNodes) if (node.nodeType === 3 && node.textContent.trim()) return true;
   return false;
 }
+function hasBlockChild(el) {
+  for (const child of el.children) if (CONTAINER_TAGS.has(child.tagName) || BLOCK_TAGS.has(child.tagName)) return true;
+  return false;
+}
 function collectEditableLeaves(scopeEl, relRoot) {
   const out = [];
   function walk(el) {
     for (const child of el.children) {
       const tag = child.tagName;
       if (SKIP_TAGS.has(tag) || NEVER_DESCEND.has(tag)) continue;
-      if (CONTAINER_TAGS.has(tag)) walk(child);
-      else if (hasDirectText(child)) out.push({ path: pathOf(child, relRoot), el: child });
+      // Text of its own and nothing block-level inside it: this is the block
+      // a person thinks of as "a bit of copy". A container that also holds
+      // structure is descended into instead, so a wrapper never becomes one
+      // giant editable blob.
+      if (hasDirectText(child) && !hasBlockChild(child)) out.push({ path: pathOf(child, relRoot), el: child });
       else walk(child);
     }
   }
@@ -237,7 +249,7 @@ const tokenBtn = document.getElementById('tokenBtn');
 const statusEl = document.getElementById('status');
 const iframe = document.getElementById('preview');
 
-const BUILD = 'build 4';
+const BUILD = 'build 5';
 const MARKER = 'data-nf-edit';
 
 // regions[] is the source of truth: each entry is a byte range in the
@@ -250,16 +262,48 @@ let state = { path: '', sha: '', rawText: '', dirty: new Map() };
 let regions = [];
 let pollTimer = null;
 let wireObserved = false;
+let rewire = null; // current page's wiring function, retried by the poll
 
 function setDiag(msg) { document.getElementById('diag').textContent = msg; }
 
-// Extensions inject their own nodes inside contenteditable elements. Those
-// must never reach the saved file.
+// Turns what contenteditable produced into markup that is safe to write into
+// this element's position in the file.
+//
+// Two things have to be scrubbed. Extensions inject their own nodes into
+// editable elements, and those must never be saved. And pressing Enter in
+// Chrome inserts <div> blocks — valid inside a <div>, but invalid inside a
+// <p> or heading, where the parser would close the element early and spill
+// the text out of it, losing the element's styling and leaving an empty
+// shell behind.
 function cleanHTML(el) {
+  const doc = el.ownerDocument;
   const clone = el.cloneNode(true);
+
   const junk = clone.querySelectorAll('grammarly-extension, [data-gramm], [data-gramm_editor], [class*="grammarly"], [class*="gramm_"]');
   for (const node of junk) node.remove();
-  return clone.innerHTML;
+  for (const attr of ['data-gramm', 'data-gramm_editor', 'data-enable-grammarly', 'spellcheck', 'contenteditable', MARKER]) {
+    clone.removeAttribute(attr);
+  }
+
+  if (PHRASING_ONLY_HOSTS.has(el.tagName)) {
+    // Flatten block children into inline content, keeping the line break the
+    // person intended by pressing Enter.
+    let guard = 0;
+    while (guard++ < 100) {
+      const block = clone.querySelector([...CONTAINER_TAGS, ...BLOCK_TAGS].join(','));
+      if (!block) break;
+      const parent = block.parentNode;
+      if (!parent) break;
+      // A block following earlier content starts a new visual line.
+      if (block.previousSibling) parent.insertBefore(doc.createElement('br'), block);
+      while (block.firstChild) parent.insertBefore(block.firstChild, block);
+      parent.removeChild(block);
+    }
+  }
+  // Chrome pads edits with non-breaking spaces to preserve trailing
+  // whitespace. None of this site's copy uses them deliberately, and left
+  // alone they accumulate and suppress line wrapping mid-sentence.
+  return clone.innerHTML.replace(/ /g, ' ').replace(/&nbsp;/g, ' ');
 }
 
 // Compares every editable region against the content it had at load and
@@ -268,6 +312,9 @@ function cleanHTML(el) {
 // leave an edit undetected.
 function recheck() {
   if (!regions.length) return;
+  // A page can finish parsing after the wiring passes have run, leaving the
+  // regions unattached and nothing editable. Retry until they attach.
+  if (rewire && !regions.some((r) => r.el && r.el.isConnected)) rewire();
   for (const r of regions) {
     if (!r.el || !r.el.isConnected) continue;
     const current = cleanHTML(r.el);
@@ -407,6 +454,7 @@ function renderPreview() {
   // time close() returns, so wire eagerly and again once the iframe settles.
   // wire() is idempotent.
   wireObserved = false;
+  rewire = wire;
   wire();
   iframe.onload = wire;
   setTimeout(wire, 300);
