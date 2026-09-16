@@ -32,7 +32,7 @@
     <button id="tokenBtn">GitHub token</button>
     <span id="status"></span>
   </div>
-  <div id="hint">Click any text on the page to edit it in place. Changes save straight to GitHub — the live site updates within a minute or two.</div>
+  <div id="hint">Click any text on the page to edit it in place. Changes save straight to GitHub — the live site updates within a minute or two. <span id="diag"></span></div>
   <iframe id="preview"></iframe>
 </div>
 
@@ -237,7 +237,27 @@ const tokenBtn = document.getElementById('tokenBtn');
 const statusEl = document.getElementById('status');
 const iframe = document.getElementById('preview');
 
+const BUILD = 'build 3';
+
 let state = { path: '', sha: '', rawText: '', dirty: new Map(), leaves: [] };
+let baselines = new Map();
+let pollTimer = null;
+
+function setDiag(msg) { document.getElementById('diag').textContent = msg; }
+
+// Compares every editable region against the content it had at load and
+// recomputes the unsaved-changes set. Cheap enough to run on a timer, and
+// called from every plausible edit signal so no single browser quirk can
+// leave an edit undetected.
+function recheck() {
+  if (!state.leaves.length) return;
+  for (const { path, el } of state.leaves) {
+    if (!el.isConnected) continue;
+    if (el.innerHTML !== baselines.get(path)) state.dirty.set(path, el.innerHTML);
+    else state.dirty.delete(path);
+  }
+  markDirtyState();
+}
 
 for (const p of PAGES) {
   const opt = document.createElement('option');
@@ -247,8 +267,12 @@ for (const p of PAGES) {
 
 function setStatus(msg) { statusEl.textContent = msg; }
 
+let stickyStatusUntil = 0;
+
 function markDirtyState() {
   saveBtn.disabled = state.dirty.size === 0;
+  // The 500ms poll would otherwise wipe a "Saved" confirmation instantly.
+  if (!state.dirty.size && Date.now() < stickyStatusUntil) return;
   setStatus(state.dirty.size ? (state.dirty.size + ' unsaved change' + (state.dirty.size > 1 ? 's' : '')) : 'No changes');
 }
 
@@ -285,44 +309,59 @@ function renderPreview() {
   // site, without ever writing this tag back to the saved source.
   html = html.replace(/<head(\s[^>]*)?>/i, (m) => m + '<base href="' + base + '">');
 
+  if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+  baselines = new Map();
+
   iframe.contentDocument.open();
   iframe.contentDocument.write(html);
   iframe.contentDocument.close();
 
-  iframe.onload = null;
+  // Baselines survive re-wiring, so an edit made before a later wire pass
+  // is never mistaken for the original content.
   const wire = () => {
     const doc = iframe.contentDocument;
+    if (!doc) return;
     const scope = doc.querySelector('main') || doc.body;
+    if (!scope) return;
     const leaves = collectEditableLeaves(scope, doc.documentElement);
     state.leaves = leaves;
-    const baselines = new Map();
     for (const { path, el } of leaves) {
-      baselines.set(path, el.innerHTML);
+      if (!baselines.has(path)) baselines.set(path, el.innerHTML);
+      if (el.getAttribute('contenteditable') === 'true') continue;
       el.setAttribute('contenteditable', 'true');
       el.style.cursor = 'text';
       el.addEventListener('mouseenter', () => { if (doc.activeElement !== el) el.style.outline = '2px dashed #10595B'; });
       el.addEventListener('mouseleave', () => { if (doc.activeElement !== el) el.style.outline = ''; });
       el.addEventListener('focus', () => { el.style.outline = '2px solid #10595B'; });
       el.addEventListener('blur', () => { el.style.outline = ''; });
+      el.addEventListener('input', recheck);
+      el.addEventListener('keyup', recheck);
+      el.addEventListener('paste', () => setTimeout(recheck, 0));
     }
-    // Watch the DOM directly rather than relying on the 'input' event —
-    // contenteditable's 'input' firing is inconsistent across browsers
-    // (notably Safari and mobile webviews), but a real edit always shows up
-    // as a mutation regardless of how it got there (typing, IME, paste,
-    // autocorrect).
-    const recheck = () => {
-      for (const { path, el } of leaves) {
-        const baseline = baselines.get(path);
-        if (el.innerHTML !== baseline) state.dirty.set(path, el.innerHTML);
-        else state.dirty.delete(path);
+    // Construct the observer from the iframe's own realm — a parent-realm
+    // observer watching a child-realm node is not reliable in every browser.
+    const MO = (iframe.contentWindow && iframe.contentWindow.MutationObserver) || window.MutationObserver;
+    if (MO) {
+      try {
+        const observer = new MO(recheck);
+        observer.observe(scope, { childList: true, characterData: true, subtree: true });
+      } catch (err) {
+        console.warn('MutationObserver unavailable, relying on polling', err);
       }
-      markDirtyState();
-    };
-    const observer = new MutationObserver(recheck);
-    observer.observe(scope, { childList: true, characterData: true, subtree: true });
+    }
+    setDiag(leaves.length + ' editable regions · ' + BUILD);
   };
-  // contentDocument.write is synchronous; DOM is ready immediately after close().
+
+  // `document.write` is not reliably finished parsing across browsers by the
+  // time close() returns, so wire eagerly and again once the iframe settles.
+  // wire() is idempotent.
   wire();
+  iframe.onload = wire;
+  setTimeout(wire, 300);
+
+  // Polling backstop: whatever a given browser does or doesn't fire for
+  // contenteditable, comparing the DOM on a timer always catches a real edit.
+  pollTimer = setInterval(recheck, 500);
 }
 
 async function save() {
@@ -342,6 +381,11 @@ async function save() {
     state.rawText = working;
     state.sha = newSha;
     state.dirty = new Map();
+    for (const path of editedPaths) {
+      const leaf = state.leaves.find((l) => l.path === path);
+      if (leaf) baselines.set(path, leaf.el.innerHTML);
+    }
+    stickyStatusUntil = Date.now() + 6000;
     markDirtyState();
     setStatus('Saved — live site updates shortly');
   } catch (err) {
