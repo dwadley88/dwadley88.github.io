@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow" />
+<title>Site Editor — Native Flow</title>
+<style>
+  html, body { margin: 0; height: 100%; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+  #toolbar {
+    height: 52px; flex: 0 0 auto; display: flex; align-items: center; gap: 12px;
+    padding: 0 16px; background: #10595B; color: #fff; box-sizing: border-box;
+  }
+  #toolbar select, #toolbar button {
+    font-family: inherit; font-size: 14px; padding: 7px 12px; border-radius: 8px; border: none; cursor: pointer;
+  }
+  #toolbar select { background: #ffffff; color: #1A1A1A; max-width: 260px; }
+  #saveBtn { background: #E6A93A; color: #1A1A1A; font-weight: 600; }
+  #saveBtn:disabled { background: rgba(255,255,255,.25); color: rgba(255,255,255,.6); cursor: default; }
+  #tokenBtn { background: rgba(255,255,255,.15); color: #fff; }
+  #status { margin-left: auto; font-size: 13px; color: rgba(255,255,255,.85); white-space: nowrap; }
+  #root { height: 100%; display: flex; flex-direction: column; }
+  #preview { flex: 1 1 auto; border: 0; width: 100%; background: #fff; }
+  #hint { padding: 6px 16px; font-size: 12px; background: #F6EFE6; color: #6B6258; border-bottom: 1px solid #E6DCCF; }
+</style>
+</head>
+<body>
+<div id="root">
+  <div id="toolbar">
+    <select id="pageSelect"></select>
+    <button id="saveBtn" disabled>Save changes</button>
+    <button id="tokenBtn">GitHub token</button>
+    <span id="status"></span>
+  </div>
+  <div id="hint">Click any text on the page to edit it in place. Changes save straight to GitHub — the live site updates within a minute or two.</div>
+  <iframe id="preview"></iframe>
+</div>
+
+<script>
+'use strict';
+
+// ---------------------------------------------------------------------
+// Config
+// ---------------------------------------------------------------------
+const OWNER = 'dwadley88';
+const REPO = 'dwadley88.github.io';
+const BRANCH = 'main';
+const SITE_BASE = 'https://www.nativeflow.me/';
+const PAGES = [
+  { label: 'Native Flow — Home', path: 'index.html' },
+  { label: 'Tutor Flow — Home', path: 'tutor-flow/index.html' },
+  { label: 'Tutor Flow — Changelog', path: 'tutor-flow/changelog.html' },
+  { label: 'Tutor Flow — Support', path: 'tutor-flow/support.html' },
+  { label: 'Tutor Flow — Privacy Policy', path: 'tutor-flow/privacy-policy.html' },
+  { label: 'Tutor Flow — Terms of Service', path: 'tutor-flow/terms-of-service.html' },
+  { label: 'Tutor Flow — Legal Notice', path: 'tutor-flow/legal-notice.html' },
+];
+
+// ---------------------------------------------------------------------
+// Core: leaf detection + raw-text tag matcher (mirrors core.js, tested
+// separately against every page in this repo before shipping).
+// ---------------------------------------------------------------------
+const VOID_TAGS = new Set(['AREA','BASE','BR','COL','EMBED','HR','IMG','INPUT','LINK','META','PARAM','SOURCE','TRACK','WBR']);
+const SKIP_TAGS = new Set(['SCRIPT','STYLE','SVG','IMG','VIDEO','AUDIO','IFRAME','CANVAS','NOSCRIPT','TEXTAREA','SELECT','BUTTON','LINK','META','BASE']);
+const NEVER_DESCEND = new Set(['HEADER','FOOTER','NAV']);
+const CONTAINER_TAGS = new Set(['DIV','SECTION','MAIN','UL','OL','TABLE','TBODY','THEAD','TFOOT','TR','ARTICLE','FIGURE','FORM','ASIDE','DETAILS','X-DC','HELMET','BODY','HTML','HEAD']);
+
+function elTagIndex(el) {
+  let idx = 0, sib = el.previousElementSibling;
+  while (sib) { if (sib.tagName === el.tagName) idx++; sib = sib.previousElementSibling; }
+  return el.tagName + '[' + idx + ']';
+}
+function pathOf(el, root) {
+  const segs = []; let node = el;
+  while (node && node !== root) { segs.unshift(elTagIndex(node)); node = node.parentElement; }
+  return segs.join('>');
+}
+function hasDirectText(el) {
+  for (const node of el.childNodes) if (node.nodeType === 3 && node.textContent.trim()) return true;
+  return false;
+}
+function collectEditableLeaves(scopeEl, relRoot) {
+  const out = [];
+  function walk(el) {
+    for (const child of el.children) {
+      const tag = child.tagName;
+      if (SKIP_TAGS.has(tag) || NEVER_DESCEND.has(tag)) continue;
+      if (CONTAINER_TAGS.has(tag)) walk(child);
+      else if (hasDirectText(child)) out.push({ path: pathOf(child, relRoot), el: child });
+      else walk(child);
+    }
+  }
+  walk(scopeEl);
+  return out;
+}
+function parsePath(pathStr) {
+  return pathStr.split('>').map((p) => {
+    const m = /^([A-Z0-9-]+)\[(\d+)\]$/.exec(p);
+    return { tag: m[1], idx: parseInt(m[2], 10) };
+  });
+}
+function findMatchingClose(text, tag, from) {
+  let depth = 1, i = from;
+  const openRe = new RegExp('<' + tag + '(?=[\\s/>])', 'ig');
+  const closeRe = new RegExp('</' + tag + '\\s*>', 'ig');
+  while (i < text.length) {
+    openRe.lastIndex = i; closeRe.lastIndex = i;
+    const om = openRe.exec(text), cm = closeRe.exec(text);
+    if (!cm) return null;
+    if (om && om.index < cm.index) {
+      const gt = text.indexOf('>', om.index);
+      const selfClose = gt > 0 && text[gt - 1] === '/';
+      if (!selfClose && !VOID_TAGS.has(tag.toUpperCase())) depth++;
+      i = gt + 1; continue;
+    }
+    depth--;
+    if (depth === 0) return { start: cm.index, end: cm.index + cm[0].length };
+    i = cm.index + cm[0].length;
+  }
+  return null;
+}
+function findElementRange(text, pathStr) {
+  const parts = parsePath(pathStr);
+  const n = text.length;
+  let i = 0;
+  while (i < n) {
+    const lt = text.indexOf('<', i);
+    if (lt === -1) return null;
+    if (text.startsWith('<!--', lt)) { const end = text.indexOf('-->', lt + 4); i = end === -1 ? n : end + 3; continue; }
+    if (text.startsWith('<!', lt)) { const end = text.indexOf('>', lt); i = end === -1 ? n : end + 1; continue; }
+    const mHtml = /^<html(?=[\s>])/i.exec(text.slice(lt));
+    if (mHtml) { const gt = text.indexOf('>', lt); i = gt === -1 ? n : gt + 1; }
+    break;
+  }
+  const stack = [];
+  const countsStack = [new Map()];
+  let matchDepth = 0;
+  while (i < n) {
+    const lt = text.indexOf('<', i);
+    if (lt === -1) break;
+    if (text.startsWith('<!--', lt)) { const end = text.indexOf('-->', lt + 4); i = end === -1 ? n : end + 3; continue; }
+    if (text.startsWith('<!', lt)) { const end = text.indexOf('>', lt); i = end === -1 ? n : end + 1; continue; }
+    const closing = text[lt + 1] === '/';
+    const m = /^<\/?([a-zA-Z][a-zA-Z0-9-]*)/.exec(text.slice(lt));
+    if (!m) { i = lt + 1; continue; }
+    const tag = m[1].toUpperCase();
+    const gt = text.indexOf('>', lt);
+    if (gt === -1) break;
+    const selfClose = text[gt - 1] === '/';
+    const tagOuterEnd = gt + 1;
+    if (!closing) {
+      const depth = stack.length;
+      if (!countsStack[depth]) countsStack[depth] = new Map();
+      const seen = countsStack[depth].get(tag) || 0;
+      countsStack[depth].set(tag, seen + 1);
+      const myIndex = seen;
+      const expected = parts[depth];
+      const isOnPath = matchDepth === depth && !!expected && expected.tag === tag && expected.idx === myIndex;
+      const isVoid = VOID_TAGS.has(tag) || selfClose;
+      if (isOnPath && depth + 1 === parts.length) {
+        if (isVoid) return { innerStart: tagOuterEnd, innerEnd: tagOuterEnd, isVoid: true, tagName: tag };
+        const closeInfo = findMatchingClose(text, tag, tagOuterEnd);
+        if (!closeInfo) return null;
+        return { innerStart: tagOuterEnd, innerEnd: closeInfo.start, isVoid: false, tagName: tag };
+      }
+      if (isVoid) {
+        // leaf tag, no children
+      } else if (tag === 'SCRIPT' || tag === 'STYLE') {
+        const closeInfo = findMatchingClose(text, tag, tagOuterEnd);
+        i = closeInfo ? closeInfo.end : n;
+        continue;
+      } else {
+        stack.push({ tag, depth, wasOnPath: isOnPath });
+        countsStack[depth + 1] = new Map();
+        if (isOnPath) matchDepth = depth + 1;
+      }
+    } else {
+      for (let s = stack.length - 1; s >= 0; s--) {
+        if (stack[s].tag === tag) {
+          if (stack[s].wasOnPath) matchDepth = s;
+          stack.length = s;
+          countsStack.length = s + 1;
+          break;
+        }
+      }
+    }
+    i = tagOuterEnd;
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------
+// GitHub API
+// ---------------------------------------------------------------------
+function b64EncodeUnicode(str) { return btoa(unescape(encodeURIComponent(str))); }
+function b64DecodeUnicode(str) { return decodeURIComponent(escape(atob(str))); }
+
+function getToken() { return localStorage.getItem('nf_editor_token') || ''; }
+function setToken(t) { localStorage.setItem('nf_editor_token', t); }
+function ensureToken() {
+  let t = getToken();
+  if (!t) {
+    t = prompt('Paste a GitHub fine-grained personal access token (Contents: Read & write, scoped to ' + OWNER + '/' + REPO + '):');
+    if (t) setToken(t.trim());
+  }
+  return getToken();
+}
+
+async function ghGet(path) {
+  const token = ensureToken();
+  const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path + '?ref=' + BRANCH, {
+    headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+  });
+  if (!res.ok) throw new Error('GitHub GET ' + path + ' failed: ' + res.status + ' ' + (await res.text()));
+  const data = await res.json();
+  return { sha: data.sha, text: b64DecodeUnicode(data.content.replace(/\n/g, '')) };
+}
+
+async function ghPut(path, newText, sha, message) {
+  const token = ensureToken();
+  const res = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+    method: 'PUT',
+    headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message, content: b64EncodeUnicode(newText), sha, branch: BRANCH })
+  });
+  if (!res.ok) throw new Error('GitHub PUT ' + path + ' failed: ' + res.status + ' ' + (await res.text()));
+  const data = await res.json();
+  return data.content.sha;
+}
+
+// ---------------------------------------------------------------------
+// Editor state + UI wiring
+// ---------------------------------------------------------------------
+const pageSelect = document.getElementById('pageSelect');
+const saveBtn = document.getElementById('saveBtn');
+const tokenBtn = document.getElementById('tokenBtn');
+const statusEl = document.getElementById('status');
+const iframe = document.getElementById('preview');
+
+let state = { path: '', sha: '', rawText: '', dirty: new Map(), leaves: [] };
+
+for (const p of PAGES) {
+  const opt = document.createElement('option');
+  opt.value = p.path; opt.textContent = p.label;
+  pageSelect.appendChild(opt);
+}
+
+function setStatus(msg) { statusEl.textContent = msg; }
+
+function markDirtyState() {
+  saveBtn.disabled = state.dirty.size === 0;
+  setStatus(state.dirty.size ? (state.dirty.size + ' unsaved change' + (state.dirty.size > 1 ? 's' : '')) : 'No changes');
+}
+
+window.addEventListener('beforeunload', (e) => {
+  if (state.dirty.size > 0) { e.preventDefault(); e.returnValue = ''; }
+});
+
+async function loadPage(path) {
+  if (state.dirty.size > 0 && !confirm('You have unsaved changes on this page. Discard them and switch pages?')) {
+    pageSelect.value = state.path;
+    return;
+  }
+  setStatus('Loading…');
+  try {
+    const { sha, text } = await ghGet(path);
+    state = { path, sha, rawText: text, dirty: new Map(), leaves: [] };
+    renderPreview();
+    setStatus('Loaded');
+  } catch (err) {
+    setStatus('Error: ' + err.message);
+  }
+  markDirtyState();
+}
+
+function dirName(path) {
+  const i = path.lastIndexOf('/');
+  return i === -1 ? '' : path.slice(0, i + 1);
+}
+
+function renderPreview() {
+  const base = SITE_BASE + dirName(state.path);
+  let html = state.rawText;
+  // Inject a <base> tag so relative assets/links resolve against the live
+  // site, without ever writing this tag back to the saved source.
+  html = html.replace(/<head(\s[^>]*)?>/i, (m) => m + '<base href="' + base + '">');
+
+  iframe.contentDocument.open();
+  iframe.contentDocument.write(html);
+  iframe.contentDocument.close();
+
+  iframe.onload = null;
+  const wire = () => {
+    const doc = iframe.contentDocument;
+    const scope = doc.querySelector('main') || doc.body;
+    const leaves = collectEditableLeaves(scope, doc.documentElement);
+    state.leaves = leaves;
+    for (const { path, el } of leaves) {
+      const baseline = el.innerHTML;
+      el.setAttribute('contenteditable', 'true');
+      el.style.cursor = 'text';
+      el.addEventListener('mouseenter', () => { if (doc.activeElement !== el) el.style.outline = '2px dashed #10595B'; });
+      el.addEventListener('mouseleave', () => { if (doc.activeElement !== el) el.style.outline = ''; });
+      el.addEventListener('focus', () => { el.style.outline = '2px solid #10595B'; });
+      el.addEventListener('blur', () => { el.style.outline = ''; });
+      el.addEventListener('input', () => {
+        if (el.innerHTML !== baseline) state.dirty.set(path, el.innerHTML);
+        else state.dirty.delete(path);
+        markDirtyState();
+      });
+    }
+  };
+  // contentDocument.write is synchronous; DOM is ready immediately after close().
+  wire();
+}
+
+async function save() {
+  if (state.dirty.size === 0) return;
+  saveBtn.disabled = true;
+  setStatus('Saving…');
+  try {
+    let working = state.rawText;
+    const editedPaths = [];
+    for (const [path, newInner] of state.dirty) {
+      const range = findElementRange(working, path);
+      if (!range) { console.error('Could not locate', path, 'in current source — skipping'); continue; }
+      working = working.slice(0, range.innerStart) + newInner + working.slice(range.innerEnd);
+      editedPaths.push(path);
+    }
+    const newSha = await ghPut(state.path, working, state.sha, 'Edit ' + state.path + ' via site editor');
+    state.rawText = working;
+    state.sha = newSha;
+    state.dirty = new Map();
+    markDirtyState();
+    setStatus('Saved — live site updates shortly');
+  } catch (err) {
+    setStatus('Save failed: ' + err.message);
+    saveBtn.disabled = false;
+  }
+}
+
+pageSelect.addEventListener('change', () => loadPage(pageSelect.value));
+saveBtn.addEventListener('click', save);
+tokenBtn.addEventListener('click', () => {
+  const t = prompt('GitHub fine-grained personal access token (Contents: Read & write, scoped to ' + OWNER + '/' + REPO + '):', getToken());
+  if (t !== null) setToken(t.trim());
+});
+
+loadPage(PAGES[0].path);
+</script>
+</body>
+</html>
