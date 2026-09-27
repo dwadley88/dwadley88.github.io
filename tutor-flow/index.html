@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tutor Flow — Feedback, Scheduling & Student Tracking for Ringle Tutors</title>
-<meta name="description" content="Tutor Flow is a Chrome extension for Ringle tutors that speeds up feedback reports, protects your calendar from booking conflicts, and keeps a searchable history of every student — all inside Ringle." />
+<title>Tutor Flow: Feedback Aids, Scheduling Safeguards, and a Student Tracking Tool for Ringle Tutors</title>
+<meta name="description" content="Tutor Flow is a Chrome extension that takes the busywork out of Ringle feedback reports, prevents scheduling errors, and helps tutors keep track of their students." />
 <link rel="canonical" href="https://www.nativeflow.me/tutor-flow/" />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#10595B" />
@@ -14,18 +14,18 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.nativeflow.me/tutor-flow/" />
 <meta property="og:site_name" content="Tutor Flow" />
-<meta property="og:title" content="Tutor Flow — Less hassle, more flow." />
-<meta property="og:description" content="Finish your feedback reports faster, protect your calendar from booking conflicts, and never start a lesson cold. A Chrome extension built by a Ringle tutor, for Ringle tutors." />
+<meta property="og:title" content="Tutor Flow: Less hassle, more flow." />
+<meta property="og:description" content="Streamline your feedback routine and get your breaks back. A Chrome extension for Ringle tutors, built by one." />
 <meta property="og:image" content="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png" />
-<meta property="og:image:alt" content="Tutor Flow logo: a rounded teal square icon representing the Tutor Flow Chrome extension for Ringle tutors." />
+<meta property="og:image:alt" content="The Tutor Flow logo, a rounded teal square." />
 <meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="Tutor Flow — Less hassle, more flow." />
-<meta name="twitter:description" content="Finish your feedback reports faster, protect your calendar from booking conflicts, and never start a lesson cold. A Chrome extension built by a Ringle tutor, for Ringle tutors." />
+<meta name="twitter:title" content="Tutor Flow: Less hassle, more flow." />
+<meta name="twitter:description" content="Streamline your feedback routine and get your breaks back. A Chrome extension for Ringle tutors, built by one." />
 <meta name="twitter:image" content="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png" />
-<meta name="twitter:image:alt" content="Tutor Flow logo: a rounded teal square icon representing the Tutor Flow Chrome extension for Ringle tutors." />
+<meta name="twitter:image:alt" content="The Tutor Flow logo, a rounded teal square." />
 
 <script type="application/ld+json">
 {
@@ -34,7 +34,7 @@
   "name": "Tutor Flow",
   "applicationCategory": "BrowserApplication",
   "operatingSystem": "Chrome",
-  "description": "A Chrome extension for Ringle tutors that speeds up feedback reports, protects your calendar from booking conflicts, and keeps a searchable history of every student.",
+  "description": "A Chrome extension that takes the busywork out of Ringle feedback reports, prevents scheduling errors, and helps tutors keep track of their students.",
   "url": "https://www.nativeflow.me/tutor-flow/",
   "image": "https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png",
   "offers": [
@@ -70,6 +70,29 @@
   @keyframes tfblink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
   h1, h2, h3, p { text-wrap: pretty; }
 
+  /* Key names inside the Formatting Shortcuts list. */
+  kbd.tf-key { font-family: 'Noto Sans Mono', 'SF Mono', ui-monospace, monospace; font-size: 12px; color: #1A1A1A; background: #EFE5D7; border: 1px solid #E6DCCF; border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+
+  /* The two demo editors (Formatting Shortcuts and Feedback Exporter). */
+  .tf-editor { white-space: pre-wrap; overflow-wrap: anywhere; outline: none; cursor: text; position: relative; caret-color: #10595B; }
+  .tf-editor[data-empty="true"]::before { content: attr(data-placeholder); position: absolute; left: 0; top: 0; color: #B8AFA2; pointer-events: none; }
+  .tf-editor:focus-visible { box-shadow: 0 0 0 3px rgba(16, 89, 91, 0.18); border-radius: 4px; }
+  .tf-caret { display: inline-block; width: 2px; height: 1.05em; background: #10595B; margin: 0 -1px; vertical-align: -0.15em; animation: tfblink 1s step-end infinite; }
+
+  /* Click-to-enlarge screenshots and videos. */
+  .tf-zoom { cursor: zoom-in; transition: box-shadow .15s ease; }
+  .tf-zoom:hover { box-shadow: 0 4px 18px rgba(10, 61, 63, 0.12); }
+  .tf-zoom:focus-visible { outline: 3px solid #10595B; outline-offset: 3px; }
+  .tf-lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(10, 30, 31, 0.78); display: flex; align-items: center; justify-content: center; padding: 64px 24px 32px; cursor: zoom-out; animation: tffade .15s ease-out; }
+  .tf-lightbox-figure { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 100%; }
+  .tf-lightbox-media { display: block; width: 100%; height: auto; border-radius: 12px; background: #ffffff; box-shadow: 0 12px 48px rgba(0, 0, 0, 0.35); }
+  .tf-lightbox-caption { margin: 0; max-width: 720px; font-size: 14px; line-height: 1.6; color: #F4FBFA; text-align: center; }
+  .tf-lightbox-close { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 999px; border: 0; background: rgba(255, 255, 255, 0.16); color: #ffffff; font-size: 26px; line-height: 1; cursor: pointer; }
+  .tf-lightbox-close:hover { background: rgba(255, 255, 255, 0.28); }
+  .tf-lightbox-close:focus-visible { outline: 3px solid #ffffff; outline-offset: 2px; }
+  @keyframes tffade { from { opacity: 0 } to { opacity: 1 } }
+  @media (prefers-reduced-motion: reduce) { .tf-lightbox { animation: none; } .tf-zoom { transition: none; } }
+
   /* Mobile-only visual adjustments. Desktop layout above is untouched. */
   @media (max-width: 680px) {
     header > div { gap: 14px !important; }
@@ -89,7 +112,7 @@
   <header style="position:sticky;top:0;z-index:50;background:#10595B;border-bottom:1px solid rgba(255,255,255,.12)">
     <div style="max-width:1120px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;gap:32px">
       <a href="#top" style="display:flex;align-items:center;gap:10px;color:#ffffff;text-decoration:none">
-        <img src="assets/tutor-flow-mark.png" alt="Tutor Flow" style="width:30px;height:30px;border-radius:12px;display:block" />
+        <img src="assets/tutor-flow-mark.png" alt="" style="width:30px;height:30px;border-radius:12px;display:block" />
         <span style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Tutor Flow</span>
       </a>
       <nav style="display:flex;align-items:center;gap:28px;margin-left:auto">
@@ -97,7 +120,7 @@
         <a href="#how" style="font-size:14px;font-weight:500;color:rgba(255,255,255,.75);text-decoration:none" style-hover="color:#ffffff">How it works</a>
         <a href="#pricing" style="font-size:14px;font-weight:500;color:rgba(255,255,255,.75);text-decoration:none" style-hover="color:#ffffff">Pricing</a>
         <a href="#faq" style="font-size:14px;font-weight:500;color:rgba(255,255,255,.75);text-decoration:none" style-hover="color:#ffffff">FAQ</a>
-        <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:#10595B;background:#ffffff;padding:10px 16px;border-radius:12px;text-decoration:none" style-hover="background:#F6EFE6;text-decoration:none">Add to Chrome</a>
+        <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:14px;font-weight:600;color:#10595B;background:#ffffff;padding:10px 16px;border-radius:12px;text-decoration:none" style-hover="background:#F6EFE6;text-decoration:none">Get Tutor Flow</a>
       </nav>
     </div>
   </header>
@@ -106,34 +129,34 @@
     <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:76px;height:76px;border-radius:18px;display:block;box-shadow:0 2px 8px rgba(10,61,63,0.06)" />
     <div style="display:flex;flex-direction:column;gap:20px;align-items:center;max-width:840px">
       <h1 style="margin:0;font-size:clamp(44px,6.4vw,68px);font-weight:700;letter-spacing:-0.035em;line-height:1.05">Less hassle, more flow.</h1>
-      <p style="margin:0;font-size:20px;line-height:1.55;color:#6B6258;max-width:620px">Finish your feedback reports faster — and keep your calendar and your students straight while you’re at it.</p>
+      <p style="margin:0;font-size:20px;line-height:1.55;color:#6B6258;max-width:620px">Tutor Flow streamlines your feedback routine, so your breaks can go back to being breaks and you can log off when your last student does.</p>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:4px">
-      <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Add to Chrome</a>
-      <a href="#features" style="font-size:15px;font-weight:600;color:#10595B;background:#FFFFFF;border:1px solid #E6DCCF;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#F6EFE6;text-decoration:none">See how it works</a>
+      <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
+      <a href="#features" style="font-size:15px;font-weight:600;color:#10595B;background:#FFFFFF;border:1px solid #E6DCCF;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#F6EFE6;text-decoration:none">Try the demo</a>
     </div>
-    <p style="margin:0;font-size:13px;color:#6B6258">Built for Ringle tutors. Free to install — the features unlock with a licence key, <a href="#pricing">from $6.99 a month</a>.</p>
+    <p style="margin:0;font-size:13px;color:#6B6258">A Chrome extension for Ringle tutors. Free for 10 days, then $6.99 a month or $76.89 a year. Annual subscribers get one month free compared to monthly.</p>
   </section>
 
   <section style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
     <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:48px">
-      <h2 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.02em;max-width:640px">The teaching is the easy part.</h2>
+      <h2 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.02em;max-width:640px">If you’ve been with Ringle for a while, you’ll likely agree that <em>teaching is the easy part</em>. By now, you’ve probably discovered that:</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px">
         <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
-          <h3 style="margin:0;font-size:16px;font-weight:700">Feedback takes as long as the lesson</h3>
-          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">You write the paraphrase once, then copy it, paste it, and split it apart again for the key expressions list.</p>
+          <h3 style="margin:0;font-size:16px;font-weight:700">Feedback reports take longer than the time allotted for them</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">A 20-minute lesson gets a 10-minute break, but the feedback report might take you 12. Finish a class late or fall behind just once and before you know it, you’re spending 45 minutes of unpaid time catching up on feedback after your last class ends.</p>
         </div>
         <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
-          <h3 style="margin:0;font-size:16px;font-weight:700">Formatting breaks your typing</h3>
-          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Every bold or correction means reaching for the toolbar mid-sentence, while the student is still talking.</p>
+          <h3 style="margin:0;font-size:16px;font-weight:700">The Ringle Docs interface isn’t the ideal setup for the task at hand</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">You’re supposed to type what students say verbatim. But you’re also trying to track mistakes and opportunities for correction, which can get lost over the course of a 40-minute lesson. But every bold, highlight or correction means reaching for your mouse mid-sentence and clicking around on the screen, losing valuable seconds (and student output) in the process.</p>
         </div>
         <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
-          <h3 style="margin:0;font-size:16px;font-weight:700">Stop checking your calendar when opening lessons.</h3>
-          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Tutor Flow checks it for you.<br><br>Tutor Flow’s Google Calendar integration displays tutors’ calendar events on the Ringle scheduling grid and automatically alerts tutors about conflicts when scheduling recurring sessions.</p>
+          <h3 style="margin:0;font-size:16px;font-weight:700">It’s hard to keep your calendar(s) straight, and a mix-up can cost you</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">It’s time to set your availability for the month, but your Google Calendar is in another tab, and you have to go through every week a day at a time to make sure everything lines up.<br><br>You don’t even want to think about the special headache that is trying to open a recurring “Private Slot” for your favorite students while they patiently wait for you to triple check that there are no conflicts — only to realize that you’re already 5 minutes past the end of your lesson.<br><br>Have to cancel a lesson because you accidentally double-booked yourself anyway? You’re now at risk of losing stars, GST status, and promotion points, not to mention potentially upsetting a student. If you’re extra unlucky, it might be a strike, reduced profile visibility and lost bookings — all because the calendar situation is a mess.</p>
         </div>
         <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px">
-          <h3 style="margin:0;font-size:16px;font-weight:700">You’ve met this student before</h3>
-          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Their level, their habits, what you worked on last time — all of it is buried in an old feedback report somewhere.</p>
+          <h3 style="margin:0;font-size:16px;font-weight:700">You’re not always sure whom you’re about to teach</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">The student name on the lesson page says “gimminjun” (or perhaps says nothing at all), and there are three feedback reports from six months ago addressed to “Mike”. Mike remembers you, which is why he’s decided to book lessons with you again, but what do you remember about Mike? His level, habits, and learning goals are all buried in lesson notes that you can’t access.</p>
         </div>
       </div>
     </div>
@@ -143,50 +166,49 @@
     <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px;order:2">
         <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Formatting Shortcuts</span>
-        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Write feedback at typing speed.</h2>
-        <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Feedback docs written the way tutors actually mark up a paper — asterisks for bold, brackets and a hyphen for corrections, all without reaching for a toolbar or a mouse.</p>
+        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Mark mistakes without missing a word.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">A few simple shortcuts take care of bolding, insertions, corrections, and highlights, so nothing your student says slips by while you’re clicking around.</p>
         <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">*word*</span><span>becomes bold the moment you close the second asterisk — Tab or Enter both trigger it, and Backspace deletes the pair in one stroke.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">[word]</span><span>turns into an in-line correction the instant you type the closing bracket, hit Tab, or hit Enter — the same orange markup Ringle’s own correction tool produces.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">-word</span><span>plus Tab fires Ringle’s own correction suggestion on that word automatically, then a second Tab jumps you cleanly out of it so you keep typing without reaching for the mouse.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">“ ”</span><span>quotation marks pair themselves as you type, Tab hops you past the closing mark, and Enter inside a quote drops to the next line instead of splitting it in two.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌃/⌘ 3 · 4</span><span>toggle yellow highlighting or cycle through pink and green, from the top row or the numpad — no mouse trip to the toolbar swatches.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌄</span><span>active-line centering keeps the line you’re writing comfortably in view instead of drifting to the bottom of the screen.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">Tт −+</span><span>a zoom stepper on the doc toolbar sizes the text up or down for proofreading, independent of your browser’s own page zoom.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">*word*</span><span>Type an asterisk and the closing one appears. Type your text, press <kbd class="tf-key">Tab</kbd> or <kbd class="tf-key">Enter</kbd>, and it turns bold.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">[word]</span><span>Type an opening bracket and the closing one appears. Press <kbd class="tf-key">Tab</kbd> or <kbd class="tf-key">Enter</kbd>, and the text inside turns Ringle orange for a quick insertion.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">-word</span><span>Type a hyphen before a word you can already tell is incorrect, and press <kbd class="tf-key">Tab</kbd>. It strikes out the word just like <kbd class="tf-key">⌘/Ctrl 2</kbd> would. Type your correction and press <kbd class="tf-key">Tab</kbd> again to keep typing in Ringle’s default grey.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">“ ”</span><span>Type an opening quotation mark and the closing one appears, so whatever you type goes inside the quote. Press <kbd class="tf-key">Tab</kbd> to jump past the closing mark, or <kbd class="tf-key">Enter</kbd> to start a new line after it.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌘/Ctrl 3 · 4</span><span><kbd class="tf-key">⌘/Ctrl 3</kbd> turns yellow highlighting on and off, and <kbd class="tf-key">⌘/Ctrl 4</kbd> switches between pink, green and no highlighting. These can be triggered from both the number row and the 10-key pad.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌄—^</span><span>As you type, the page scrolls with you, so the line you’re on never drops out of sight.</span></li>
+          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">Tт −+</span><span>Ringle’s text size buttons have been adjusted to drastically expand size options and Tutor Flow remembers your setting between lessons.</span></li>
         </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:16px;order:1">
-        <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;cursor:text;position:relative;min-height:180px" onClick="{{ focusDemo }}">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Lesson doc</span>
-            <span style="font-size:11px;color:#6B6258">{{ demoHint }}</span>
+        <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;cursor:text;min-height:180px" onClick="{{ focusDemo }}">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258;white-space:nowrap">Lesson doc</span>
+            <span style="font-size:11px;line-height:1.5;color:#6B6258;text-align:right">{{ demoHint }}</span>
           </div>
-          <div style="font-size:17px;line-height:1.7;color:#1A1A1A;min-height:96px">{{ demoRendered }}</div>
-          <textarea ref="{{ demoRef }}" value="{{ demoSrc }}" onChange="{{ onDemoChange }}" onFocus="{{ onDemoFocus }}" onKeyDown="{{ onDemoKeyDown }}" spellcheck="false" style="position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;left:22px;bottom:22px"></textarea>
+          <div ref="{{ demoEditorRef }}" class="tf-editor" aria-label="Lesson doc demo" style="font-size:17px;line-height:1.7;color:#1A1A1A;min-height:96px"></div>
         </div>
-        <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <video autoplay loop muted playsinline poster="assets/videos/formatting-shortcuts.jpg" style="width:100%;aspect-ratio:1000/700;object-fit:cover;display:block">
+        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/formatting-shortcuts.jpg" style="width:100%;aspect-ratio:1000/700;object-fit:cover;display:block">
             <source src="assets/videos/formatting-shortcuts.mp4" type="video/mp4">
           </video>
         </div>
-        <p style="margin:0;font-size:13px;color:#9A9084">Quote pairing, a bracket correction, a paraphrase shortcut, and the highlight toggle, back to back.</p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-              <video autoplay loop muted playsinline poster="assets/videos/zoom-override-notes.jpg" style="width:100%;aspect-ratio:1000/700;object-fit:cover;display:block">
-                <source src="assets/videos/zoom-override-notes.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p style="margin:0;font-size:13px;color:#9A9084">The zoom stepper, in and back out.</p>
+        <p style="margin:0;font-size:13px;color:#9A9084">Corrections, quotations, boldings and highlights, all from the keyboard.</p>
+      </div>
+      <div style="grid-column:1/-1;order:3;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+            <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/zoom-override-notes.jpg" style="width:100%;aspect-ratio:1000/700;object-fit:cover;display:block">
+              <source src="assets/videos/zoom-override-notes.mp4" type="video/mp4">
+            </video>
           </div>
-          <div style="display:flex;flex-direction:column;gap:8px">
-            <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-              <video autoplay loop muted playsinline poster="assets/videos/active-line-center.jpg" style="width:100%;aspect-ratio:900/620;object-fit:cover;display:block">
-                <source src="assets/videos/active-line-center.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p style="margin:0;font-size:13px;color:#9A9084">Arrow keys — the line you’re on stays mid-screen.</p>
+          <p style="margin:0;font-size:13px;color:#9A9084">Our expanded zoom feature makes it possible to choose the right text size for your setup, screen size, and comfort.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+            <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/active-line-center.jpg" style="width:100%;aspect-ratio:900/620;object-fit:cover;display:block">
+              <source src="assets/videos/active-line-center.mp4" type="video/mp4">
+            </video>
           </div>
+          <p style="margin:0;font-size:13px;color:#9A9084">However long the transcript gets, the line you’re typing stays in view.</p>
         </div>
       </div>
     </div>
@@ -195,33 +217,28 @@
   <section class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
       <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Feedback Exporter</span>
-      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Bold the phrase. It arrives as a key expression.</h2>
-      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">While you write a paraphrase in the lesson doc, bold the exact phrase you want the student to walk away with, then click the purple arrow — the same one Ringle already puts there — to send the block to the Feedback Report.</p>
-      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Tutor Flow reads the bolding and pulls out each bolded phrase as its own key expression, split out rather than lumped in. Nothing to copy, nothing to retype, no second pass. Try it below.</p>
-      <div style="border-left:3px solid #B8841C;padding:4px 0 4px 18px;margin-top:4px">
-        <p style="margin:0;font-size:17px;line-height:1.6;color:#1A1A1A;font-weight:600">I’ve personally cut my feedback time in half.</p>
-      </div>
+      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Bold a term in your paraphrase. It arrives as a Key Expression.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Usually, the feedback report process starts once your student leaves. You exit the classroom, write them a message, and then go back through your lesson notes to decide which feedback blocks are “Detailed Feedback”-worthy. You then have to make another pass to highlight each Key Expression in the ‘After’ field and click “Add to Key Expressions,” one . . . at . . . a time.</p>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">That alone can eat up most of a 10-minute break.</p>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Tutor Flow eliminates this redundancy by activating Ringle’s purple export arrow inside the classroom view, so that you can export high-quality feedback blocks in real time. As you go over the lesson transcript with your student, simply bold the words and phrases you want them to remember and click the arrow. Tutor Flow stores the paraphrase and delivers it to the Feedback Report upon your arrival, with every bolded phrase in the ‘After’ section already marked as a Key Expression. That means that once you’ve completed the message to your student, all that’s left is writing your explanations and hitting ‘Submit’. Try it below.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
       <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
         <div style="padding:14px 16px;border-bottom:1px solid #E6DCCF;display:flex;align-items:center;justify-content:space-between;gap:12px">
           <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Lesson doc</span>
-          <span style="font-size:11px;color:#9A9084">try it — click the arrow, or ＋ new paraphrase</span>
+          <span style="font-size:11px;color:#9A9084">Try it: click the arrow, or add a paraphrase with ＋</span>
         </div>
         <div style="padding:8px 16px;border-bottom:1px solid #E6DCCF;display:flex;align-items:center;gap:8px;background:#FBF7F0">
-          <button onClick="{{ applyBoldToFocused }}" title="Bold the selected text" style="width:28px;height:28px;border-radius:6px;border:1px solid #E6DCCF;background:#ffffff;font-weight:700;font-size:13px;color:#1A1A1A;cursor:pointer;line-height:1">B</button>
-          <span style="font-size:11px;color:#9A9084">select a phrase and bold it to mark it as a key expression</span>
+          <button onMouseDown="{{ keepEditorSelection }}" onClick="{{ applyBoldToFocused }}" title="Bold the selected text" aria-label="Bold the selected text" style="width:28px;height:28px;border-radius:6px;border:1px solid #E6DCCF;background:#ffffff;font-weight:700;font-size:13px;color:#1A1A1A;cursor:pointer;line-height:1">B</button>
+          <span style="font-size:11px;color:#9A9084">Bold a phrase to make it a Key Expression</span>
         </div>
         <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
           <sc-for list="{{ blocksView }}" as="blk" hint-placeholder-count="2">
             <div style="background:#FBF7F0;border:1px solid #E6DCCF;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
               <p style="margin:0;font-size:13px;line-height:1.6;color:#9A9084;font-style:italic;border-left:2px solid #E6DCCF;padding-left:10px">{{ blk.before }}</p>
               <div style="display:flex;align-items:flex-start;gap:10px">
-                <div style="flex:1;min-width:0;position:relative;cursor:text" onClick="{{ blk.focus }}">
-                  <div style="font-size:15px;line-height:1.6;color:#1A1A1A;min-height:22px">{{ blk.afterRendered }}</div>
-                  <textarea ref="{{ blk.setRef }}" value="{{ blk.afterSrc }}" onChange="{{ blk.onChange }}" onFocus="{{ blk.onFocusFn }}" onKeyDown="{{ blk.onKeyDown }}" spellcheck="false" style="position:absolute;opacity:0;width:1px;height:1px;padding:0;border:0;left:0;bottom:0"></textarea>
-                </div>
-                <button onClick="{{ blk.exportBlock }}" title="{{ blk.arrowTitle }}" style="{{ blk.arrowStyle }}">{{ blk.arrowLabel }}</button>
+                <div ref="{{ blk.editorRef }}" class="tf-editor" aria-label="Paraphrase" style="flex:1;min-width:0;font-size:15px;line-height:1.6;color:#1A1A1A;min-height:24px"></div>
+                <button onClick="{{ blk.exportBlock }}" title="{{ blk.arrowTitle }}" aria-label="{{ blk.arrowTitle }}" style="{{ blk.arrowStyle }}">{{ blk.arrowLabel }}</button>
               </div>
             </div>
           </sc-for>
@@ -235,7 +252,7 @@
       <div style="background:#F6EFE6;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
         <div style="padding:14px 16px;border-bottom:1px solid #E6DCCF;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffffff">
           <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Feedback Report</span>
-          <span style="font-size:11px;color:#9A9084">key expressions import automatically</span>
+          <span style="font-size:11px;color:#9A9084">Bolded phrases become Key Expressions</span>
         </div>
         <div style="padding:16px;display:flex;flex-direction:column;gap:12px;min-height:220px">
           <sc-if value="{{ noExports }}" hint-placeholder-val="{{ true }}">
@@ -249,7 +266,7 @@
               <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
                 <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9A9084">Paraphrase</span>
                 <p style="margin:0;font-size:13px;line-height:1.6;color:#6B6258;font-style:italic">{{ card.before }}</p>
-                <p style="margin:0;font-size:15px;line-height:1.6;color:#1A1A1A">{{ card.afterRendered }}</p>
+                <p style="margin:0;font-size:15px;line-height:1.6;color:#1A1A1A;white-space:pre-wrap">{{ card.afterRendered }}</p>
                 <sc-if value="{{ card.hasKeyExpr }}" hint-placeholder-val="{{ true }}">
                   <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px">
                     <sc-for list="{{ card.keyExpressions }}" as="ke" hint-placeholder-count="1">
@@ -265,20 +282,28 @@
     </div>
     <div style="display:flex;flex-direction:column;gap:8px">
       <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-        <video autoplay loop muted playsinline poster="assets/videos/feedback-loading-replay.jpg" style="width:100%;aspect-ratio:1280/800;object-fit:cover;display:block">
+        <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/feedback-loading-replay.jpg" style="width:100%;aspect-ratio:1280/800;object-fit:cover;display:block">
           <source src="assets/videos/feedback-loading-replay.mp4" type="video/mp4">
         </video>
       </div>
-      <p style="margin:0;font-size:13px;color:#9A9084">Two exported paraphrases landing on the real Feedback Report, key expressions and all.</p>
+      <p style="margin:0;font-size:13px;color:#9A9084">Two paraphrases exported to the Feedback Report, Key Expressions included.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
-      <div style="display:flex;flex-direction:column;gap:8px;max-width:420px">
-        <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <video autoplay loop muted playsinline poster="assets/videos/feedback-message-zoom.jpg" style="width:100%;aspect-ratio:900/560;object-fit:cover;display:block">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/feedback-message-zoom.jpg" style="width:100%;aspect-ratio:900/560;object-fit:cover;display:block">
             <source src="assets/videos/feedback-message-zoom.mp4" type="video/mp4">
           </video>
         </div>
-        <p style="margin:0;font-size:13px;color:#9A9084">A zoom stepper on the message to the student too, for proofreading before you submit.</p>
+        <p style="margin:0;font-size:13px;color:#9A9084">Small screens can make it hard to comfortably read what you’re writing in your feedback message to students. Tutor Flow adds zoom buttons to the text editor to make proofreading easier on the eyes.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/key-expression-repair.jpg" style="width:100%;aspect-ratio:820/480;object-fit:cover;display:block">
+            <source src="assets/videos/key-expression-repair.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p style="margin:0;font-size:13px;color:#9A9084">Deleting feedback cards from Ringle’s Feedback Report jumbles up the Key Expressions for every card that follows. Tutor Flow’s Key Expression Repair puts them back where they belong.</p>
       </div>
     </div>
   </section>
@@ -286,30 +311,30 @@
   <section class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:80px">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
       <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Calendar Defender</span>
-      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Never double-book yourself.</h2>
-      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Connect your Google Calendar and your existing commitments appear right on Ringle’s booking grid, so the time you’re already busy stops being bookable — and stays that way even when you’re offering a slot weeks out.</p>
+      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Get an actual overview of your schedule before you open a timeslot.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Sign in with Google Calendar, select which calendar(s) you want displayed, and all your important events will show up on Ringle’s schedule page. Mouse clicks are disabled on slots covered by Tutor Flow’s calendar overlays to prevent errant clicks from opening a timeslot by accident. It also notifies you of any potential conflicts that affect a recurring timeslot before you confirm availability. And since Tutor Flow has read-only access, there’s no danger of any changes being made to your personal calendars from our end.</p>
     </div>
     <div class="tf-gap-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Your real calendar, right on the grid.</h3>
+        <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Your Google Calendar events, right on the schedule page.</h3>
         <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
-          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Separate Regular and Holiday overlays, each with its own colour.</span></li>
-          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Manual blocks for one-off unavailability — pin a note, block the time, done.</span></li>
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Regular events and holidays each get their own color, so they stand out.</span></li>
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>The Manual Block feature allows tutors to block off time by hand for anything that hasn’t yet been added to your calendar.</span></li>
         </ul>
       </div>
-      <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-        <img src="assets/screenshots/tf-calendar-overlays.png" alt="Ringle’s booking grid with the tutor’s Google Calendar overlaid — a pinned holiday, personal events in blue, and the Manual blocks panel open in the sidebar." style="width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;display:block" loading="lazy" />
+      <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+        <img src="assets/screenshots/tf-calendar-overlays.png" alt="Ringle’s schedule page showing the tutor’s Google Calendar events: a pinned holiday, personal events in blue, and the manual blocks panel open in the sidebar." style="width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;display:block" loading="lazy" />
       </div>
     </div>
     <div class="tf-gap-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px;order:2">
-        <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Conflicts flagged before you offer.</h3>
+        <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Tutor Flow’s Calendar Defender allows tutors to spot scheduling conflicts immediately.</h3>
         <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
-          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Recurring offers — “every Monday 4:00–4:40pm” — are checked against weeks of your calendar at once.</span></li>
-          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Clashes are flagged before you offer the slot. No paging through the calendar week by week to double-check.</span></li>
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Want to offer a favorite student a recurring class every Monday, 4:00–4:40 p.m., for the next four weeks? Tutor Flow checks every one of those Mondays against your calendar in an instant.</span></li>
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>If any of them clash, you’ll see a list of conflicts to work around before you confirm the slot. No more clicking through your calendar week by week.</span></li>
         </ul>
       </div>
-      <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;order:1">
+      <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;order:1">
         <img src="assets/screenshots/tf-calendar-grid.png" alt="Ringle’s recurring-slot dialog open over the booking grid, flagging four of five proposed dates as conflicting with the tutor’s calendar." style="width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;display:block" loading="lazy" />
       </div>
     </div>
@@ -319,15 +344,15 @@
     <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:20px;order:2">
         <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Student Tracker</span>
-        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Never start a lesson cold.</h2>
-        <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Search your roster by name, student ID, or lesson ID and find anyone you’ve taught before. Every student’s history is one search away.</p>
-        <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Per-student notes persist across lessons, so you’re not re-learning someone’s level and quirks every session, or digging through old feedback reports to remember the name of a student you haven’t seen in months.</p>
+        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Never go into a lesson blind.</h2>
+        <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Look up anyone you’ve taught by name or lesson ID. Tag regulars and favorites so they’re easy to find.</p>
+        <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Keep notes on each student’s level and habits or anything else you want to remember about them. Your notes will be there the next time they book, whether that’s next week or next spring.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:16px;order:1">
-        <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;max-width:340px">
+        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;max-width:340px">
           <img src="assets/screenshots/tf-tracker-roster.png" alt="Tutor Flow’s Student Tracker panel listing three students with their lesson counts and favorite/regular flags." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
         </div>
-        <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;max-width:340px">
+        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;max-width:340px">
           <img src="assets/screenshots/tf-tracker-profile.png" alt="A single student’s Tutor Flow profile with flags, private notes, and a read-only lesson history." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
         </div>
       </div>
@@ -335,20 +360,12 @@
   </section>
 
   <section style="background:#EFE5D7">
-    <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:104px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:56px;align-items:center">
-      <div style="display:flex;flex-direction:column;gap:24px;max-width:560px">
-        <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em;line-height:1.2">Built by a tutor, maintained alongside Ringle.</h2>
-        <p style="margin:0;font-size:18px;line-height:1.65;color:#6B6258">Tutor Flow was built by a working Ringle tutor and used in real lessons, every teaching day, for about a year before release. The developer is still an active Ringle tutor.</p>
-        <p style="margin:0;font-size:18px;line-height:1.65;color:#6B6258">Ringle changes its site from time to time. Tutor Flow is maintained in step with those changes, and the changelog is public — if something shifts, the person who made this notices the same day you would.</p>
+    <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:104px 24px">
+      <div style="display:flex;flex-direction:column;gap:24px;max-width:680px">
+        <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em;line-height:1.2">Built by a tutor, for tutors.</h2>
+        <p style="margin:0;font-size:18px;line-height:1.65;color:#6B6258">Tutor Flow started as one Ringle tutor’s quest to find a way to survive long days of back-to-back lessons with his sanity intact. It has been used and perfected in real lessons since day one, and after many tweaks and adjustments, the days of drowning in backlogged feedback reports are a thing of the past!</p>
+        <p style="margin:0;font-size:18px;line-height:1.65;color:#6B6258">As it has in the past, Ringle may make tweaks to the design and structure of its site in ways that affect Tutor Flow’s functionality. Our built-in error reporting features allow tutors to submit any bugs or issues they encounter along with information about the page on which they occur in order to help our support team get the extension back up and running ASAP. Any major fixes will be recorded in the changelog.</p>
         <a href="./changelog.html" style="font-size:15px;font-weight:600;align-self:flex-start">Read the changelog →</a>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <video autoplay loop muted playsinline poster="assets/videos/key-expression-repair.jpg" style="width:100%;aspect-ratio:820/480;object-fit:cover;display:block">
-            <source src="assets/videos/key-expression-repair.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p style="margin:0;font-size:13px;color:#6B6258">A real Ringle bug: deleting a card can misalign every key expression after it. Tutor Flow catches it and repairs each card automatically.</p>
       </div>
     </div>
   </section>
@@ -356,40 +373,40 @@
   <section id="how" class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:52px">
     <div style="display:flex;flex-direction:column;gap:14px;max-width:620px">
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">How it works</h2>
-      <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">Install first, activate second. Four steps, then it runs inside Ringle.</p>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">Four steps and you’re set.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #0A3D3F">
         <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">01</span>
         <h3 style="margin:0;font-size:17px;font-weight:700">Install from the Chrome Web Store</h3>
-        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">One click, like any other extension. <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener">Open the listing →</a></p>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Add it to Chrome and pin it to the toolbar for easy access.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
         <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">02</span>
-        <h3 style="margin:0;font-size:17px;font-weight:700">Activate your license</h3>
-        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Paste the key from your purchase confirmation into the extension. <a href="#pricing">Buy a licence →</a></p>
+        <h3 style="margin:0;font-size:17px;font-weight:700">Start your free trial</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Visit our Merchant of Record, <a href="https://www.creem.io" target="_blank" rel="noopener">Creem.io</a>, to purchase a subscription plan of your choosing. After checkout, paste the license key (which will be delivered via email) into the extension to activate. The license field can be found under the ‘Settings’ tab.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
         <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">03</span>
         <h3 style="margin:0;font-size:17px;font-weight:700">Connect Google Calendar</h3>
-        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">A one-time authorisation so Calendar Defender can see your existing commitments.</p>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Give Calendar Defender access to Google Calendar so it can display your events on Ringle’s schedule page.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
         <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">04</span>
         <h3 style="margin:0;font-size:17px;font-weight:700">Teach</h3>
-        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Everything runs inside Ringle from that point on.</p>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Open your next lesson and start teaching. Tutor Flow is ready to go.</p>
       </div>
     </div>
   </section>
 
   <section style="background:#0A3D3F;color:#F4FBFA">
     <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:88px 24px;display:flex;flex-direction:column;gap:36px">
-      <h2 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-0.02em">Your calendar and your students, handled carefully.</h2>
+      <h2 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-0.02em">What Tutor Flow can see, and where it goes.</h2>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:28px">
-        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">Calendar access is read-only, through your own Google account.</p>
-        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">Calendar data is used to draw overlays on Ringle’s booking grid. It isn’t shared with Ringle and it isn’t sent anywhere else.</p>
-        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">Student notes and records stay in your own browser.</p>
-        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">The only thing that leaves your browser is license verification.</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">Tutor Flow can read your Google Calendar, but its read-only access prevents it from making any changes.</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">Your events show up on your screen only. They’re never sent to Ringle or anyone else.</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">The content of your student tracker is saved locally in Chrome, for your eyes only.</p>
+        <p style="margin:0;font-size:15px;line-height:1.7;color:rgba(244,251,250,.84)">If something breaks, Tutor Flow can send an error report to our support team so it can be fixed.</p>
       </div>
     </div>
   </section>
@@ -397,7 +414,7 @@
   <section id="pricing" class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:44px;align-items:center;text-align:center">
     <div style="display:flex;flex-direction:column;gap:14px;max-width:560px">
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Pricing</h2>
-      <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">One licence, every feature. Annual works out to one month free.</p>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">Every feature is available on both plans, and the first 10 days are free.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;width:100%;max-width:720px;text-align:left">
       <div style="{{ annualCardStyle }}" onClick="{{ pickAnnual }}">
@@ -424,9 +441,9 @@
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
-      <a href="{{ checkoutHref }}" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">{{ checkoutCtaText }}</a>
-      <p style="margin:0;font-size:13px;color:#6B6258">Prices in USD. Taxes handled at checkout. Cancel anytime.</p>
-      <p style="margin:0;font-size:13px;color:#6B6258">Don’t have the extension yet? <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener">Install it free from the Chrome Web Store</a> — your key activates it.</p>
+      <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
+      <p style="margin:0;font-size:13px;color:#6B6258">Prices in USD. Tax is calculated at checkout. No payments will be processed until your 10-day trial ends.</p>
+      <p style="margin:0;font-size:13px;color:#6B6258">Already installed? <a href="{{ checkoutHref }}">Start your trial and get your license key.</a></p>
     </div>
   </section>
 
@@ -434,7 +451,7 @@
     <div class="tf-section" style="max-width:760px;margin:0 auto;padding:104px 24px;display:flex;flex-direction:column;gap:36px">
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Questions</h2>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="5">
+        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="6">
           <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
             <div style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer" onClick="{{ item.toggle }}">
               <h3 style="margin:0;font-size:16px;font-weight:600">{{ item.q }}</h3>
@@ -453,9 +470,8 @@
     <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center">
       <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:56px;height:56px;border-radius:14px;display:block" />
       <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.03em">Less hassle, more flow.</h2>
-      <p style="margin:0;font-size:17px;color:#6B6258;max-width:460px">Scheduling, student tracking, and faster feedback for your Ringle lessons.</p>
-      <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none;margin-top:4px" style-hover="background:#0A3D3F;text-decoration:none">Add to Chrome</a>
-      <p style="margin:0;font-size:13px;color:#6B6258">Free to install. <a href="#pricing">Licences from $6.99 a month.</a></p>
+      <p style="margin:0;font-size:17px;color:#6B6258;max-width:460px">Try it free for 10 days and say goodbye to backlogged feedback reports.</p>
+      <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none;margin-top:4px" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
     </div>
   </section>
 
@@ -477,6 +493,23 @@
     </div>
   </footer>
 
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+    <div class="tf-lightbox" role="dialog" aria-modal="true" aria-label="{{ lightboxLabel }}" onClick="{{ closeLightbox }}">
+      <button ref="{{ lightboxCloseRef }}" class="tf-lightbox-close" type="button" aria-label="Close" onClick="{{ closeLightbox }}">×</button>
+      <div class="tf-lightbox-figure" style="{{ lightboxFigureStyle }}">
+        <sc-if value="{{ lightboxIsVideo }}">
+          <video ref="{{ lightboxVideoRef }}" class="tf-lightbox-media" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" style="{{ lightboxMediaStyle }}"></video>
+        </sc-if>
+        <sc-if value="{{ lightboxIsImage }}">
+          <img ref="{{ lightboxImageRef }}" class="tf-lightbox-media" alt="{{ lightboxAlt }}" style="{{ lightboxMediaStyle }}" />
+        </sc-if>
+        <sc-if value="{{ lightboxHasCaption }}">
+          <p class="tf-lightbox-caption">{{ lightboxCaption }}</p>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;defaultPlan&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;annual&quot;,&quot;monthly&quot;],&quot;default&quot;:&quot;annual&quot;,&quot;tsType&quot;:&quot;'annual'|'monthly'&quot;,&quot;section&quot;:&quot;Pricing&quot;},&quot;demoAutoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Formatting demo&quot;}}">
@@ -486,16 +519,13 @@ const HILITE_COLORS = { Y: '#FFF8B6', P: '#FFE4F8', G: '#E8FFB6' };
 const ORANGE = '#FF6C1A';
 const BRAND_PURPLE = '#442DC9';
 
-// The pricing CTA follows whichever plan card is selected. Checkout pages
-// aren't live yet — swap these two placeholders for the real URLs and the
-// button starts working, no other change needed.
+// The “Start your trial” link under the pricing button follows whichever plan
+// card is selected. Checkout pages aren't live yet — swap these two
+// placeholders for the real URLs and the link starts working, no other change
+// needed.
 const CHECKOUT_LINKS = {
   annual: '[Annual checkout link]',
   monthly: '[Monthly checkout link]'
-};
-const CHECKOUT_CTA = {
-  annual: 'Get your annual licence — $76.89',
-  monthly: 'Get your monthly licence — $6.99'
 };
 
 const EXPORTER_TRANSCRIPT_POOL = [
@@ -504,156 +534,1083 @@ const EXPORTER_TRANSCRIPT_POOL = [
   '“I look forward to see you again soon.”'
 ];
 
+const EXPORTER_PLACEHOLDER = 'Type a paraphrase and *bold* the key phrase';
+
+// ---------- Demo editor ----------
+//
+// Both demos type into this. It keeps the text plus one format per character
+// (bold, orange, struck out, highlight), the way Quill does in Ringle's lesson
+// doc, so the shortcut handlers further down can follow the extension's own
+// content scripts step for step: asteriskFormatter.js, bracketFormatter.js,
+// quoteAutoPair.js and highlightToggleShortcut.js. Clicking, arrow keys and
+// selecting are left to the browser; every edit goes through the model and is
+// rendered back into the contenteditable.
+
+const PLAIN = {};
+
+function cleanMarks(m) {
+  const out = {};
+  if (m.b) out.b = true;
+  if (m.color) out.color = m.color;
+  if (m.strike) out.strike = true;
+  if (m.hl) out.hl = m.hl;
+  return out;
+}
+
+function marksEqual(a, b) {
+  return !!a.b === !!b.b && (a.color || null) === (b.color || null) && !!a.strike === !!b.strike && (a.hl || null) === (b.hl || null);
+}
+
+function isPlainMarks(m) {
+  return !m.b && !m.color && !m.strike && !m.hl;
+}
+
+function marksStyle(m) {
+  const style = {};
+  if (m.b) style.fontWeight = 700;
+  if (m.color === 'orange') style.color = ORANGE;
+  if (m.strike) style.textDecoration = 'line-through';
+  if (m.hl) { style.background = HILITE_COLORS[m.hl]; style.borderRadius = '3px'; }
+  return style;
+}
+
+// The seeded paraphrases are written as '*phrase*' for bold.
+function parseBoldMarkup(src) {
+  let text = '';
+  const marks = [];
+  let bold = false;
+  for (let i = 0; i < src.length; i++) {
+    if (src[i] === '*') { bold = !bold; continue; }
+    text += src[i];
+    marks.push(bold ? { b: true } : PLAIN);
+  }
+  return { text, marks };
+}
+
+function lastUnmatchedOpen(text, from, to, open, close) {
+  const stack = [];
+  for (let i = from; i < to; i++) {
+    if (text[i] === open) {
+      if (open === close && stack.length) stack.pop();
+      else stack.push(i);
+    } else if (text[i] === close && stack.length) {
+      stack.pop();
+    }
+  }
+  return stack.length ? stack[stack.length - 1] : -1;
+}
+
+class DemoEditor {
+  constructor(opts) {
+    this.opts = opts || {};
+    this.text = '';
+    this.marks = [];
+    this.selA = 0;
+    this.selF = 0;
+    this.cursor = null;
+    this.el = null;
+    this.fakeCaret = false;
+    this.composing = false;
+    this.compositionMarks = null;
+    this.undoStack = [];
+    this.redoStack = [];
+    this.lastEdit = { kind: '', at: 0 };
+    this.ref = (el) => this.attach(el);
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onBeforeInput = this.onBeforeInput.bind(this);
+    this.onInput = this.onInput.bind(this);
+    this.onCompositionStart = this.onCompositionStart.bind(this);
+    this.onCompositionEnd = this.onCompositionEnd.bind(this);
+    this.onPaste = this.onPaste.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+    this.onFocusIn = this.onFocusIn.bind(this);
+    this.onSelectionChange = this.onSelectionChange.bind(this);
+  }
+
+  // ----- lifecycle -----
+
+  attach(el) {
+    if (el === this.el) return;
+    if (this.el) this.detach();
+    this.el = el;
+    if (!el) return;
+    el.setAttribute('contenteditable', 'true');
+    el.setAttribute('role', 'textbox');
+    el.setAttribute('aria-multiline', 'true');
+    el.setAttribute('spellcheck', 'false');
+    el.setAttribute('autocorrect', 'off');
+    el.setAttribute('autocapitalize', 'off');
+    el.setAttribute('translate', 'no');
+    if (this.opts.placeholder) el.setAttribute('data-placeholder', this.opts.placeholder);
+    el.addEventListener('keydown', this.onKeyDown);
+    el.addEventListener('beforeinput', this.onBeforeInput);
+    el.addEventListener('input', this.onInput);
+    el.addEventListener('compositionstart', this.onCompositionStart);
+    el.addEventListener('compositionend', this.onCompositionEnd);
+    el.addEventListener('paste', this.onPaste);
+    el.addEventListener('drop', this.onDrop);
+    el.addEventListener('focus', this.onFocusIn);
+    document.addEventListener('selectionchange', this.onSelectionChange);
+    this.render();
+  }
+
+  detach() {
+    const el = this.el;
+    el.removeEventListener('keydown', this.onKeyDown);
+    el.removeEventListener('beforeinput', this.onBeforeInput);
+    el.removeEventListener('input', this.onInput);
+    el.removeEventListener('compositionstart', this.onCompositionStart);
+    el.removeEventListener('compositionend', this.onCompositionEnd);
+    el.removeEventListener('paste', this.onPaste);
+    el.removeEventListener('drop', this.onDrop);
+    el.removeEventListener('focus', this.onFocusIn);
+    document.removeEventListener('selectionchange', this.onSelectionChange);
+    this.el = null;
+  }
+
+  setContent(content) {
+    this.text = content.text;
+    this.marks = content.marks.slice();
+    this.selA = this.selF = this.text.length;
+    this.cursor = null;
+    this.undoStack = [];
+    this.redoStack = [];
+    this.render();
+  }
+
+  reset() {
+    this.setContent({ text: '', marks: [] });
+  }
+
+  setFakeCaret(on) {
+    this.fakeCaret = on;
+    this.render();
+  }
+
+  focusEditor() {
+    if (!this.el) return;
+    if (document.activeElement !== this.el) this.el.focus({ preventScroll: true });
+    this.applySelection();
+  }
+
+  // ----- model (named after the Quill calls the extension makes) -----
+
+  get selStart() { return Math.min(this.selA, this.selF); }
+  get selEnd() { return Math.max(this.selA, this.selF); }
+
+  getText(i, n) { return this.text.slice(i, i + n); }
+
+  insertText(i, str, marks) {
+    const m = cleanMarks(marks || PLAIN);
+    const added = [];
+    for (let k = 0; k < str.length; k++) added.push(str[k] === '\n' ? PLAIN : m);
+    this.text = this.text.slice(0, i) + str + this.text.slice(i);
+    this.marks.splice(i, 0, ...added);
+  }
+
+  deleteText(i, n) {
+    if (n <= 0) return;
+    this.text = this.text.slice(0, i) + this.text.slice(i + n);
+    this.marks.splice(i, n);
+  }
+
+  formatText(i, n, patch) {
+    for (let k = i; k < i + n && k < this.text.length; k++) {
+      if (this.text[k] === '\n') continue;
+      const next = Object.assign({}, this.marks[k]);
+      for (const key of Object.keys(patch)) {
+        if (patch[key]) next[key] = patch[key];
+        else delete next[key];
+      }
+      this.marks[k] = cleanMarks(next);
+    }
+  }
+
+  setSelection(i, n) {
+    const at = Math.max(0, Math.min(i, this.text.length));
+    this.selA = at;
+    this.selF = Math.max(0, Math.min(at + (n || 0), this.text.length));
+    this.cursor = null;
+  }
+
+  // What the next typed character looks like: whatever format() last set, or
+  // else the character before the caret, as in Quill. A struck-out correction
+  // never carries over into new text.
+  typingMarks() {
+    if (this.cursor) return this.cursor;
+    const s = this.selStart;
+    let src = null;
+    if (this.selEnd > s) src = this.text[s] !== '\n' ? this.marks[s] : null;
+    else if (s > 0 && this.text[s - 1] !== '\n') src = this.marks[s - 1];
+    else if (s < this.text.length && this.text[s] !== '\n') src = this.marks[s];
+    if (!src) return PLAIN;
+    if (!src.strike) return src;
+    const out = Object.assign({}, src);
+    delete out.strike;
+    return cleanMarks(out);
+  }
+
+  getFormat(i, n) {
+    if (!n) return this.typingMarks();
+    let common = null;
+    for (let k = i; k < i + n && k < this.text.length; k++) {
+      if (this.text[k] === '\n') continue;
+      const m = this.marks[k];
+      if (!common) { common = Object.assign({}, m); continue; }
+      for (const key of Object.keys(common)) if (common[key] !== m[key]) delete common[key];
+    }
+    return common || {};
+  }
+
+  // quill.format(): the selected text if there is any, otherwise the format
+  // for the next character typed.
+  format(key, value) {
+    const s = this.selStart;
+    const e = this.selEnd;
+    if (e > s) { this.formatText(s, e - s, { [key]: value }); return; }
+    const next = Object.assign({}, this.typingMarks());
+    if (value) next[key] = value;
+    else delete next[key];
+    this.cursor = cleanMarks(next);
+  }
+
+  // ----- undo -----
+
+  snapshot() {
+    return { text: this.text, marks: this.marks.slice(), a: this.selA, f: this.selF };
+  }
+
+  record(kind) {
+    const now = Date.now();
+    if (kind === 'typing' && this.lastEdit.kind === 'typing' && now - this.lastEdit.at < 1000) {
+      this.lastEdit.at = now;
+      return;
+    }
+    this.undoStack.push(this.snapshot());
+    if (this.undoStack.length > 200) this.undoStack.shift();
+    this.redoStack = [];
+    this.lastEdit = { kind, at: now };
+  }
+
+  restore(snap) {
+    this.text = snap.text;
+    this.marks = snap.marks.slice();
+    this.selA = snap.a;
+    this.selF = snap.f;
+    this.cursor = null;
+    this.lastEdit = { kind: '', at: 0 };
+    this.commit();
+  }
+
+  undo() {
+    const snap = this.undoStack.pop();
+    if (!snap) return;
+    this.redoStack.push(this.snapshot());
+    this.restore(snap);
+  }
+
+  redo() {
+    const snap = this.redoStack.pop();
+    if (!snap) return;
+    this.undoStack.push(this.snapshot());
+    this.restore(snap);
+  }
+
+  // ----- editing commands -----
+
+  commit() {
+    this.render();
+    if (this.opts.onChange) this.opts.onChange(this);
+  }
+
+  replaceRange(start, end, str, kind, marks) {
+    const m = marks || (end > start && this.text[start] !== '\n' ? this.marks[start] : PLAIN);
+    this.record(kind);
+    this.deleteText(start, end - start);
+    if (str) this.insertText(start, str, m);
+    this.setSelection(start + str.length);
+    this.commit();
+  }
+
+  typeText(data) {
+    if (this.opts.shortcuts && this.selEnd === this.selStart) {
+      if (data === '*') { this.insertPair('*', '*'); return; }
+      if (data === '[') { this.insertPair('[', ']'); return; }
+      if (data === '"' || data === '“') { this.insertPair('“', '”'); return; }
+      if (data === ']' && this.formatBracket(false)) return;
+    }
+    this.replaceRange(this.selStart, this.selEnd, data, 'typing', this.typingMarks());
+  }
+
+  // asteriskFormatter.js, bracketFormatter.js, quoteAutoPair.js: the opening
+  // mark brings its closing mark with it and the caret sits between them.
+  insertPair(open, close) {
+    const at = this.selStart;
+    const marks = this.typingMarks();
+    this.record('edit');
+    this.insertText(at, open + close, marks);
+    this.setSelection(at + 1);
+    this.commit();
+  }
+
+  pressDelete(backward) {
+    const s = this.selStart;
+    const e = this.selEnd;
+    if (e > s) { this.replaceRange(s, e, '', 'delete'); return; }
+    if (backward) {
+      if (s <= 0) return;
+      const before = this.text[s - 1];
+      const after = this.text[s];
+      if ((before === '*' && after === '*') || (before === '[' && after === ']') || (before === '“' && after === '”')) {
+        this.replaceRange(s - 1, s + 1, '', 'delete');
+        return;
+      }
+      const n = s >= 2 && /[\uDC00-\uDFFF]/.test(before) && /[\uD800-\uDBFF]/.test(this.text[s - 2]) ? 2 : 1;
+      this.replaceRange(s - n, s, '', 'delete');
+    } else {
+      if (s >= this.text.length) return;
+      const n = /[\uD800-\uDBFF]/.test(this.text[s]) && /[\uDC00-\uDFFF]/.test(this.text[s + 1] || '') ? 2 : 1;
+      this.replaceRange(s, s + n, '', 'delete');
+    }
+  }
+
+  pressEnter() {
+    if (this.opts.shortcuts && this.selEnd === this.selStart) {
+      if (this.formatBracket(true) || this.formatAsterisk(true) || this.quoteEnter()) return;
+    }
+    // bracketFormatter.js, priority 5: Enter never carries orange (or a
+    // strike-through) onto the next line.
+    const marks = Object.assign({}, this.typingMarks());
+    delete marks.color;
+    delete marks.strike;
+    const s = this.selStart;
+    this.record('edit');
+    this.deleteText(s, this.selEnd - s);
+    this.insertText(s, '\n', PLAIN);
+    this.setSelection(s + 1);
+    this.cursor = cleanMarks(marks);
+    this.commit();
+  }
+
+  // Tab runs through the same priority order bracketFormatter.js uses, then
+  // quoteAutoPair.js's jump past a closing quotation mark.
+  pressTab() {
+    if (!this.opts.shortcuts || this.selEnd !== this.selStart) return false;
+    return this.formatBracket(false) || this.formatAsterisk(false) || this.correctionTabJump() || this.hyphenTrigger() || this.quoteTabOut();
+  }
+
+  // [word] + Tab, Enter or ] -> the word in Ringle orange, brackets gone.
+  formatBracket(isEnter) {
+    const caret = this.selStart;
+    const open = lastUnmatchedOpen(this.text, 0, caret, '[', ']');
+    if (open < 0) return false;
+    const innerLen = caret - (open + 1);
+    if (innerLen <= 0 || !/\S/.test(this.getText(open + 1, innerLen))) return false;
+    this.record('edit');
+    if (this.text[caret] === ']') this.deleteText(caret, 1);
+    if (isEnter) {
+      this.formatText(open + 1, innerLen, { color: 'orange', strike: false });
+      this.deleteText(open, 1);
+      this.insertText(open + innerLen, '\n', PLAIN);
+      this.setSelection(open + innerLen + 1);
+    } else {
+      this.insertText(caret, ' ', PLAIN);
+      this.formatText(open + 1, innerLen, { color: 'orange', strike: false });
+      this.deleteText(open, 1);
+      this.setSelection(open + innerLen + 1);
+    }
+    this.commit();
+    return true;
+  }
+
+  // *word* + Tab or Enter -> bold, asterisks gone, and the next word isn't.
+  formatAsterisk(isEnter) {
+    const caret = this.selStart;
+    const lineStart = this.text.lastIndexOf('\n', caret - 1) + 1;
+    const open = lastUnmatchedOpen(this.text, lineStart, caret, '*', '*');
+    if (open < 0) return false;
+    const innerLen = caret - (open + 1);
+    if (innerLen <= 0 || !/\S/.test(this.getText(open + 1, innerLen))) return false;
+    this.record('edit');
+    if (this.text[caret] === '*') this.deleteText(caret, 1);
+    if (isEnter) {
+      this.formatText(open + 1, innerLen, { b: true });
+      this.deleteText(open, 1);
+      this.insertText(open + innerLen, '\n', PLAIN);
+      this.setSelection(open + innerLen + 1);
+    } else {
+      this.insertText(caret, ' ', PLAIN);
+      this.formatText(open + 1, innerLen, { b: true });
+      this.deleteText(open, 1);
+      this.setSelection(open + innerLen + 1);
+    }
+    this.format('b', false);
+    this.commit();
+    return true;
+  }
+
+  // Second Tab after a -word correction: drop the hyphen and carry on past
+  // the orange text in the default color.
+  correctionTabJump() {
+    const caret = this.selStart;
+    const isOrange = (k) => k >= 0 && k < this.text.length && this.marks[k].color === 'orange';
+    let end = caret;
+    let skipped = 0;
+    while (end > 0) {
+      if (isOrange(end - 1)) break;
+      if (this.text[end - 1] !== ' ' || skipped >= 5) return false;
+      skipped += 1;
+      end -= 1;
+    }
+    if (end === 0) return false;
+    let target = end;
+    while (isOrange(target)) target += 1;
+    while (this.text[target] === ' ' && !isOrange(target)) target += 1;
+    let orangeStart = end;
+    while (orangeStart > 0 && isOrange(orangeStart - 1)) orangeStart -= 1;
+    const hyphen = orangeStart - 1;
+    const fromHyphen = hyphen >= 0 && this.text[hyphen] === '-';
+    if (!fromHyphen && target <= caret) return false;
+    this.record('edit');
+    if (fromHyphen) {
+      this.deleteText(hyphen, 1);
+      this.setSelection(target - 1);
+    } else {
+      this.setSelection(target);
+    }
+    this.format('color', false);
+    this.format('strike', false);
+    this.commit();
+    return true;
+  }
+
+  // -word + Tab: select the word and run Ringle's correction on it, the same
+  // thing ⌘/Ctrl 2 does.
+  hyphenTrigger() {
+    const caret = this.selStart;
+    for (let i = caret - 1; i >= 0; i--) {
+      if (this.text[i] !== '-') continue;
+      const prev = i === 0 ? ' ' : this.text[i - 1];
+      if (!/\s/.test(prev) && !/[([{"'“‘]/.test(prev)) continue;
+      const word = this.text.slice(i + 1, caret);
+      if (!word || !word.trim() || /\s/.test(word) || word.includes('-')) continue;
+      this.record('edit');
+      this.applyCorrection(i + 1, word.length);
+      return true;
+    }
+    return false;
+  }
+
+  // Ringle's correction: the wrong word struck out in orange, then a space and
+  // the caret, ready for the replacement (also orange).
+  applyCorrection(start, len) {
+    this.formatText(start, len, { strike: true, color: 'orange', b: false });
+    this.insertText(start + len, ' ', { color: 'orange' });
+    this.setSelection(start + len + 1);
+    this.format('color', 'orange');
+    this.commit();
+  }
+
+  correctSelection() {
+    const s = this.selStart;
+    const len = this.getText(s, this.selEnd - s).replace(/\s+$/, '').length;
+    if (!len) return;
+    this.record('edit');
+    this.applyCorrection(s, len);
+  }
+
+  quoteTabOut() {
+    const caret = this.selStart;
+    if (this.text[caret] !== '”') return false;
+    this.record('edit');
+    if (this.text[caret + 1] !== ' ') this.insertText(caret + 1, ' ', PLAIN);
+    this.setSelection(caret + 2);
+    this.commit();
+    return true;
+  }
+
+  quoteEnter() {
+    const caret = this.selStart;
+    if (this.text[caret] !== '”') return false;
+    this.record('edit');
+    this.insertText(caret + 1, '\n', PLAIN);
+    this.setSelection(caret + 2);
+    this.commit();
+    return true;
+  }
+
+  // highlightToggleShortcut.js: ⌘/Ctrl 3 is yellow on/off, ⌘/Ctrl 4 goes
+  // pink -> green -> off.
+  cycleHighlight(cycle) {
+    const s = this.selStart;
+    const e = this.selEnd;
+    const current = this.getFormat(s, e - s).hl || null;
+    let next;
+    if (cycle.length === 1) next = current === cycle[0] ? false : cycle[0];
+    else {
+      const idx = cycle.indexOf(current);
+      next = idx === -1 ? cycle[0] : (cycle[idx + 1] || false);
+    }
+    if (e > s) this.record('edit');
+    this.format('hl', next);
+    this.commit();
+  }
+
+  toggleBold() {
+    const s = this.selStart;
+    const e = this.selEnd;
+    const on = !this.getFormat(s, e - s).b;
+    if (e > s) this.record('edit');
+    this.format('b', on);
+    this.commit();
+  }
+
+  // ----- reading the result -----
+
+  runs() {
+    const out = [];
+    let i = 0;
+    while (i < this.text.length) {
+      let j = i + 1;
+      while (j < this.text.length && marksEqual(this.marks[j], this.marks[i])) j += 1;
+      out.push({ text: this.text.slice(i, j), marks: this.marks[i] });
+      i = j;
+    }
+    return out;
+  }
+
+  toReact() {
+    return this.runs().map((run, k) => (isPlainMarks(run.marks)
+      ? run.text
+      : React.createElement(run.marks.b ? 'strong' : 'span', { key: 'r' + k, style: marksStyle(run.marks) }, run.text)));
+  }
+
+  // Every stretch of bold text is one Key Expression, as in boldExportPipeline.js.
+  boldPhrases() {
+    const out = [];
+    const seen = new Set();
+    let cur = '';
+    const flush = () => {
+      const phrase = cur.trim();
+      if (phrase && !seen.has(phrase)) { seen.add(phrase); out.push(phrase); }
+      cur = '';
+    };
+    for (let i = 0; i < this.text.length; i++) {
+      if (this.marks[i].b && this.text[i] !== '\n') cur += this.text[i];
+      else flush();
+    }
+    flush();
+    return out;
+  }
+
+  // ----- DOM -----
+
+  render() {
+    const el = this.el;
+    if (!el) return;
+    const probe = document.createElement('div');
+    const caretAt = this.fakeCaret ? this.selF : -1;
+    const addCaret = () => {
+      const c = document.createElement('span');
+      c.className = 'tf-caret';
+      c.setAttribute('data-caret', '');
+      c.setAttribute('contenteditable', 'false');
+      c.setAttribute('aria-hidden', 'true');
+      probe.appendChild(c);
+    };
+    let i = 0;
+    while (i < this.text.length) {
+      if (caretAt === i) addCaret();
+      let j = i + 1;
+      while (j < this.text.length && j !== caretAt && marksEqual(this.marks[j], this.marks[i])) j += 1;
+      const str = this.text.slice(i, j);
+      const m = this.marks[i];
+      if (isPlainMarks(m)) {
+        probe.appendChild(document.createTextNode(str));
+      } else {
+        const node = document.createElement(m.b ? 'strong' : 'span');
+        Object.assign(node.style, marksStyle(m));
+        node.textContent = str;
+        probe.appendChild(node);
+      }
+      i = j;
+    }
+    if (caretAt === this.text.length) addCaret();
+    // A trailing <br> keeps an empty last line visible and clickable.
+    const tail = document.createElement('br');
+    tail.setAttribute('data-tail', '');
+    probe.appendChild(tail);
+    // Leave the DOM alone when it already matches: plain typing usually lands
+    // exactly where the model puts it, and rewriting the node mid-word is what
+    // unsettles phone keyboards.
+    if (probe.innerHTML !== el.innerHTML) el.replaceChildren(...probe.childNodes);
+    el.setAttribute('data-empty', this.text.length ? 'false' : 'true');
+    if (document.activeElement === el) this.applySelection();
+  }
+
+  // Walks the editor the way render() builds it and returns its text, plus
+  // the text offset of each DOM point passed in. A <br> or <div> the browser
+  // added by itself reads as a newline.
+  readDom(points) {
+    let text = '';
+    const idx = points.map(() => -1);
+    const markAt = (node, offset) => {
+      for (let k = 0; k < points.length; k++) {
+        if (idx[k] < 0 && points[k].node === node && points[k].offset === offset) idx[k] = text.length;
+      }
+    };
+    const visit = (node) => {
+      if (node.nodeType === 3) {
+        for (let k = 0; k < points.length; k++) {
+          if (points[k].node === node) idx[k] = text.length + Math.min(points[k].offset, node.data.length);
+        }
+        text += node.data;
+        return;
+      }
+      if (node.nodeType !== 1 || node.hasAttribute('data-caret')) return;
+      if (node !== this.el) {
+        if (node.tagName === 'BR') {
+          if (!node.hasAttribute('data-tail')) text += '\n';
+          return;
+        }
+        if ((node.tagName === 'DIV' || node.tagName === 'P') && text.length && text[text.length - 1] !== '\n') text += '\n';
+      }
+      for (let c = 0; c < node.childNodes.length; c++) {
+        markAt(node, c);
+        visit(node.childNodes[c]);
+      }
+      markAt(node, node.childNodes.length);
+    };
+    visit(this.el);
+    return { text, idx };
+  }
+
+  domPoint(index) {
+    const nodes = [];
+    const walker = document.createTreeWalker(this.el, NodeFilter.SHOW_TEXT);
+    let pos = 0;
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      nodes.push({ n, start: pos });
+      pos += n.data.length;
+    }
+    for (let k = 0; k < nodes.length; k++) {
+      const { n, start } = nodes[k];
+      const end = start + n.data.length;
+      // At a boundary, stay at the end of this node unless it ends a line.
+      if (index < end || (index === end && (k === nodes.length - 1 || n.data[n.data.length - 1] !== '\n'))) {
+        return { node: n, offset: index - start };
+      }
+    }
+    return { node: this.el, offset: 0 };
+  }
+
+  applySelection() {
+    const sel = window.getSelection();
+    if (!sel || !this.el) return;
+    const a = this.domPoint(this.selA);
+    const f = this.domPoint(this.selF);
+    try { sel.setBaseAndExtent(a.node, a.offset, f.node, f.offset); } catch (err) { /* detached mid-render */ }
+  }
+
+  readSelection() {
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount || !this.el || !this.el.contains(sel.anchorNode) || !this.el.contains(sel.focusNode)) return null;
+    const { text, idx } = this.readDom([
+      { node: sel.anchorNode, offset: sel.anchorOffset },
+      { node: sel.focusNode, offset: sel.focusOffset }
+    ]);
+    if (idx[0] < 0 || idx[1] < 0 || text !== this.text) return null;
+    return { a: idx[0], f: idx[1] };
+  }
+
+  syncSelection() {
+    const s = this.readSelection();
+    if (s && (s.a !== this.selA || s.f !== this.selF)) {
+      this.selA = s.a;
+      this.selF = s.f;
+      this.cursor = null;
+    }
+  }
+
+  // Native edits (a phone keyboard's composition, spellcheck replacements)
+  // land in the DOM first; diff the result back into the model.
+  reconcile(marksOverride) {
+    if (!this.el) return;
+    const sel = window.getSelection();
+    const pts = sel && sel.rangeCount && this.el.contains(sel.focusNode) ? [{ node: sel.focusNode, offset: sel.focusOffset }] : [];
+    const { text, idx } = this.readDom(pts);
+    if (text === this.text) { this.render(); return; }
+    const old = this.text;
+    const caret = pts.length && idx[0] >= 0 ? idx[0] : null;
+    const delta = text.length - old.length;
+    const maxP = Math.min(old.length, text.length);
+    let p = 0;
+    while (p < maxP && old[p] === text[p]) p += 1;
+    if (caret != null) p = Math.min(p, Math.max(0, caret - Math.max(0, delta)));
+    let sfx = 0;
+    while (sfx < maxP - p && old[old.length - 1 - sfx] === text[text.length - 1 - sfx]) sfx += 1;
+    const inserted = text.slice(p, text.length - sfx);
+    const marks = marksOverride || this.typingMarks();
+    this.deleteText(p, old.length - sfx - p);
+    this.insertText(p, inserted, marks);
+    const at = caret != null ? caret : p + inserted.length;
+    this.selA = this.selF = Math.min(at, this.text.length);
+    this.cursor = null;
+    this.commit();
+  }
+
+  // ----- events -----
+
+  onKeyDown(e) {
+    if (this.composing || e.isComposing) return;
+    const mod = (e.metaKey || e.ctrlKey) && !e.altKey;
+    const key = (e.key || '').toLowerCase();
+    const digitMatch = /^(?:Digit|Numpad)([0-9])$/.exec(e.code || '');
+    const digit = digitMatch ? digitMatch[1] : (/^[0-9]$/.test(e.key) ? e.key : null);
+    if (mod) {
+      if (digit === '1' && this.opts.onNewBlock) { e.preventDefault(); this.opts.onNewBlock(this); return; }
+      if (digit === '2' && this.opts.shortcuts) { e.preventDefault(); this.syncSelection(); this.correctSelection(); return; }
+      if (digit === '3' && this.opts.shortcuts) { e.preventDefault(); this.syncSelection(); this.cycleHighlight(['Y']); return; }
+      if (digit === '4' && this.opts.shortcuts) { e.preventDefault(); this.syncSelection(); this.cycleHighlight(['P', 'G']); return; }
+      if (key === 'b' && !e.shiftKey) { e.preventDefault(); this.syncSelection(); this.toggleBold(); return; }
+      if (key === 'i' || key === 'u') { e.preventDefault(); return; }
+      if (key === 'z') { e.preventDefault(); if (e.shiftKey) this.redo(); else this.undo(); return; }
+      if (key === 'y' && e.ctrlKey && !e.metaKey) { e.preventDefault(); this.redo(); }
+      return;
+    }
+    if (e.key === 'Tab' && !e.shiftKey && !e.altKey) {
+      this.syncSelection();
+      if (this.pressTab()) e.preventDefault();
+      return;
+    }
+    if (e.key === 'Escape') this.el.blur();
+  }
+
+  onBeforeInput(e) {
+    const type = e.inputType || '';
+    if (this.composing || e.isComposing || type === 'insertCompositionText') return;
+    if (type === 'historyUndo') { e.preventDefault(); this.undo(); return; }
+    if (type === 'historyRedo') { e.preventDefault(); this.redo(); return; }
+    if (type.indexOf('format') === 0 || type === 'insertFromDrop' || type === 'deleteByDrag') { e.preventDefault(); return; }
+    this.syncSelection();
+    if (type === 'insertText' && e.data != null) { e.preventDefault(); this.typeText(e.data); return; }
+    if (type === 'insertParagraph' || type === 'insertLineBreak') { e.preventDefault(); this.pressEnter(); return; }
+    if (type === 'deleteContentBackward' || type === 'deleteContentForward') {
+      e.preventDefault();
+      this.pressDelete(type === 'deleteContentBackward');
+      return;
+    }
+    if (type === 'insertReplacementText' || type.indexOf('delete') === 0) {
+      const range = this.targetRange(e) || (this.selEnd > this.selStart ? { start: this.selStart, end: this.selEnd } : null);
+      const data = type === 'insertReplacementText'
+        ? (e.data != null ? e.data : (e.dataTransfer ? e.dataTransfer.getData('text/plain') : null))
+        : '';
+      if (range && data != null) {
+        e.preventDefault();
+        this.replaceRange(range.start, range.end, data, data ? 'typing' : 'delete');
+      }
+    }
+    // Anything else happens natively and onInput reads it back.
+  }
+
+  targetRange(e) {
+    const ranges = e.getTargetRanges ? e.getTargetRanges() : [];
+    if (!ranges.length) return null;
+    const r = ranges[0];
+    const { text, idx } = this.readDom([
+      { node: r.startContainer, offset: r.startOffset },
+      { node: r.endContainer, offset: r.endOffset }
+    ]);
+    if (idx[0] < 0 || idx[1] < 0 || text !== this.text) return null;
+    return { start: Math.min(idx[0], idx[1]), end: Math.max(idx[0], idx[1]) };
+  }
+
+  onInput(e) {
+    if (this.composing || e.isComposing) return;
+    this.reconcile();
+  }
+
+  onCompositionStart() {
+    this.syncSelection();
+    this.compositionMarks = this.typingMarks();
+    this.record('typing');
+    this.composing = true;
+  }
+
+  onCompositionEnd() {
+    this.composing = false;
+    this.reconcile(this.compositionMarks);
+  }
+
+  onPaste(e) {
+    e.preventDefault();
+    const data = e.clipboardData ? e.clipboardData.getData('text/plain') : '';
+    if (!data) return;
+    this.syncSelection();
+    this.replaceRange(this.selStart, this.selEnd, data.replace(/\r\n?/g, '\n'), 'edit', this.typingMarks());
+  }
+
+  onDrop(e) {
+    e.preventDefault();
+  }
+
+  onFocusIn() {
+    if (this.opts.onFocus) this.opts.onFocus(this);
+    // Focus from the keyboard arrives with no caret inside; put it where the
+    // model has it. A click places its own caret right after this.
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount || !this.el.contains(sel.anchorNode)) this.applySelection();
+  }
+
+  onSelectionChange() {
+    if (!this.el || this.composing || document.activeElement !== this.el) return;
+    this.syncSelection();
+  }
+}
+
+// DEMO keeps the little markup language the old renderer used. The autoplay
+// turns it into the keystrokes a tutor would actually press and sends them
+// through the same editor visitors type into, so everything on screen is the
+// real shortcut doing its thing:
+//   “…”           the opening mark auto-pairs; Tab jumps past the closing one
+//   -wrong->right hyphen, word, Tab, the correction, Tab
+//   *word*        asterisk (auto-pairs), word, Tab
+//   [word]        bracket (auto-pairs), word, closing bracket
+//   ¶Yword¶       ⌘/Ctrl 3 on, word, ⌘/Ctrl 3 off (¶P / ¶G use ⌘/Ctrl 4)
+function demoScript(src) {
+  const steps = [];
+  const type = (text) => { for (const ch of text) steps.push({ op: 'type', ch }); };
+  const press = (op, times) => { for (let n = 0; n < (times || 1); n++) steps.push({ op }); };
+  // Tab after bold or brackets leaves a space; if the markup doesn't want one
+  // there, take it back (and keep the next character plain).
+  const afterTab = (i, op) => {
+    if (src[i] === ' ') return i + 1;
+    if (src[i]) { press('backspace'); if (op === 'bold') press('bold'); }
+    return i;
+  };
+  let i = 0;
+  while (i < src.length) {
+    const ch = src[i];
+    const hyphen = ch === '-' ? /^-(\S+?)->(\S+)/.exec(src.slice(i)) : null;
+    if (hyphen) {
+      type('-' + hyphen[1]);
+      press('tab');
+      type(hyphen[2]);
+      press('tab');
+      i += hyphen[0].length;
+      continue;
+    }
+    if (ch === '*' || ch === '[') {
+      const close = ch === '*' ? '*' : ']';
+      const end = src.indexOf(close, i + 1);
+      if (end > i) {
+        type(ch + src.slice(i + 1, end));
+        if (ch === '*') press('tab');
+        else type(']');
+        i = afterTab(end + 1, ch === '*' ? 'bold' : 'bracket');
+        continue;
+      }
+    }
+    if (ch === '¶' && HILITE_COLORS[src[i + 1]]) {
+      const end = src.indexOf('¶', i + 2);
+      if (end > i) {
+        const tag = src[i + 1];
+        const op = tag === 'Y' ? 'hl3' : 'hl4';
+        const on = tag === 'G' ? 2 : 1;
+        const off = tag === 'P' ? 2 : 1;
+        press(op, on);
+        type(src.slice(i + 2, end));
+        press(op, off);
+        i = end + 1;
+        continue;
+      }
+    }
+    if (ch === '”') {
+      press('tab');
+      i = src[i + 1] === ' ' ? i + 2 : i + 1;
+      continue;
+    }
+    type(ch);
+    i += 1;
+  }
+  return steps;
+}
+
+function runDemoStep(editor, step) {
+  switch (step.op) {
+    case 'type': editor.typeText(step.ch); break;
+    case 'tab': editor.pressTab(); break;
+    case 'backspace': editor.pressDelete(true); break;
+    case 'bold': editor.toggleBold(); break;
+    case 'hl3': editor.cycleHighlight(['Y']); break;
+    case 'hl4': editor.cycleHighlight(['P', 'G']); break;
+    default: break;
+  }
+}
+
 class Component extends DCLogic {
   state = {
-    src: '', typing: true, taken: false, plan: null, openFaq: 0,
+    taken: false, plan: null, openFaq: 0,
     blocks: [
       { id: 1, before: '“I think I want to buying a new laptop for my work.”', afterSrc: 'You could say you’re *thinking about getting* a new laptop for work.', exported: false },
       { id: 2, before: '“She don’t like doing homework so much.”', afterSrc: 'A more natural way to put it: she’s *not really a fan of* homework.', exported: false }
     ],
     nextBlockId: 3,
     transcriptIndex: 0,
-    focusedBlockId: null
+    focusedBlockId: null,
+    rev: 0,
+    lightbox: null
   };
 
-  afterRefs = {};
+  editors = {};
+
+  formatEditor = new DemoEditor({
+    shortcuts: true,
+    onFocus: () => this.takeOverDemo()
+  });
+
+  // ---------- lifecycle ----------
 
   componentDidMount() {
-    this.demoEl = null;
-    if (this.props.demoAutoplay === false) { this.setState({ src: DEMO, typing: false }); return; }
-    this.i = 0;
-    this.tick = setInterval(() => {
+    this.demoVisible = true;
+    this.setupVideos();
+    this.setupDemoVisibility();
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (this.props.demoAutoplay === false || reduceMotion) this.showWholeDemo();
+    else this.startAutoplay();
+    this.onDocKeyDown = (e) => this.handleLightboxKey(e);
+    this.onResize = () => { if (this.state.lightbox) this.forceUpdate(); };
+    document.addEventListener('keydown', this.onDocKeyDown);
+    window.addEventListener('resize', this.onResize);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.demoTimer);
+    if (this.videoObserver) this.videoObserver.disconnect();
+    if (this.demoObserver) this.demoObserver.disconnect();
+    document.removeEventListener('keydown', this.onDocKeyDown);
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  // ---------- looping videos ----------
+
+  // The template's autoplay/loop/muted/playsinline attributes don't all
+  // survive the trip into the DOM, and a browser won't autoplay a video it
+  // doesn't know is muted. Set them as properties here, and play each video
+  // only while it's on screen.
+  setupVideos() {
+    const videos = Array.from(document.querySelectorAll('video'));
+    videos.forEach((v) => {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.loop = true;
+      v.playsInline = true;
+      v.setAttribute('muted', '');
+      v.setAttribute('playsinline', '');
+    });
+    const play = (v) => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+    if (!('IntersectionObserver' in window)) { videos.forEach(play); return; }
+    this.videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) play(entry.target);
+        else entry.target.pause();
+      });
+    }, { threshold: 0.15 });
+    videos.forEach((v) => this.videoObserver.observe(v));
+  }
+
+  // ---------- Formatting Shortcuts demo ----------
+
+  setupDemoVisibility() {
+    const el = this.formatEditor.el;
+    if (!el || !('IntersectionObserver' in window)) return;
+    this.demoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { this.demoVisible = entry.isIntersecting; });
+    });
+    this.demoObserver.observe(el);
+  }
+
+  showWholeDemo() {
+    const editor = this.formatEditor;
+    editor.reset();
+    demoScript(DEMO).forEach((step) => runDemoStep(editor, step));
+    editor.undoStack = [];
+    editor.redoStack = [];
+    editor.setSelection(editor.text.length);
+    editor.render();
+  }
+
+  startAutoplay() {
+    const editor = this.formatEditor;
+    this.demoSteps = demoScript(DEMO);
+    this.demoStep = 0;
+    editor.reset();
+    editor.setFakeCaret(true);
+    const tick = () => {
       if (this.state.taken) return;
-      if (this.i > DEMO.length) { this.i = 0; this.setState({ src: '' }); return; }
-      this.setState({ src: DEMO.slice(0, this.i) });
-      this.i += 1;
-    }, 55);
+      if (!this.demoVisible) { this.demoTimer = setTimeout(tick, 400); return; }
+      if (this.demoStep >= this.demoSteps.length) {
+        // Hold the finished sentence for a moment, then type it again.
+        this.demoTimer = setTimeout(() => {
+          if (this.state.taken) return;
+          editor.reset();
+          this.demoStep = 0;
+          this.demoTimer = setTimeout(tick, 500);
+        }, 2600);
+        return;
+      }
+      const step = this.demoSteps[this.demoStep];
+      this.demoStep += 1;
+      runDemoStep(editor, step);
+      const next = this.demoSteps[this.demoStep];
+      const delay = step.op !== 'type' ? 450 : (next && next.op !== 'type' ? 400 : 55);
+      this.demoTimer = setTimeout(tick, delay);
+    };
+    this.demoTimer = setTimeout(tick, 600);
   }
 
-  componentWillUnmount() { clearInterval(this.tick); }
-
-  // Shared renderer for both the Formatting Shortcuts typing demo and the
-  // Feedback Exporter's after-paraphrase fields. Not a port of Quill's real
-  // formatting model (see bracketFormatter.js / boldExportPipeline.js for
-  // that) — a small markup dialect chosen only to make each shortcut
-  // demonstrable inside a plain textarea:
-  //   *word*        -> bold
-  //   [word]        -> in-line correction (orange)
-  //   -wrong->right -> hyphen correction trigger (struck original, orange fix)
-  //   ¶Yword¶       -> yellow highlight (Ctrl/Cmd+3)
-  //   ¶Pword¶ / ¶Gword¶ -> pink / green highlight (Ctrl/Cmd+4 cycle)
-  renderMarkup(src, withCaret) {
-    const out = [];
-    let buf = '';
-    let i = 0;
-    let k = 0;
-    const flush = () => { if (buf) { out.push(buf); buf = ''; } };
-    while (i < src.length) {
-      const ch = src[i];
-
-      if (ch === '*') {
-        const end = src.indexOf('*', i + 1);
-        if (end > i) {
-          flush();
-          out.push(React.createElement('strong', { key: 'b' + k++, style: { fontWeight: 700 } }, src.slice(i + 1, end)));
-          i = end + 1;
-          continue;
-        }
+  // The visitor clicked in: finish the sentence at once so the whole example
+  // stays on screen, then hand the editor over.
+  takeOverDemo() {
+    if (this.state.taken) return;
+    clearTimeout(this.demoTimer);
+    const editor = this.formatEditor;
+    if (this.demoSteps) {
+      if (this.demoStep === 0) editor.reset();
+      while (this.demoStep < this.demoSteps.length) {
+        runDemoStep(editor, this.demoSteps[this.demoStep]);
+        this.demoStep += 1;
       }
-
-      if (ch === '[') {
-        const end = src.indexOf(']', i + 1);
-        if (end > i) {
-          flush();
-          out.push(React.createElement('span', { key: 'c' + k++, style: { color: ORANGE } }, src.slice(i + 1, end)));
-          i = end + 1;
-          continue;
-        }
-      }
-
-      if (ch === '-') {
-        const m = /^-(\S+?)->(\S+)/.exec(src.slice(i));
-        if (m) {
-          flush();
-          out.push(React.createElement('span', { key: 'w' + k++, style: { color: '#9A9084', textDecoration: 'line-through' } }, m[1]));
-          out.push(React.createElement('span', { key: 'a' + k++, style: { color: '#9A9084', fontSize: '0.85em', margin: '0 2px' } }, '→'));
-          out.push(React.createElement('span', { key: 'r' + k++, style: { color: ORANGE } }, m[2]));
-          i += m[0].length;
-          continue;
-        }
-      }
-
-      if (ch === '¶') {
-        const tag = src[i + 1];
-        const bg = HILITE_COLORS[tag];
-        const end = bg ? src.indexOf('¶', i + 2) : -1;
-        if (bg && end > i) {
-          flush();
-          out.push(React.createElement('span', { key: 'h' + k++, style: { background: bg, borderRadius: '3px', padding: '0 2px' } }, src.slice(i + 2, end)));
-          i = end + 1;
-          continue;
-        }
-      }
-
-      buf += ch;
-      i += 1;
     }
-    flush();
-    if (withCaret) {
-      out.push(React.createElement('span', {
-        key: 'caret',
-        style: { display: 'inline-block', width: '2px', height: '1.05em', background: '#10595B', marginLeft: '2px', verticalAlign: '-0.15em', animation: 'tfblink 1s step-end infinite' }
-      }));
-    }
-    return out;
+    editor.undoStack = [];
+    editor.redoStack = [];
+    editor.setSelection(editor.text.length);
+    editor.setFakeCaret(false);
+    this.setState({ taken: true });
   }
 
-  // Ctrl/Cmd+3 (single-color toggle) and Ctrl/Cmd+4 (pink -> green -> off
-  // cycle) — mirrors highlightToggleShortcut.js's cycle logic, applied here
-  // to the selected range of a plain textarea instead of a Quill range.
-  applyHighlightShortcut(el, cycle) {
-    const { selectionStart: s, selectionEnd: e, value } = el;
-    if (s === e) return;
-    let start = s;
-    let end = e;
-    let inner = value.slice(s, e);
-    if (value[s - 2] === '¶' && value[e] === '¶') {
-      start = s - 2;
-      end = e + 1;
-      inner = value.slice(s, e);
-    }
-    const currentTag = value[start] === '¶' ? value[start + 1] : null;
-    const idx = cycle.indexOf(currentTag);
-    const nextTag = idx === -1 ? cycle[0] : cycle[idx + 1] || null;
-    const replacement = nextTag ? ('¶' + nextTag + inner + '¶') : inner;
-    const next = value.slice(0, start) + replacement + value.slice(end);
-    const caretPos = start + replacement.length;
-    this.setState({ src: next, taken: true });
-    requestAnimationFrame(() => { el.focus(); el.setSelectionRange(caretPos, caretPos); });
-  }
-
-  onDemoKeyDown(e) {
-    if (!(e.ctrlKey || e.metaKey)) return;
-    if (e.key === '3') { e.preventDefault(); this.applyHighlightShortcut(e.target, ['Y']); }
-    else if (e.key === '4') { e.preventDefault(); this.applyHighlightShortcut(e.target, ['P', 'G']); }
+  focusDemo(e) {
+    const editor = this.formatEditor;
+    if (!editor.el || editor.el.contains(e.target)) return;
+    editor.focusEditor();
   }
 
   // ---------- Feedback Exporter demo ----------
 
-  extractBoldPhrases(src) {
-    const phrases = [];
-    const seen = new Set();
-    const re = /\*([^*]+)\*/g;
-    let m;
-    while ((m = re.exec(src))) {
-      const phrase = m[1].trim();
-      if (phrase && !seen.has(phrase)) { seen.add(phrase); phrases.push(phrase); }
+  editorFor(block) {
+    let editor = this.editors[block.id];
+    if (!editor) {
+      editor = new DemoEditor({
+        shortcuts: true,
+        placeholder: EXPORTER_PLACEHOLDER,
+        onChange: () => this.setState((s) => ({ rev: s.rev + 1 })),
+        onFocus: () => { if (this.state.focusedBlockId !== block.id) this.setState({ focusedBlockId: block.id }); },
+        onNewBlock: () => this.addBlock()
+      });
+      editor.setContent(parseBoldMarkup(block.afterSrc || ''));
+      this.editors[block.id] = editor;
     }
-    return phrases;
-  }
-
-  updateBlockSrc(id, value) {
-    this.setState((s) => ({ blocks: s.blocks.map((b) => (b.id === id ? { ...b, afterSrc: value } : b)) }));
+    return editor;
   }
 
   handleExportBlock(id) {
@@ -673,28 +1630,97 @@ class Component extends DCLogic {
       transcriptIndex: s.transcriptIndex + 1,
       focusedBlockId: id
     }));
-    requestAnimationFrame(() => { const el = this.afterRefs[id]; if (el) el.focus(); });
+    requestAnimationFrame(() => { const editor = this.editors[id]; if (editor) editor.focusEditor(); });
   }
 
-  handleAfterKeyDown(e) {
-    if ((e.ctrlKey || e.metaKey) && e.key === '1') {
-      e.preventDefault();
-      this.addBlock();
-    }
-  }
-
-  // Toolbar "B" button — bolds the current selection in whichever
-  // after-field last had focus, same idea as clicking Ringle's own toolbar.
+  // Toolbar "B" button — bolds the selection in whichever paraphrase last had
+  // focus, same idea as clicking Ringle's own toolbar.
   applyBoldToFocused() {
-    const id = this.state.focusedBlockId;
-    if (!id) return;
-    const el = this.afterRefs[id];
-    if (!el) return;
-    const { selectionStart: s, selectionEnd: e, value } = el;
-    if (s === e) return;
-    const next = value.slice(0, s) + '*' + value.slice(s, e) + '*' + value.slice(e);
-    this.updateBlockSrc(id, next);
-    requestAnimationFrame(() => { el.focus(); el.setSelectionRange(e + 2, e + 2); });
+    const editor = this.editors[this.state.focusedBlockId];
+    if (!editor) return;
+    editor.syncSelection();
+    editor.toggleBold();
+    editor.focusEditor();
+  }
+
+  // ---------- lightbox ----------
+
+  openLightbox(wrap) {
+    const media = wrap.querySelector('video, img');
+    if (!media) return;
+    const isVideo = media.tagName === 'VIDEO';
+    const source = isVideo ? media.querySelector('source') : null;
+    const src = media.currentSrc || (source ? source.src : media.src);
+    let ratio = isVideo
+      ? (media.videoWidth && media.videoHeight ? media.videoWidth / media.videoHeight : 0)
+      : (media.naturalWidth && media.naturalHeight ? media.naturalWidth / media.naturalHeight : 0);
+    if (!ratio) {
+      const box = media.getBoundingClientRect();
+      ratio = box.height ? box.width / box.height : 1.6;
+    }
+    const next = wrap.nextElementSibling;
+    const caption = next && next.tagName === 'P' ? next.textContent.trim() : '';
+    this.lightboxReturnFocus = wrap;
+    this.lightboxStartTime = isVideo ? media.currentTime : 0;
+    this.lightboxScrollLock = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = 'hidden';
+    this.setState({
+      lightbox: {
+        isVideo,
+        src,
+        poster: isVideo ? (media.getAttribute('poster') || '') : '',
+        alt: isVideo ? '' : (media.getAttribute('alt') || ''),
+        caption,
+        ratio
+      }
+    });
+  }
+
+  closeLightbox() {
+    if (!this.state.lightbox) return;
+    document.documentElement.style.overflow = this.lightboxScrollLock || '';
+    this.setState({ lightbox: null });
+    const back = this.lightboxReturnFocus;
+    if (back) requestAnimationFrame(() => back.focus({ preventScroll: true }));
+  }
+
+  handleLightboxKey(e) {
+    if (!this.state.lightbox) return;
+    if (e.key === 'Escape') { e.preventDefault(); this.closeLightbox(); }
+    // The close button is the only control in the dialog, so focus stays on it.
+    else if (e.key === 'Tab') { e.preventDefault(); if (this.lightboxClose) this.lightboxClose.focus(); }
+  }
+
+  lightboxCloseRef = (el) => {
+    this.lightboxClose = el;
+    if (el) el.focus({ preventScroll: true });
+  };
+
+  // src and poster are set here rather than in the template: the template is
+  // live HTML until the runtime takes over, and the browser would request a
+  // literal "{{ lightboxSrc }}".
+  lightboxImageRef = (img) => {
+    const lb = this.state.lightbox;
+    if (img && lb) img.src = lb.src;
+  };
+
+  lightboxVideoRef = (v) => {
+    const lb = this.state.lightbox;
+    if (!v || !lb) return;
+    if (lb.poster) v.poster = lb.poster;
+    v.src = lb.src;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.loop = true;
+    v.playsInline = true;
+    try { v.currentTime = this.lightboxStartTime || 0; } catch (err) { /* not seekable yet */ }
+    const p = v.play();
+    if (p && p.catch) p.catch(() => {});
+  };
+
+  lightboxWidth(lb) {
+    const reserve = lb.caption ? 200 : 120;
+    return Math.round(Math.max(160, Math.min(1200, window.innerWidth - 48, (window.innerHeight - reserve) * lb.ratio)));
   }
 
   renderVals() {
@@ -720,12 +1746,14 @@ class Component extends DCLogic {
       borderRadius: '999px',
       padding: '4px 10px'
     });
+    const h = React.createElement;
     const faqData = [
-      ['Is installing from the Chrome Web Store enough?', 'No. Installing is free, but the features stay locked until you activate a licence key. Buy one above, then paste the key into the extension.'],
-      ['Does this work outside Ringle?', 'No. Tutor Flow only runs on Ringle’s own pages — it’s built for that one workflow.'],
-      ['Which browsers?', 'Chrome, and Chromium-based browsers like Edge, Brave, and Arc.'],
-      ['What happens if Ringle changes something?', 'Tutor Flow is maintained alongside Ringle’s updates. The developer teaches on Ringle too, so changes get noticed and fixed quickly, and the changelog records them.'],
-      ['Can I cancel?', 'Yes, anytime. Monthly and annual both cancel from your purchase confirmation.']
+      ['Does Tutor Flow change anything on Ringle’s side?', 'Anything Tutor Flow adds to the screen — e.g. your calendar(s) on the schedule page or any notes/comments you save inside student tracker profiles — is stored locally in your browser. Turning the extension off will revert Ringle pages to their default design.'],
+      ['Does Tutor Flow use AI?', ['No. Tutor Flow doesn’t write or rewrite any of your feedback, and every word in the report is still yours. What it ', h('em', { key: 'does' }, 'does'), ' do is cut out steps you’d otherwise do twice, like choosing feedback blocks and Key Expressions again after class. Now you can do that in real time, while you review them with your student.']],
+      ['Is Tutor Flow made by Ringle?', 'No. Tutor Flow is an independent product by Native Flow. It is not affiliated with or endorsed by Ringle.'],
+      ['Does it work on other tutoring platforms?', 'Tutor Flow was designed specifically for use on the Ringle platform.'],
+      ['Which browser do I need?', 'Tutor Flow runs on the desktop version of Chrome, which is Ringle’s preferred browser for tutors. It should also work on other Chromium-based browsers, but Native Flow cannot guarantee functionality with any but Chrome. Tutor Flow is not compatible with mobile or tablet browsers.'],
+      ['How do I cancel?', ['You can cancel your subscription at any time by 1) clicking the link in your confirmation email, 2) visiting Creem.io’s ', h('a', { key: 'portal', href: 'https://www.creem.io/portal/orders', target: '_blank', rel: 'noopener' }, 'customer portal'), ', or 3) accessing your subscription settings from inside the Tutor Flow extension via the ‘Manage subscription’ button under the Settings tab. New subscribers who cancel during the trial period will not be charged.']]
     ];
     const arrowStyle = (exported) => ({
       flexShrink: 0,
@@ -741,47 +1769,37 @@ class Component extends DCLogic {
       lineHeight: 1
     });
 
-    const blocksView = this.state.blocks.map((b) => ({
-      id: b.id,
-      before: b.before,
-      afterSrc: b.afterSrc,
-      afterRendered: b.afterSrc
-        ? this.renderMarkup(b.afterSrc, this.state.focusedBlockId === b.id)
-        : (this.state.focusedBlockId === b.id
-          ? this.renderMarkup('', true)
-          : [React.createElement('span', { key: 'ph', style: { color: '#B8AFA2' } }, 'Type a paraphrase — *bold* the phrase to export')]),
-      setRef: (el) => { this.afterRefs[b.id] = el; },
-      onChange: (e) => this.updateBlockSrc(b.id, e.target.value),
-      onFocusFn: () => this.setState({ focusedBlockId: b.id }),
-      onKeyDown: (e) => this.handleAfterKeyDown(e),
-      focus: () => { const el = this.afterRefs[b.id]; if (el) el.focus(); },
-      exportBlock: () => this.handleExportBlock(b.id),
-      arrowLabel: b.exported ? '✓' : '→',
-      arrowTitle: b.exported ? 'Exported to Feedback Report' : 'Export to Feedback Report',
-      arrowStyle: arrowStyle(b.exported)
-    }));
-
-    const exportedBlocks = this.state.blocks.filter((b) => b.exported);
-    const exportedView = exportedBlocks.map((b) => {
-      const keyExpressions = this.extractBoldPhrases(b.afterSrc);
+    const blocksView = this.state.blocks.map((b) => {
+      const editor = this.editorFor(b);
       return {
         id: b.id,
         before: b.before,
-        afterRendered: this.renderMarkup(b.afterSrc, false),
+        editorRef: editor.ref,
+        exportBlock: () => this.handleExportBlock(b.id),
+        arrowLabel: b.exported ? '✓' : '→',
+        arrowTitle: b.exported ? 'Exported to Feedback Report' : 'Export to Feedback Report',
+        arrowStyle: arrowStyle(b.exported)
+      };
+    });
+
+    const exportedView = this.state.blocks.filter((b) => b.exported).map((b) => {
+      const editor = this.editorFor(b);
+      const keyExpressions = editor.boldPhrases();
+      return {
+        id: b.id,
+        before: b.before,
+        afterRendered: editor.toReact(),
         keyExpressions,
         hasKeyExpr: keyExpressions.length > 0
       };
     });
 
+    const lb = this.state.lightbox;
+
     return {
-      demoSrc: this.state.src,
-      demoRendered: this.renderMarkup(this.state.src, !this.state.taken),
-      demoHint: this.state.taken ? 'your turn — *bold*, [brackets], -word->fix, or select + ⌃/⌘3' : 'click to type it yourself',
-      demoRef: (el) => { this.demoEl = el; },
-      focusDemo: () => { if (this.demoEl) this.demoEl.focus(); },
-      onDemoFocus: () => { if (!this.state.taken) this.setState({ taken: true }); },
-      onDemoChange: (e) => this.setState({ src: e.target.value, taken: true }),
-      onDemoKeyDown: (e) => this.onDemoKeyDown(e),
+      demoHint: this.state.taken ? 'Your turn: try *bold*, [brackets], or -word then Tab. Or select text and press ⌘/Ctrl 3.' : 'Click to type it yourself',
+      demoEditorRef: this.formatEditor.ref,
+      focusDemo: (e) => this.focusDemo(e),
       annualCardStyle: card(plan === 'annual'),
       monthlyCardStyle: card(plan === 'monthly'),
       annualPillStyle: pill(plan === 'annual'),
@@ -789,7 +1807,6 @@ class Component extends DCLogic {
       annualPillText: plan === 'annual' ? 'Selected' : 'One month free',
       monthlyPillText: plan === 'monthly' ? 'Selected' : 'Flexible',
       checkoutHref: CHECKOUT_LINKS[plan],
-      checkoutCtaText: CHECKOUT_CTA[plan],
       pickAnnual: () => this.setState({ plan: 'annual' }),
       pickMonthly: () => this.setState({ plan: 'monthly' }),
       faqs: faqData.map(([q, a], idx) => ({
@@ -803,7 +1820,25 @@ class Component extends DCLogic {
       hasExports: exportedView.length > 0,
       noExports: exportedView.length === 0,
       addBlock: () => this.addBlock(),
-      applyBoldToFocused: () => this.applyBoldToFocused()
+      keepEditorSelection: (e) => e.preventDefault(),
+      applyBoldToFocused: () => this.applyBoldToFocused(),
+      zoom: (e) => this.openLightbox(e.currentTarget),
+      zoomKey: (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.openLightbox(e.currentTarget); }
+      },
+      lightboxOpen: !!lb,
+      lightboxIsVideo: !!(lb && lb.isVideo),
+      lightboxIsImage: !!(lb && !lb.isVideo),
+      lightboxAlt: lb ? lb.alt : '',
+      lightboxCaption: lb ? lb.caption : '',
+      lightboxHasCaption: !!(lb && lb.caption),
+      lightboxLabel: lb ? (lb.caption || lb.alt || 'Enlarged view') : '',
+      lightboxFigureStyle: lb ? { width: this.lightboxWidth(lb) + 'px' } : {},
+      lightboxMediaStyle: lb ? { aspectRatio: String(lb.ratio) } : {},
+      lightboxCloseRef: this.lightboxCloseRef,
+      lightboxVideoRef: this.lightboxVideoRef,
+      lightboxImageRef: this.lightboxImageRef,
+      closeLightbox: () => this.closeLightbox()
     };
   }
 }
