@@ -70,6 +70,15 @@
   @keyframes tfblink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
   h1, h2, h3, p { text-wrap: pretty; }
 
+  /* Formatting Shortcuts list: every shortcut in one column, every
+     description starting at the same line in the next. */
+  .tf-shortcuts { display: grid; grid-template-columns: max-content 1fr; column-gap: 16px; row-gap: 14px; }
+  .tf-shortcuts > li { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: start; }
+  .tf-shortcuts > li > span:first-child { justify-self: start; margin-top: 1px; }
+  @supports not (grid-template-columns: subgrid) {
+    .tf-shortcuts > li { grid-template-columns: 7.75rem 1fr; column-gap: 16px; }
+  }
+
   /* Key names inside the Formatting Shortcuts list. */
   kbd.tf-key { font-family: 'Noto Sans Mono', 'SF Mono', ui-monospace, monospace; font-size: 12px; color: #1A1A1A; background: #EFE5D7; border: 1px solid #E6DCCF; border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 
@@ -168,23 +177,23 @@
         <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Formatting Shortcuts</span>
         <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Mark mistakes without missing a word.</h2>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">A few simple shortcuts take care of bolding, insertions, corrections, and highlights, so nothing your student says slips by while you’re clicking around.</p>
-        <ul style="margin:8px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">*word*</span><span>Type an asterisk and the closing one appears. Type your text, press <kbd class="tf-key">Tab</kbd> or <kbd class="tf-key">Enter</kbd>, and it turns bold.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">[word]</span><span>Type an opening bracket and the closing one appears. Press <kbd class="tf-key">Tab</kbd> or <kbd class="tf-key">Enter</kbd>, and the text inside turns Ringle orange for a quick insertion.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">-word</span><span>Type a hyphen before a word you can already tell is incorrect, and press <kbd class="tf-key">Tab</kbd>. It strikes out the word just like <kbd class="tf-key">⌘/Ctrl 2</kbd> would. Type your correction and press <kbd class="tf-key">Tab</kbd> again to keep typing in Ringle’s default grey.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">“ ”</span><span>Type an opening quotation mark and the closing one appears, so whatever you type goes inside the quote. Press <kbd class="tf-key">Tab</kbd> to jump past the closing mark, or <kbd class="tf-key">Enter</kbd> to start a new line after it.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌘/Ctrl 3 · 4</span><span><kbd class="tf-key">⌘/Ctrl 3</kbd> turns yellow highlighting on and off, and <kbd class="tf-key">⌘/Ctrl 4</kbd> switches between pink, green and no highlighting. These can be triggered from both the number row and the 10-key pad.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌄—^</span><span>As you type, the page scrolls with you, so the line you’re on never drops out of sight.</span></li>
-          <li style="display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">Tт −+</span><span>Ringle’s text size buttons have been adjusted to drastically expand size options and Tutor Flow remembers your setting between lessons.</span></li>
+        <ul class="tf-shortcuts" style="margin:8px 0 0;padding:0;list-style:none">
+          <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">*word*</span><span>Type an asterisk and the closing one appears. Type your text, press <kbd class="tf-key">Tab</kbd> or <kbd class="tf-key">Enter</kbd>, and it turns bold.</span></li>
+          <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">[word]</span><span>Type an opening bracket and the closing one appears. Press <kbd class="tf-key">Tab</kbd> or <kbd class="tf-key">Enter</kbd>, and the text inside turns Ringle orange for a quick insertion.</span></li>
+          <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">-word</span><span>Type a hyphen before a word you can already tell is incorrect, and press <kbd class="tf-key">Tab</kbd>. It strikes out the word just like <kbd class="tf-key">⌘/Ctrl 2</kbd> would. Type your correction and press <kbd class="tf-key">Tab</kbd> again to keep typing in Ringle’s default grey.</span></li>
+          <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">“ ”</span><span>Type an opening quotation mark and the closing one appears, so whatever you type goes inside the quote. Press <kbd class="tf-key">Tab</kbd> to jump past the closing mark, or <kbd class="tf-key">Enter</kbd> to start a new line after it.</span></li>
+          <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌘/Ctrl 3 · 4</span><span><kbd class="tf-key">⌘/Ctrl 3</kbd> turns yellow highlighting on and off, and <kbd class="tf-key">⌘/Ctrl 4</kbd> switches between pink, green and no highlighting. These can be triggered from both the number row and the 10-key pad.</span></li>
+          <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌄—^</span><span>As you type, the page scrolls with you, so the line you’re on never drops out of sight.</span></li>
+          <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">Tт −+</span><span>Ringle’s text size buttons have been adjusted to drastically expand size options and Tutor Flow remembers your setting between lessons.</span></li>
         </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:16px;order:1">
         <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;cursor:text;min-height:180px" onClick="{{ focusDemo }}">
-          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
-            <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258;white-space:nowrap">Lesson doc</span>
-            <span style="font-size:11px;line-height:1.5;color:#6B6258;text-align:right">{{ demoHint }}</span>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px">
+            <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Lesson doc</span>
+            <span style="font-size:12px;line-height:1.5;color:#6B6258">{{ demoHint }}</span>
           </div>
-          <div ref="{{ demoEditorRef }}" class="tf-editor" aria-label="Lesson doc demo" style="font-size:17px;line-height:1.7;color:#1A1A1A;min-height:96px"></div>
+          <div ref="{{ demoEditorRef }}" class="tf-editor" aria-label="Lesson doc demo" style="font-size:17px;line-height:1.7;color:#666666;min-height:176px"></div>
         </div>
         <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
           <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/formatting-shortcuts.jpg" style="width:100%;aspect-ratio:1000/700;object-fit:cover;display:block">
@@ -291,7 +300,7 @@
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:8px">
         <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/feedback-message-zoom.jpg" style="width:100%;aspect-ratio:900/560;object-fit:cover;display:block">
+          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/feedback-message-zoom.jpg" style="width:100%;aspect-ratio:614/540;object-fit:cover;display:block">
             <source src="assets/videos/feedback-message-zoom.mp4" type="video/mp4">
           </video>
         </div>
@@ -299,7 +308,7 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/key-expression-repair.jpg" style="width:100%;aspect-ratio:820/480;object-fit:cover;display:block">
+          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/key-expression-repair.jpg" style="width:100%;aspect-ratio:760/520;object-fit:cover;display:block">
             <source src="assets/videos/key-expression-repair.mp4" type="video/mp4">
           </video>
         </div>
@@ -341,18 +350,18 @@
   </section>
 
   <section style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
-    <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
-      <div style="display:flex;flex-direction:column;gap:20px;order:2">
+    <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
         <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Student Tracker</span>
         <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Never go into a lesson blind.</h2>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Look up anyone you’ve taught by name or lesson ID. Tag regulars and favorites so they’re easy to find.</p>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Keep notes on each student’s level and habits or anything else you want to remember about them. Your notes will be there the next time they book, whether that’s next week or next spring.</p>
       </div>
-      <div style="display:flex;flex-direction:column;gap:16px;order:1">
-        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;max-width:340px">
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:744px">
+        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
           <img src="assets/screenshots/tf-tracker-roster.png" alt="Tutor Flow’s Student Tracker panel listing three students with their lesson counts and favorite/regular flags." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
         </div>
-        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;max-width:340px">
+        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
           <img src="assets/screenshots/tf-tracker-profile.png" alt="A single student’s Tutor Flow profile with flags, private notes, and a read-only lesson history." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
         </div>
       </div>
@@ -441,7 +450,7 @@
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
-      <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
+      <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" onClick="{{ openCheckoutToo }}" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
       <p style="margin:0;font-size:13px;color:#6B6258">Prices in USD. Tax is calculated at checkout. No payments will be processed until your 10-day trial ends.</p>
       <p style="margin:0;font-size:13px;color:#6B6258">Already installed? <a href="{{ checkoutHref }}">Start your trial and get your license key.</a></p>
     </div>
@@ -513,19 +522,24 @@
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;defaultPlan&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;annual&quot;,&quot;monthly&quot;],&quot;default&quot;:&quot;annual&quot;,&quot;tsType&quot;:&quot;'annual'|'monthly'&quot;,&quot;section&quot;:&quot;Pricing&quot;},&quot;demoAutoplay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Formatting demo&quot;}}">
-const DEMO = 'You said “I will finish it -until->by Friday.” That’s *by Friday*, plus a [tense] fix and a ¶Yhighlight¶ to remember.';
+// The looping demo is a slice of a real lesson doc. The question the student
+// prepared sits at the top in bold black, as Ringle exports it; everything
+// under it is typed live in Ringle's default grey: the student's answer,
+// corrected as it comes, then the tutor's bold follow-up question and the
+// next answer.
+const DEMO_QUESTION = 'Q1. Tell me about your last weekend.';
+const DEMO = 'Last weekend I -go->went to [the] mountains with my friends. The view was ¶Yabsolutely breathtaking¶.\n*What was the best part of the trip?*\nMy friend said “We should come back next year.” I agree!';
 
 const HILITE_COLORS = { Y: '#FFF8B6', P: '#FFE4F8', G: '#E8FFB6' };
 const ORANGE = '#FF6C1A';
 const BRAND_PURPLE = '#442DC9';
 
-// The “Start your trial” link under the pricing button follows whichever plan
-// card is selected. Checkout pages aren't live yet — swap these two
-// placeholders for the real URLs and the link starts working, no other change
-// needed.
+// The selected plan card decides where checkout goes. The pricing button opens
+// the Chrome Web Store in one tab and this plan's Creem checkout in a second,
+// and the “Start your trial” link under it goes straight to checkout.
 const CHECKOUT_LINKS = {
-  annual: '[Annual checkout link]',
-  monthly: '[Monthly checkout link]'
+  annual: 'https://www.creem.io/payment/prod_f6bRaIlzmbIYTRPH77nHN',
+  monthly: 'https://www.creem.io/payment/prod_10rEBZy5jCi1Aj4NiJ8Gco'
 };
 
 const EXPORTER_TRANSCRIPT_POOL = [
@@ -569,6 +583,7 @@ function marksStyle(m) {
   const style = {};
   if (m.b) style.fontWeight = 700;
   if (m.color === 'orange') style.color = ORANGE;
+  if (m.color === 'ink') style.color = '#1A1A1A';
   if (m.strike) style.textDecoration = 'line-through';
   if (m.hl) { style.background = HILITE_COLORS[m.hl]; style.borderRadius = '3px'; }
   return style;
@@ -1374,7 +1389,10 @@ class DemoEditor {
 // real shortcut doing its thing:
 //   “…”           the opening mark auto-pairs; Tab jumps past the closing one
 //   -wrong->right hyphen, word, Tab, the correction, Tab
+//   *question*\n  asterisk (auto-pairs), the follow-up question, Enter: the
+//                 whole line turns bold and the next one starts plain
 //   *word*        asterisk (auto-pairs), word, Tab
+//   \n            Enter
 //   [word]        bracket (auto-pairs), word, closing bracket
 //   ¶Yword¶       ⌘/Ctrl 3 on, word, ⌘/Ctrl 3 off (¶P / ¶G use ⌘/Ctrl 4)
 function demoScript(src) {
@@ -1405,6 +1423,7 @@ function demoScript(src) {
       const end = src.indexOf(close, i + 1);
       if (end > i) {
         type(ch + src.slice(i + 1, end));
+        if (ch === '*' && src[end + 1] === '\n') { press('enter'); i = end + 2; continue; }
         if (ch === '*') press('tab');
         else type(']');
         i = afterTab(end + 1, ch === '*' ? 'bold' : 'bracket');
@@ -1425,6 +1444,11 @@ function demoScript(src) {
         continue;
       }
     }
+    if (ch === '\n') {
+      press('enter');
+      i += 1;
+      continue;
+    }
     if (ch === '”') {
       press('tab');
       i = src[i + 1] === ' ' ? i + 2 : i + 1;
@@ -1436,10 +1460,19 @@ function demoScript(src) {
   return steps;
 }
 
+// Every loop starts from the prepared question alone.
+function seedDemo(editor) {
+  const marks = [];
+  for (let i = 0; i < DEMO_QUESTION.length; i++) marks.push({ b: true, color: 'ink' });
+  marks.push(PLAIN);
+  editor.setContent({ text: DEMO_QUESTION + '\n', marks });
+}
+
 function runDemoStep(editor, step) {
   switch (step.op) {
     case 'type': editor.typeText(step.ch); break;
     case 'tab': editor.pressTab(); break;
+    case 'enter': editor.pressEnter(); break;
     case 'backspace': editor.pressDelete(true); break;
     case 'bold': editor.toggleBold(); break;
     case 'hl3': editor.cycleHighlight(['Y']); break;
@@ -1532,7 +1565,7 @@ class Component extends DCLogic {
 
   showWholeDemo() {
     const editor = this.formatEditor;
-    editor.reset();
+    seedDemo(editor);
     demoScript(DEMO).forEach((step) => runDemoStep(editor, step));
     editor.undoStack = [];
     editor.redoStack = [];
@@ -1544,16 +1577,16 @@ class Component extends DCLogic {
     const editor = this.formatEditor;
     this.demoSteps = demoScript(DEMO);
     this.demoStep = 0;
-    editor.reset();
+    seedDemo(editor);
     editor.setFakeCaret(true);
     const tick = () => {
       if (this.state.taken) return;
       if (!this.demoVisible) { this.demoTimer = setTimeout(tick, 400); return; }
       if (this.demoStep >= this.demoSteps.length) {
-        // Hold the finished sentence for a moment, then type it again.
+        // Hold the finished text for a moment, then type it again.
         this.demoTimer = setTimeout(() => {
           if (this.state.taken) return;
-          editor.reset();
+          seedDemo(editor);
           this.demoStep = 0;
           this.demoTimer = setTimeout(tick, 500);
         }, 2600);
@@ -1563,20 +1596,22 @@ class Component extends DCLogic {
       this.demoStep += 1;
       runDemoStep(editor, step);
       const next = this.demoSteps[this.demoStep];
-      const delay = step.op !== 'type' ? 450 : (next && next.op !== 'type' ? 400 : 55);
+      // Roughly a quick typist: fast enough to keep moving, slow enough to
+      // follow, with a beat before and after each shortcut.
+      const delay = step.op !== 'type' ? 650 : (next && next.op !== 'type' ? 500 : 95);
       this.demoTimer = setTimeout(tick, delay);
     };
     this.demoTimer = setTimeout(tick, 600);
   }
 
-  // The visitor clicked in: finish the sentence at once so the whole example
+  // The visitor clicked in: finish the text at once so the whole example
   // stays on screen, then hand the editor over.
   takeOverDemo() {
     if (this.state.taken) return;
     clearTimeout(this.demoTimer);
     const editor = this.formatEditor;
     if (this.demoSteps) {
-      if (this.demoStep === 0) editor.reset();
+      if (this.demoStep === 0) seedDemo(editor);
       while (this.demoStep < this.demoSteps.length) {
         runDemoStep(editor, this.demoSteps[this.demoStep]);
         this.demoStep += 1;
@@ -1797,7 +1832,7 @@ class Component extends DCLogic {
     const lb = this.state.lightbox;
 
     return {
-      demoHint: this.state.taken ? 'Your turn: try *bold*, [brackets], or -word then Tab. Or select text and press ⌘/Ctrl 3.' : 'Click to type it yourself',
+      demoHint: this.state.taken ? 'Your turn: type *a follow-up question* and press Enter, or try [brackets] or -word then Tab. Or select text and press ⌘/Ctrl 3 or ⌘/Ctrl 4.' : 'Click to type it yourself',
       demoEditorRef: this.formatEditor.ref,
       focusDemo: (e) => this.focusDemo(e),
       annualCardStyle: card(plan === 'annual'),
@@ -1807,6 +1842,12 @@ class Component extends DCLogic {
       annualPillText: plan === 'annual' ? 'Selected' : 'One month free',
       monthlyPillText: plan === 'monthly' ? 'Selected' : 'Flexible',
       checkoutHref: CHECKOUT_LINKS[plan],
+      // Runs before the link's own navigation, so the checkout tab opens here
+      // and the Web Store tab opens from the link itself.
+      openCheckoutToo: () => {
+        const url = CHECKOUT_LINKS[plan];
+        if (/^https:\/\//.test(url)) window.open(url, '_blank', 'noopener');
+      },
       pickAnnual: () => this.setState({ plan: 'annual' }),
       pickMonthly: () => this.setState({ plan: 'monthly' }),
       faqs: faqData.map(([q, a], idx) => ({
