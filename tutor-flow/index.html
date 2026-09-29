@@ -97,6 +97,7 @@
   .tf-editor { white-space: pre-wrap; overflow-wrap: anywhere; outline: none; cursor: text; position: relative; caret-color: #10595B; }
   .tf-editor[data-empty="true"]::before { content: attr(data-placeholder); position: absolute; left: 0; top: 0; color: #B8AFA2; pointer-events: none; }
   .tf-editor:focus-visible { box-shadow: 0 0 0 3px rgba(16, 89, 91, 0.18); border-radius: 4px; }
+  .tf-fake-selection { background: #B4D5FE; }
   .tf-caret { display: inline-block; width: 2px; height: 1.05em; background: #10595B; margin: 0 -1px; vertical-align: -0.15em; animation: tfblink 1s step-end infinite; }
 
   /* Click-to-enlarge screenshots and videos. */
@@ -171,8 +172,12 @@
           <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">You’re supposed to type what students say verbatim. But you’re also trying to track mistakes and opportunities for correction, which can get lost over the course of a 40-minute lesson. But every bold, highlight or correction means reaching for your mouse mid-sentence and clicking around on the screen, losing valuable seconds (and student output) in the process.</p>
         </div>
         <div class="tf-pain" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px">
-          <h3 style="margin:0;font-size:16px;font-weight:700">It’s hard to keep your calendar(s) straight, and a mix-up can cost you</h3>
-          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">It’s time to set your availability for the month, but your Google Calendar is in another tab, and you have to go through every week a day at a time to make sure everything lines up.<br><br>You don’t even want to think about the special headache that is trying to open a recurring “Private Slot” for your favorite students while they patiently wait for you to triple check that there are no conflicts — only to realize that you’re already 5 minutes past the end of your lesson.<br><br>Have to cancel a lesson because you accidentally double-booked yourself anyway? You’re now at risk of losing stars, GST status, and promotion points, not to mention potentially upsetting a student. If you’re extra unlucky, it might be a strike, reduced profile visibility and lost bookings — all because the calendar situation is a mess.</p>
+          <h3 style="margin:0;font-size:16px;font-weight:700">It’s hard to keep your calendar(s) straight</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">It’s time to set your availability for the month, but your Google Calendar is in another tab, and you have to go through every week a day at a time to make sure everything lines up.<br><br>You don’t even want to think about the special headache that is trying to open a recurring “Private Slot” for your favorite students while they patiently wait for you to triple check that there are no conflicts — only to realize that you’re already 5 minutes past the end of your lesson.</p>
+        </div>
+        <div class="tf-pain" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px">
+          <h3 style="margin:0;font-size:16px;font-weight:700">A scheduling mix-up can cost you</h3>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Have to cancel a lesson because you accidentally double-booked yourself anyway? You’re now at risk of losing stars, GST status, and promotion points, not to mention potentially upsetting a student. If you’re extra unlucky, it might be a strike, reduced profile visibility and lost bookings — all because the calendar situation is a mess.</p>
         </div>
         <div class="tf-pain" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:24px">
           <h3 style="margin:0;font-size:16px;font-weight:700">You’re not always sure whom you’re about to teach</h3>
@@ -207,7 +212,7 @@
           <div ref="{{ demoEditorRef }}" class="tf-editor" aria-label="Lesson doc demo" style="font-size:17px;line-height:1.7;color:#666666;min-height:176px"></div>
         </div>
         <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/formatting-shortcuts.jpg" style="width:100%;aspect-ratio:1000/700;object-fit:cover;display:block">
+          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/formatting-shortcuts.jpg" style="width:100%;aspect-ratio:860/620;object-fit:cover;display:block">
             <source src="assets/videos/formatting-shortcuts.mp4" type="video/mp4">
           </video>
         </div>
@@ -216,7 +221,7 @@
       <div style="grid-column:1/-1;order:3;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start">
         <div style="display:flex;flex-direction:column;gap:8px">
           <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-            <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/zoom-override-notes.jpg" style="width:100%;aspect-ratio:1000/700;object-fit:cover;display:block">
+            <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/zoom-override-notes.jpg" style="width:100%;aspect-ratio:860/620;object-fit:cover;display:block">
               <source src="assets/videos/zoom-override-notes.mp4" type="video/mp4">
             </video>
           </div>
@@ -224,7 +229,7 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
           <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-            <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/active-line-center.jpg" style="width:100%;aspect-ratio:900/620;object-fit:cover;display:block">
+            <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/active-line-center.jpg" style="width:100%;aspect-ratio:860/560;object-fit:cover;display:block">
               <source src="assets/videos/active-line-center.mp4" type="video/mp4">
             </video>
           </div>
@@ -319,7 +324,7 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/key-expression-repair.jpg" style="width:100%;aspect-ratio:760/520;object-fit:cover;display:block">
+          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/key-expression-repair.jpg" style="width:100%;aspect-ratio:760/640;object-fit:cover;display:block">
             <source src="assets/videos/key-expression-repair.mp4" type="video/mp4">
           </video>
         </div>
@@ -1091,6 +1096,18 @@ class DemoEditor {
     this.commit();
   }
 
+  // Arrow keys, for the autoplay: move the caret one character, or with
+  // `extend` grow the selection from its anchor the way Shift+Arrow does.
+  // An arrow with text selected collapses the selection to that side.
+  moveCaret(delta, extend) {
+    const clamp = (n) => Math.max(0, Math.min(n, this.text.length));
+    if (extend) this.selF = clamp(this.selF + delta);
+    else if (this.selA !== this.selF) this.selA = this.selF = delta < 0 ? this.selStart : this.selEnd;
+    else this.selA = this.selF = clamp(this.selF + delta);
+    this.cursor = null;
+    this.render();
+  }
+
   // ----- reading the result -----
 
   runs() {
@@ -1136,6 +1153,9 @@ class DemoEditor {
     if (!el) return;
     const probe = document.createElement('div');
     const caretAt = this.fakeCaret ? this.selF : -1;
+    // While the autoplay has text selected, draw the selection too.
+    const selS = this.fakeCaret && this.selA !== this.selF ? this.selStart : -1;
+    const selE = selS < 0 ? -1 : this.selEnd;
     const addCaret = () => {
       const c = document.createElement('span');
       c.className = 'tf-caret';
@@ -1148,17 +1168,24 @@ class DemoEditor {
     while (i < this.text.length) {
       if (caretAt === i) addCaret();
       let j = i + 1;
-      while (j < this.text.length && j !== caretAt && marksEqual(this.marks[j], this.marks[i])) j += 1;
+      while (j < this.text.length && j !== caretAt && j !== selS && j !== selE && marksEqual(this.marks[j], this.marks[i])) j += 1;
       const str = this.text.slice(i, j);
       const m = this.marks[i];
+      let node;
       if (isPlainMarks(m)) {
-        probe.appendChild(document.createTextNode(str));
+        node = document.createTextNode(str);
       } else {
-        const node = document.createElement(m.b ? 'strong' : 'span');
+        node = document.createElement(m.b ? 'strong' : 'span');
         Object.assign(node.style, marksStyle(m));
         node.textContent = str;
-        probe.appendChild(node);
       }
+      if (i >= selS && i < selE) {
+        const selected = document.createElement('span');
+        selected.className = 'tf-fake-selection';
+        selected.appendChild(node);
+        node = selected;
+      }
+      probe.appendChild(node);
       i = j;
     }
     if (caretAt === this.text.length) addCaret();
@@ -1405,7 +1432,9 @@ class DemoEditor {
 //   *word*        asterisk (auto-pairs), word, Tab
 //   \n            Enter
 //   [word]        bracket (auto-pairs), word, closing bracket
-//   ¶Yword¶       ⌘/Ctrl 3 on, word, ⌘/Ctrl 3 off (¶P / ¶G use ⌘/Ctrl 4)
+//   ¶Yphrase¶     typed like any other words; once its sentence is finished,
+//                 the phrase is selected with Shift+Arrow and highlighted with
+//                 ⌘/Ctrl 3 (¶P / ¶G use ⌘/Ctrl 4), as it happens mid-lesson
 function demoScript(src) {
   const steps = [];
   const type = (text) => { for (const ch of text) steps.push({ op: 'type', ch }); };
@@ -1445,13 +1474,19 @@ function demoScript(src) {
       const end = src.indexOf('¶', i + 2);
       if (end > i) {
         const tag = src[i + 1];
-        const op = tag === 'Y' ? 'hl3' : 'hl4';
-        const on = tag === 'G' ? 2 : 1;
-        const off = tag === 'P' ? 2 : 1;
-        press(op, on);
-        type(src.slice(i + 2, end));
-        press(op, off);
-        i = end + 1;
+        const phrase = src.slice(i + 2, end);
+        let next = end + 1;
+        let tail = '';
+        while (next < src.length && /[.,!?;:]/.test(src[next])) { tail += src[next]; next += 1; }
+        type(phrase + tail);
+        press('pause');
+        press('left', tail.length);
+        press('selectLeft', phrase.length);
+        press('pause');
+        press(tag === 'Y' ? 'hl3' : 'hl4', tag === 'G' ? 2 : 1);
+        press('right');
+        press('right', tail.length);
+        i = next;
         continue;
       }
     }
@@ -1488,7 +1523,10 @@ function runDemoStep(editor, step) {
     case 'bold': editor.toggleBold(); break;
     case 'hl3': editor.cycleHighlight(['Y']); break;
     case 'hl4': editor.cycleHighlight(['P', 'G']); break;
-    default: break;
+    case 'left': editor.moveCaret(-1, false); break;
+    case 'right': editor.moveCaret(1, false); break;
+    case 'selectLeft': editor.moveCaret(-1, true); break;
+    default: break; // 'pause'
   }
 }
 
@@ -1609,7 +1647,9 @@ class Component extends DCLogic {
       const next = this.demoSteps[this.demoStep];
       // Roughly a quick typist: fast enough to keep moving, slow enough to
       // follow, with a beat before and after each shortcut.
-      const delay = step.op !== 'type' ? 650 : (next && next.op !== 'type' ? 500 : 95);
+      // Arrow keys move quickly, as they would under a held key.
+      const quick = { left: 60, right: 60, selectLeft: 40 };
+      const delay = quick[step.op] || (step.op !== 'type' ? 650 : (next && next.op !== 'type' && !quick[next.op] ? 500 : 95));
       this.demoTimer = setTimeout(tick, delay);
     };
     this.demoTimer = setTimeout(tick, 600);
