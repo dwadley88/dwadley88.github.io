@@ -94,6 +94,8 @@ function collectEditableLeaves(scopeEl, relRoot) {
     for (const child of el.children) {
       const tag = child.tagName;
       if (SKIP_TAGS.has(tag) || NEVER_DESCEND.has(tag)) continue;
+      // Lightbox markup is a runtime template ({{ placeholders }}), not copy.
+      if (child.classList && child.classList.contains('tf-lightbox')) continue;
       // Text of its own and nothing block-level inside it: this is the block
       // a person thinks of as "a bit of copy". A container that also holds
       // structure is descended into instead, so a wrapper never becomes one
@@ -249,7 +251,7 @@ const tokenBtn = document.getElementById('tokenBtn');
 const statusEl = document.getElementById('status');
 const iframe = document.getElementById('preview');
 
-const BUILD = 'build 5';
+const BUILD = 'build 6';
 const MARKER = 'data-nf-edit';
 
 // regions[] is the source of truth: each entry is a byte range in the
@@ -405,7 +407,11 @@ function renderPreview() {
   // what's in the file. Preview only — the saved file keeps its scripts.
   html = html.replace(/<script\b[\s\S]*?<\/script>/gi, '');
   const base = SITE_BASE + dirName(state.path);
-  html = html.replace(/<head(\s[^>]*)?>/i, (m) => m + '<base href="' + base + '">');
+  // With scripts stripped, the lightbox template (a full-viewport fixed
+  // overlay that the runtime normally only renders when open) is always
+  // visible and swallows every click. Hide it in the preview.
+  const previewCss = '<style>.tf-lightbox{display:none !important}</style>';
+  html = html.replace(/<head(\s[^>]*)?>/i, (m) => m + '<base href="' + base + '">' + previewCss);
 
   iframe.contentDocument.open();
   iframe.contentDocument.write(html);
