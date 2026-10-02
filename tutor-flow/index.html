@@ -247,24 +247,24 @@
       <h2 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.02em;max-width:640px">Four headaches <i>every</i> Ringle tutor has encountered</h2>
       <ol class="tf-pain-list" style="margin:0;padding:0;list-style:none">
         <li class="tf-pain-row">
-          <a href="#feedback-exporter" class="tf-pain-link">
-            <span class="tf-pain-num">01</span>
-            <span class="tf-pain-text">A 7-minute break for a 12-minute feedback report.</span>
-            <span class="tf-pain-fix">Feedback Exporter <span aria-hidden="true">↓</span></span>
-          </a>
-        </li>
-        <li class="tf-pain-row">
           <a href="#features" class="tf-pain-link">
-            <span class="tf-pain-num">02</span>
+            <span class="tf-pain-num">01</span>
             <span class="tf-pain-text">You go to highlight or correct one phrase mid-lesson and totally miss what your student is saying.</span>
             <span class="tf-pain-fix">Formatting Shortcuts <span aria-hidden="true">↓</span></span>
           </a>
         </li>
         <li class="tf-pain-row">
           <a href="#calendar-defender" class="tf-pain-link">
-            <span class="tf-pain-num">03</span>
+            <span class="tf-pain-num">02</span>
             <span class="tf-pain-text">Cancelling a lesson you double-booked just earned you a strike.</span>
             <span class="tf-pain-fix">Calendar Defender <span aria-hidden="true">↓</span></span>
+          </a>
+        </li>
+        <li class="tf-pain-row">
+          <a href="#feedback-exporter" class="tf-pain-link">
+            <span class="tf-pain-num">03</span>
+            <span class="tf-pain-text">A 7-minute break for a 12-minute feedback report.</span>
+            <span class="tf-pain-fix">Feedback Exporter <span aria-hidden="true">↓</span></span>
           </a>
         </li>
         <li class="tf-pain-row">
@@ -339,7 +339,40 @@
     </div>
   </section>
 
-  <section id="feedback-exporter" class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
+  <section id="calendar-defender" class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:80px">
+    <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
+      <span class="tf-eyebrow">Calendar Defender</span>
+      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Get an actual overview of your schedule before you open a timeslot.</h2>
+      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Sign in with Google and choose which calendars to show. Your events appear right on Ringle’s schedule page, slots they cover can’t be opened by an accidental click, and recurring slots are checked for conflicts before you confirm. Access is read-only, so Tutor Flow can’t change anything in your calendar.</p>
+    </div>
+    <div class="tf-gap-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Your Google Calendar events, right on the schedule page.</h3>
+        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Regular events and holidays each get their own color, so they stand out.</span></li>
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>The Manual Block feature allows tutors to block off time by hand for anything that hasn’t yet been added to your calendar.</span></li>
+        </ul>
+      </div>
+      <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+        <img src="assets/screenshots/tf-calendar-overlays.png" alt="Ringle’s schedule page showing the tutor’s Google Calendar events: a pinned holiday, personal events in blue, and the manual blocks panel open in the sidebar." style="width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;display:block" loading="lazy" />
+      </div>
+    </div>
+    <div class="tf-gap-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
+      <div style="display:flex;flex-direction:column;gap:16px;order:2">
+        <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Tutor Flow’s Calendar Defender allows tutors to spot scheduling conflicts immediately.</h3>
+        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Want to offer a favorite student a recurring class every Monday, 4:00–4:40 p.m., for the next four weeks? Tutor Flow checks every one of those Mondays against your calendar in an instant.</span></li>
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>If any of them clash, you’ll see a list of conflicts to work around before you confirm the slot. No more clicking through your calendar week by week.</span></li>
+        </ul>
+      </div>
+      <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;order:1">
+        <img src="assets/screenshots/tf-calendar-grid.png" alt="Ringle’s recurring-slot dialog open over the booking grid, flagging four of five proposed dates as conflicting with the tutor’s calendar." style="width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;display:block" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section id="feedback-exporter" style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
+    <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
       <span class="tf-eyebrow">Feedback Exporter</span>
       <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Bold a term in your paraphrase. It arrives as a Key Expression.</h2>
@@ -464,41 +497,10 @@
         <p class="tf-caption"><span class="tf-caption-label">Key Expression Repair</span><span class="tf-caption-text">Deleting feedback cards from Ringle’s Feedback Report jumbles up the Key Expressions for every card that follows. Tutor Flow puts them back where they belong.</span></p>
       </div>
     </div>
-  </section>
-
-  <section id="calendar-defender" class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:80px">
-    <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
-      <span class="tf-eyebrow">Calendar Defender</span>
-      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Get an actual overview of your schedule before you open a timeslot.</h2>
-      <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Sign in with Google and choose which calendars to show. Your events appear right on Ringle’s schedule page, slots they cover can’t be opened by an accidental click, and recurring slots are checked for conflicts before you confirm. Access is read-only, so Tutor Flow can’t change anything in your calendar.</p>
-    </div>
-    <div class="tf-gap-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Your Google Calendar events, right on the schedule page.</h3>
-        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
-          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Regular events and holidays each get their own color, so they stand out.</span></li>
-          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>The Manual Block feature allows tutors to block off time by hand for anything that hasn’t yet been added to your calendar.</span></li>
-        </ul>
-      </div>
-      <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-        <img src="assets/screenshots/tf-calendar-overlays.png" alt="Ringle’s schedule page showing the tutor’s Google Calendar events: a pinned holiday, personal events in blue, and the manual blocks panel open in the sidebar." style="width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;display:block" loading="lazy" />
-      </div>
-    </div>
-    <div class="tf-gap-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
-      <div style="display:flex;flex-direction:column;gap:16px;order:2">
-        <h3 style="margin:0;font-size:23px;font-weight:700;letter-spacing:-0.015em;line-height:1.25">Tutor Flow’s Calendar Defender allows tutors to spot scheduling conflicts immediately.</h3>
-        <ul style="margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
-          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Want to offer a favorite student a recurring class every Monday, 4:00–4:40 p.m., for the next four weeks? Tutor Flow checks every one of those Mondays against your calendar in an instant.</span></li>
-          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>If any of them clash, you’ll see a list of conflicts to work around before you confirm the slot. No more clicking through your calendar week by week.</span></li>
-        </ul>
-      </div>
-      <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff;order:1">
-        <img src="assets/screenshots/tf-calendar-grid.png" alt="Ringle’s recurring-slot dialog open over the booking grid, flagging four of five proposed dates as conflicting with the tutor’s calendar." style="width:100%;aspect-ratio:8/5;object-fit:cover;object-position:top;display:block" loading="lazy" />
-      </div>
     </div>
   </section>
 
-  <section id="student-tracker" style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
+  <section id="student-tracker">
     <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
       <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
         <span class="tf-eyebrow">Student Tracker</span>
