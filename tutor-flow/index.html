@@ -157,6 +157,7 @@
   .rg-row { display: flex; }
   .rg-label { flex: 0 0 22%; min-width: 92px; padding-top: 3px; font-size: 12px; font-weight: 700; color: #6B6258; line-height: 1.3; }
   .rg-value { flex: 1; min-width: 0; font-size: 14px; line-height: 1.6; color: #1A1A1A; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .rg-value-chips { white-space: normal; }
   .rg-chips { display: flex; flex-wrap: wrap; gap: 4px; }
   .rg-chip { border: 1px solid #10595B; border-radius: 8px; background: #E3F0EE; padding: 7px 10px; font-size: 12px; font-weight: 700; color: #10595B; white-space: nowrap; }
   .rg-explain { border-radius: 8px; background: #FBF7F0; padding: 12px 14px; font-size: 14px; color: #8A8176; min-height: 44px; }
@@ -441,7 +442,7 @@
                   <div class="rg-row"><div class="rg-label">After</div><div class="rg-value"><div ref="{{ card.afterEditorRef }}" class="tf-editor" aria-label="After"></div></div></div>
                   <div class="rg-row">
                     <div class="rg-label">Key<br>Expressions</div>
-                    <div class="rg-value">
+                    <div class="rg-value rg-value-chips">
                       <div class="rg-chips">
                         <sc-for list="{{ card.keyExpressions }}" as="ke" hint-placeholder-count="1">
                           <span class="rg-chip">{{ ke }}</span>
