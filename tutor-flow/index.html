@@ -109,6 +109,10 @@
   .tf-caption { margin: 0; font-size: 15px; line-height: 1.55; color: #4A433B; }
   .tf-caption-label { display: block; margin-bottom: 2px; font-size: 13px; font-weight: 600; color: #10595B; }
 
+  /* Student Tracker screenshots: one column (capped width) until three fit legibly. */
+  .tf-tracker-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; max-width: 420px; }
+  @media (min-width: 1000px) { .tf-tracker-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: none; } }
+
   /* Feature eyebrows. */
   .tf-eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8A6212; }
 
@@ -398,12 +402,24 @@
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">The lesson page says “bakminjun,” and your old feedback reports are addressed to “Mike.” He remembers you, which is why he booked again. Tutor Flow makes sure you remember him too.</p>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Look up anyone you’ve taught by name or lesson ID, tag regulars and favorites, and keep notes on their level, habits, and goals. They’ll be waiting the next time he books, whether that’s next week or next spring.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:744px">
-        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <img src="assets/screenshots/tf-tracker-roster.png" alt="Tutor Flow’s Student Tracker panel listing three students with their lesson counts and favorite/regular flags." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+      <div class="tf-tracker-row">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+            <img src="assets/screenshots/tf-tracker-roster.png" alt="Tutor Flow’s Student Tracker roster with Mike at the top, unflagged, above three regular and favorite students." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+          </div>
+          <p class="tf-caption"><span class="tf-caption-label">Your roster</span><span class="tf-caption-text">bakminjun is back, but he’s not a regular, so he isn’t front of mind.</span></p>
         </div>
-        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <img src="assets/screenshots/tf-tracker-profile.png" alt="A single student’s Tutor Flow profile with flags, private notes, and a read-only lesson history." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+            <img src="assets/screenshots/tf-tracker-profile.png" alt="Mike’s Tutor Flow profile showing his original Ringle name, bakminjun, and his preferred name, Mike." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+          </div>
+          <p class="tf-caption"><span class="tf-caption-label">His profile</span><span class="tf-caption-text">Ringle calls him bakminjun. You know him as Mike.</span></p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+            <img src="assets/screenshots/tf-tracker-notes.png" alt="Mike’s private notes and lesson history, with his last lesson in April 2026." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+          </div>
+          <p class="tf-caption"><span class="tf-caption-label">Your notes</span><span class="tf-caption-text">Everything you’d have forgotten in six months, right where you left it.</span></p>
         </div>
       </div>
     </div>
