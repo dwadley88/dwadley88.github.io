@@ -37,18 +37,93 @@
   "description": "A Chrome extension that takes the busywork out of Ringle feedback reports, prevents scheduling errors, and helps tutors keep track of their students.",
   "url": "https://www.nativeflow.me/tutor-flow/",
   "image": "https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png",
+  "installUrl": "https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk",
+  "sameAs": "https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Native Flow",
+    "url": "https://www.nativeflow.me/"
+  },
   "offers": [
     {
       "@type": "Offer",
       "name": "Annual",
       "price": "69.90",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "69.90",
+        "priceCurrency": "USD",
+        "billingDuration": "P1Y"
+      }
     },
     {
       "@type": "Offer",
       "name": "Monthly",
       "price": "6.99",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "6.99",
+        "priceCurrency": "USD",
+        "billingDuration": "P1M"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Tutor Flow change anything on Ringle’s side?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anything Tutor Flow adds to the screen — e.g. your calendar(s) on the schedule page or any notes/comments you save inside student tracker profiles — is stored locally in your browser. Turning the extension off will revert Ringle pages to their default design."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Tutor Flow use AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Tutor Flow doesn’t write or rewrite any of your feedback, and every word in the report is still yours. What it does do is cut out steps you’d otherwise do twice, like choosing feedback blocks and Key Expressions again after class. Now you can do that in real time, while you review them with your student."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Tutor Flow made by Ringle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Tutor Flow is an independent product by Native Flow. It is not affiliated with or endorsed by Ringle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on other tutoring platforms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tutor Flow was designed specifically for use on the Ringle platform."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which browser do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tutor Flow runs on the desktop version of Chrome, which is Ringle’s preferred browser for tutors. It should also work on other Chromium-based browsers, but Native Flow cannot guarantee functionality with any but Chrome. Tutor Flow is not compatible with mobile or tablet browsers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I cancel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can cancel your subscription at any time by 1) clicking the link in your confirmation email, 2) visiting Creem.io’s customer portal, or 3) accessing your subscription settings from inside the Tutor Flow extension via the ‘Manage subscription’ button under the Settings tab. New subscribers who cancel during the trial period will not be charged."
+      }
     }
   ]
 }
