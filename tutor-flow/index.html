@@ -171,6 +171,14 @@
   .rg-empty b { font-size: 20px; color: #10595B; font-weight: 700; }
   .rg-empty span { font-size: 13px; line-height: 1.6; max-width: 240px; }
 
+  /* FAQ: plain <details> elements, so every answer is in the page source.
+     The first one binds open to true because React drops a bare boolean
+     attribute; name="faq" keeps one answer open at a time. */
+  .tf-faq > summary { list-style: none; }
+  .tf-faq > summary::-webkit-details-marker { display: none; }
+  .tf-faq-sign::before { content: "+"; }
+  .tf-faq[open] .tf-faq-sign::before { content: "\2013"; }
+
   /* Click-to-enlarge screenshots and videos. */
   .tf-zoom { cursor: zoom-in; transition: box-shadow .15s ease; }
   .tf-zoom:hover { box-shadow: 0 4px 18px rgba(10, 61, 63, 0.12); }
@@ -457,7 +465,7 @@
           </sc-if>
           <sc-if value="{{ showToast }}" hint-placeholder-val="{{ false }}">
             <div class="tf-toast" role="status">
-              <span class="tf-toast-text">Forgot to bold it before you exported? Tutor Flow let's you select text in the After field and press <kbd>⌘/Ctrl B</kbd> to add a Key Expression here too.</span>
+              <span class="tf-toast-text">Forgot to bold it before you exported? Tutor Flow lets you select text in the After field and press <kbd>⌘/Ctrl B</kbd> to add a Key Expression here too.</span>
               <button class="tf-toast-x" onClick="{{ dismissToast }}" aria-label="Dismiss">✕</button>
             </div>
           </sc-if>
@@ -627,17 +635,48 @@
     <div class="tf-section" style="max-width:760px;margin:0 auto;padding:104px 24px;display:flex;flex-direction:column;gap:36px">
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Questions</h2>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="6">
-          <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
-            <div style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer" onClick="{{ item.toggle }}">
-              <h3 style="margin:0;font-size:16px;font-weight:600">{{ item.q }}</h3>
-              <span style="font-size:18px;color:#6B6258;line-height:1">{{ item.sign }}</span>
-            </div>
-            <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
-              <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">{{ item.a }}</p>
-            </sc-if>
-          </div>
-        </sc-for>
+        <details class="tf-faq" name="faq" open="{{ true }}" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Does Tutor Flow change anything on Ringle’s side?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">Anything Tutor Flow adds to the screen — e.g. your calendar(s) on the schedule page or any notes/comments you save inside student tracker profiles — is stored locally in your browser. Turning the extension off will revert Ringle pages to their default design.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Does Tutor Flow use AI?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">No. Tutor Flow doesn’t write or rewrite any of your feedback, and every word in the report is still yours. What it <em>does</em> do is cut out steps you’d otherwise do twice, like choosing feedback blocks and Key Expressions again after class. Now you can do that in real time, while you review them with your student.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Is Tutor Flow made by Ringle?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">No. Tutor Flow is an independent product by Native Flow. It is not affiliated with or endorsed by Ringle.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Does it work on other tutoring platforms?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">Tutor Flow was designed specifically for use on the Ringle platform.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Which browser do I need?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">Tutor Flow runs on the desktop version of Chrome, which is Ringle’s preferred browser for tutors. It should also work on other Chromium-based browsers, but Native Flow cannot guarantee functionality with any but Chrome. Tutor Flow is not compatible with mobile or tablet browsers.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">How do I cancel?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">You can cancel your subscription at any time by 1) clicking the link in your confirmation email, 2) visiting Creem.io’s <a href="https://www.creem.io/portal/orders" target="_blank" rel="noopener">customer portal</a>, or 3) accessing your subscription settings from inside the Tutor Flow extension via the ‘Manage subscription’ button under the Settings tab. New subscribers who cancel during the trial period will not be charged.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -1744,7 +1783,7 @@ function attachClipCaptions(video, host) {
 
 class Component extends DCLogic {
   state = {
-    taken: false, plan: null, openFaq: 0,
+    taken: false, plan: null,
     blocks: [
       { id: 1, before: '“I think I want to buying a new laptop for my work.”', afterSrc: 'You could say you’re *thinking about getting* a new laptop for work.', exported: false },
       { id: 2, before: '“She don’t like doing homework so much.”', afterSrc: 'A more natural way to put it: she’s *not really a fan of* homework.', exported: false }
@@ -2115,15 +2154,6 @@ class Component extends DCLogic {
       borderRadius: '999px',
       padding: '4px 10px'
     });
-    const h = React.createElement;
-    const faqData = [
-      ['Does Tutor Flow change anything on Ringle’s side?', 'Anything Tutor Flow adds to the screen — e.g. your calendar(s) on the schedule page or any notes/comments you save inside student tracker profiles — is stored locally in your browser. Turning the extension off will revert Ringle pages to their default design.'],
-      ['Does Tutor Flow use AI?', ['No. Tutor Flow doesn’t write or rewrite any of your feedback, and every word in the report is still yours. What it ', h('em', { key: 'does' }, 'does'), ' do is cut out steps you’d otherwise do twice, like choosing feedback blocks and Key Expressions again after class. Now you can do that in real time, while you review them with your student.']],
-      ['Is Tutor Flow made by Ringle?', 'No. Tutor Flow is an independent product by Native Flow. It is not affiliated with or endorsed by Ringle.'],
-      ['Does it work on other tutoring platforms?', 'Tutor Flow was designed specifically for use on the Ringle platform.'],
-      ['Which browser do I need?', 'Tutor Flow runs on the desktop version of Chrome, which is Ringle’s preferred browser for tutors. It should also work on other Chromium-based browsers, but Native Flow cannot guarantee functionality with any but Chrome. Tutor Flow is not compatible with mobile or tablet browsers.'],
-      ['How do I cancel?', ['You can cancel your subscription at any time by 1) clicking the link in your confirmation email, 2) visiting Creem.io’s ', h('a', { key: 'portal', href: 'https://www.creem.io/portal/orders', target: '_blank', rel: 'noopener' }, 'customer portal'), ', or 3) accessing your subscription settings from inside the Tutor Flow extension via the ‘Manage subscription’ button under the Settings tab. New subscribers who cancel during the trial period will not be charged.']]
-    ];
 
     const blocksView = this.state.blocks.map((b) => {
       const editor = this.editorFor(b);
@@ -2172,12 +2202,6 @@ class Component extends DCLogic {
       },
       pickAnnual: () => this.setState({ plan: 'annual' }),
       pickMonthly: () => this.setState({ plan: 'monthly' }),
-      faqs: faqData.map(([q, a], idx) => ({
-        q, a,
-        open: this.state.openFaq === idx,
-        sign: this.state.openFaq === idx ? '–' : '+',
-        toggle: () => this.setState((s) => ({ openFaq: s.openFaq === idx ? -1 : idx }))
-      })),
       blocksView,
       exportedView,
       showToast: this.state.toast,
