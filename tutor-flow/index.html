@@ -119,9 +119,6 @@
   /* Feedback Exporter demo, drawn in Ringle's own palette: the docs paraphrase
      block (black bar, blue "after" line) and the Step 3 feedback card. */
   .rg { font-family: 'Inter', 'Noto Sans', -apple-system, 'Segoe UI', sans-serif; color: #3E426A; }
-  .rg-bar { padding: 0 20px; min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 12px; background: #FBFBFF; border-bottom: 1px solid #E4E7F4; }
-  .rg-bar-title { white-space: nowrap; font-size: 14px; font-weight: 700; color: #3E426A; }
-  .rg-bar-hint { font-size: 12px; color: #80839E; text-align: right; }
   .rg-toolbar { display: flex; align-items: center; gap: 14px; padding: 8px 20px; height: 48px; border-bottom: 1px solid #E4E7F4; background: #ffffff; }
   .rg-b { width: 30px; height: 30px; border: 0; border-radius: 6px; background: transparent; font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 20px; color: #6B6E8C; cursor: pointer; line-height: 1; }
   .rg-b:hover { background: #EFF1F9; color: #3E426A; }
@@ -164,6 +161,12 @@
   .rg-chips { display: flex; flex-wrap: wrap; gap: 4px; }
   .rg-chip { border: 1px solid #503CC8; border-radius: 8px; background: #EEEBFA; padding: 7px 10px; font-size: 12px; font-weight: 700; color: #503CC8; white-space: nowrap; }
   .rg-explain { border-radius: 8px; background: #FBFBFF; padding: 12px 14px; font-size: 14px; color: #A4A7BE; min-height: 44px; }
+  .tf-toast { position: sticky; bottom: 16px; z-index: 2; margin-top: 16px; display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: 12px; background: #0A3D3F; color: #F4FBFA; box-shadow: 0 8px 24px rgba(10, 61, 63, .28); animation: tffade .2s ease-out; }
+  .tf-toast-text { flex: 1; font-size: 13px; line-height: 1.55; }
+  .tf-toast kbd { font-family: 'Noto Sans Mono', ui-monospace, monospace; font-size: 11px; color: #0A3D3F; background: #F4FBFA; border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
+  .tf-toast-x { flex-shrink: 0; border: 0; background: transparent; color: rgba(244, 251, 250, .7); font-size: 14px; line-height: 1; cursor: pointer; padding: 2px; }
+  .tf-toast-x:hover { color: #ffffff; }
+  @media (prefers-reduced-motion: reduce) { .tf-toast { animation: none; } }
   .rg-empty { margin-top: 16px; border: 1px dashed #C9CCDE; border-radius: 8px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; color: #80839E; }
   .rg-empty b { font-size: 20px; color: #7A5AF0; font-weight: 700; }
   .rg-empty span { font-size: 13px; line-height: 1.6; max-width: 240px; }
@@ -329,16 +332,16 @@
       <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Tutor Flow brings Ringle’s purple export arrow into the classroom, so you can build the Feedback Report while you go over the transcript with your student. Bold the phrases you want them to remember and click the arrow. When you open the report, each paraphrase is already there with its Key Expressions marked. Write your message and explanations, then hit ‘Submit’. Try it below.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
-      <div class="rg" style="background:#ffffff;border:1px solid #E4E7F4;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
-        <div class="rg-bar">
-          <span class="rg-bar-title">Docs</span>
-          <span class="rg-bar-hint">Try it: click the arrow, or add a paraphrase with ＋</span>
+      <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:14px 16px;border-bottom:1px solid #E6DCCF;display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Lesson doc</span>
+          <span style="font-size:11px;color:#9A9084">Try it: click the arrow, or add a paraphrase with ＋</span>
         </div>
-        <div class="rg-toolbar">
+        <div class="rg rg-toolbar">
           <button class="rg-b" onMouseDown="{{ keepEditorSelection }}" onClick="{{ applyBoldToFocused }}" title="Bold the selected text" aria-label="Bold the selected text">B</button>
           <span class="rg-toolbar-note">Bold a phrase to make it a Key Expression</span>
         </div>
-        <div class="rg-doc">
+        <div class="rg rg-doc">
           <sc-for list="{{ blocksView }}" as="blk" hint-placeholder-count="2">
             <div class="rg-block">
               <p class="rg-before" style="margin-bottom:0">{{ blk.before }}</p>
@@ -355,12 +358,12 @@
           </button>
         </div>
       </div>
-      <div class="rg" style="background:#ffffff;border:1px solid #E4E7F4;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
-        <div class="rg-bar">
-          <span class="rg-bar-title">Feedback Report</span>
-          <span class="rg-bar-hint">Bolded phrases become Key Expressions</span>
+      <div style="background:#F6EFE6;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;display:flex;flex-direction:column">
+        <div style="padding:14px 16px;border-bottom:1px solid #E6DCCF;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#ffffff">
+          <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Feedback Report</span>
+          <span style="font-size:11px;color:#9A9084">Bolded phrases become Key Expressions</span>
         </div>
-        <div class="rg-report">
+        <div class="rg rg-report">
           <div class="rg-step">
             <span class="rg-step-tick"></span>
             <span class="rg-step-label">STEP 3/3</span>
@@ -392,7 +395,7 @@
                 </div>
                 <div class="rg-card-body">
                   <div class="rg-row"><div class="rg-label">Before</div><div class="rg-value">{{ card.before }}</div></div>
-                  <div class="rg-row"><div class="rg-label">After</div><div class="rg-value">{{ card.afterRendered }}</div></div>
+                  <div class="rg-row"><div class="rg-label">After</div><div class="rg-value"><div ref="{{ card.afterEditorRef }}" class="tf-editor" aria-label="After"></div></div></div>
                   <div class="rg-row">
                     <div class="rg-label">Key<br>Expressions</div>
                     <div class="rg-value">
@@ -407,6 +410,12 @@
                 </div>
               </div>
             </sc-for>
+          </sc-if>
+          <sc-if value="{{ showToast }}" hint-placeholder-val="{{ false }}">
+            <div class="tf-toast" role="status">
+              <span class="tf-toast-text">Forgot to bold it before you exported? Select text in the After field and press <kbd>⌘/Ctrl B</kbd> to add a Key Expression here too.</span>
+              <button class="tf-toast-x" onClick="{{ dismissToast }}" aria-label="Dismiss">✕</button>
+            </div>
           </sc-if>
         </div>
       </div>
@@ -1662,10 +1671,14 @@ class Component extends DCLogic {
     transcriptIndex: 0,
     focusedBlockId: null,
     rev: 0,
+    toast: false,
     lightbox: null
   };
 
   editors = {};
+  reportEditors = {};
+  reportBaseline = {};
+  toastSeen = false;
 
   formatEditor = new DemoEditor({
     shortcuts: true,
@@ -1689,6 +1702,7 @@ class Component extends DCLogic {
 
   componentWillUnmount() {
     clearTimeout(this.demoTimer);
+    clearTimeout(this.toastTimer);
     if (this.videoObserver) this.videoObserver.disconnect();
     if (this.demoObserver) this.demoObserver.disconnect();
     document.removeEventListener('keydown', this.onDocKeyDown);
@@ -1820,8 +1834,43 @@ class Component extends DCLogic {
     return editor;
   }
 
+  // The report side gets its own editor, seeded with the paraphrase as it
+  // stood when the arrow was clicked -- the same hand-off Tutor Flow makes. It
+  // stays editable, and ⌘/Ctrl B there marks a Key Expression, since the real
+  // report's After field supports that too.
+  reportEditorFor(block) {
+    let editor = this.reportEditors[block.id];
+    if (!editor) {
+      const source = this.editorFor(block);
+      editor = new DemoEditor({
+        shortcuts: false,
+        onChange: () => {
+          if (this.state.toast && JSON.stringify(editor.boldPhrases()) !== this.reportBaseline[block.id]) this.dismissToast();
+          this.setState((s) => ({ rev: s.rev + 1 }));
+        }
+      });
+      editor.setContent({ text: source.text, marks: source.marks.map((m) => ({ ...m })) });
+      this.reportBaseline[block.id] = JSON.stringify(editor.boldPhrases());
+      this.reportEditors[block.id] = editor;
+    }
+    return editor;
+  }
+
   handleExportBlock(id) {
+    const block = this.state.blocks.find((b) => b.id === id);
+    if (block && !block.exported) this.reportEditorFor(block);
     this.setState((s) => ({ blocks: s.blocks.map((b) => (b.id === id ? { ...b, exported: true } : b)) }));
+    if (!this.toastSeen) {
+      this.toastSeen = true;
+      this.setState({ toast: true });
+      clearTimeout(this.toastTimer);
+      this.toastTimer = setTimeout(() => this.dismissToast(), 14000);
+    }
+  }
+
+  dismissToast() {
+    clearTimeout(this.toastTimer);
+    if (this.state.toast) this.setState({ toast: false });
   }
 
   // Cmd/Ctrl+1 — Ringle's own paraphrase-block shortcut (see
@@ -1984,13 +2033,13 @@ class Component extends DCLogic {
     });
 
     const exportedView = this.state.blocks.filter((b) => b.exported).map((b, i) => {
-      const editor = this.editorFor(b);
+      const editor = this.reportEditorFor(b);
       const keyExpressions = editor.boldPhrases();
       return {
         id: b.id,
         title: 'Feedback ' + (i + 1),
         before: stripQuotes(b.before),
-        afterRendered: editor.toReact(),
+        afterEditorRef: editor.ref,
         keyExpressions,
         hasKeyExpr: keyExpressions.length > 0
       };
@@ -2025,6 +2074,8 @@ class Component extends DCLogic {
       })),
       blocksView,
       exportedView,
+      showToast: this.state.toast,
+      dismissToast: () => this.dismissToast(),
       feedbackCount: exportedView.length,
       keyCount: exportedView.reduce((n, c) => n + c.keyExpressions.length, 0),
       hasExports: exportedView.length > 0,
