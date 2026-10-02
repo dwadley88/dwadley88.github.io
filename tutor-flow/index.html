@@ -184,6 +184,18 @@
   .tf-lightbox-close:focus-visible { outline: 3px solid #ffffff; outline-offset: 2px; }
   @keyframes tffade { from { opacity: 0 } to { opacity: 1 } }
   @media (prefers-reduced-motion: reduce) { .tf-lightbox { animation: none; } .tf-zoom { transition: none; } }
+  /* Demo clip captions. Each video carries a WebVTT track, and
+     attachClipCaptions() draws its current cue in this bar, so the size and
+     look of every caption is set here rather than in the videos. */
+  .tf-clip { position: relative; }
+  .tf-clip-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 9px 16px; background: #10595B; color: #F4FBFA; font-size: 13px; font-weight: 600; line-height: 1.4; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+  .tf-clip-cap.is-on { opacity: 1; }
+  .tf-clip-cap > span { display: block; transition: opacity .2s ease; }
+  .tf-clip-cap > span.is-out { opacity: 0; }
+  .tf-lightbox-clip { position: relative; width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 12px 48px rgba(0, 0, 0, 0.35); }
+  .tf-lightbox-clip .tf-lightbox-media { border-radius: 0; box-shadow: none; }
+  .tf-lightbox-clip .tf-clip-cap { padding: 11px 20px; font-size: 15px; }
+  @media (prefers-reduced-motion: reduce) { .tf-clip-cap, .tf-clip-cap > span { transition: none; } }
 
   /* Mobile-only visual adjustments. Desktop layout above is untouched. */
   @media (max-width: 680px) {
@@ -296,26 +308,29 @@
           </div>
           <div ref="{{ demoEditorRef }}" class="tf-editor" aria-label="Lesson doc demo" style="font-size:17px;line-height:1.7;color:#666666;min-height:176px"></div>
         </div>
-        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+        <div class="tf-zoom tf-clip" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
           <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/formatting-shortcuts.jpg" style="width:100%;aspect-ratio:860/620;object-fit:cover;display:block">
             <source src="assets/videos/formatting-shortcuts.mp4" type="video/mp4">
+            <track kind="captions" srcLang="en" label="English" src="assets/videos/formatting-shortcuts.vtt">
           </video>
         </div>
         <p class="tf-caption"><span class="tf-caption-label">Keyboard formatting</span><span class="tf-caption-text">Corrections, quotations, boldings and highlights, all from the keyboard.</span></p>
       </div>
       <div style="grid-column:1/-1;order:3;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start">
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+          <div class="tf-zoom tf-clip" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
             <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/zoom-override-notes.jpg" style="width:100%;aspect-ratio:860/620;object-fit:cover;display:block">
               <source src="assets/videos/zoom-override-notes.mp4" type="video/mp4">
+              <track kind="captions" srcLang="en" label="English" src="assets/videos/zoom-override-notes.vtt">
             </video>
           </div>
           <p class="tf-caption"><span class="tf-caption-label">Expanded zoom</span><span class="tf-caption-text">Ringle’s text size buttons now offer far more sizes, so you can pick what suits your screen and your eyes. Tutor Flow remembers your setting between lessons.</span></p>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
-          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+          <div class="tf-zoom tf-clip" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
             <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/active-line-center.jpg" style="width:100%;aspect-ratio:860/560;object-fit:cover;display:block">
               <source src="assets/videos/active-line-center.mp4" type="video/mp4">
+              <track kind="captions" srcLang="en" label="English" src="assets/videos/active-line-center.vtt">
             </video>
           </div>
           <p class="tf-caption"><span class="tf-caption-label">Active line center</span><span class="tf-caption-text">As you type, the page scrolls with you, so however long the transcript gets, the line you’re on stays in view.</span></p>
@@ -421,26 +436,29 @@
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <div style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+      <div class="tf-clip" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
         <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/feedback-loading-replay.jpg" style="width:100%;aspect-ratio:1280/800;object-fit:cover;display:block">
           <source src="assets/videos/feedback-loading-replay.mp4" type="video/mp4">
+          <track kind="captions" srcLang="en" label="English" src="assets/videos/feedback-loading-replay.vtt">
         </video>
       </div>
       <p class="tf-caption"><span class="tf-caption-label">Paraphrase export</span><span class="tf-caption-text">Two paraphrases exported to the Feedback Report, Key Expressions included.</span></p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:8px">
-        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+        <div class="tf-zoom tf-clip" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
           <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/feedback-message-zoom.jpg" style="width:100%;aspect-ratio:614/540;object-fit:cover;display:block">
             <source src="assets/videos/feedback-message-zoom.mp4" type="video/mp4">
+            <track kind="captions" srcLang="en" label="English" src="assets/videos/feedback-message-zoom.vtt">
           </video>
         </div>
         <p class="tf-caption"><span class="tf-caption-label">Message zoom</span><span class="tf-caption-text">Small screens can make it hard to comfortably read what you’re writing in your feedback message to students. Tutor Flow adds zoom buttons to the text editor to make proofreading easier on the eyes.</span></p>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px">
-        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+        <div class="tf-zoom tf-clip" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
           <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/key-expression-repair.jpg" style="width:100%;aspect-ratio:760/640;object-fit:cover;display:block">
             <source src="assets/videos/key-expression-repair.mp4" type="video/mp4">
+            <track kind="captions" srcLang="en" label="English" src="assets/videos/key-expression-repair.vtt">
           </video>
         </div>
         <p class="tf-caption"><span class="tf-caption-label">Key Expression Repair</span><span class="tf-caption-text">Deleting feedback cards from Ringle’s Feedback Report jumbles up the Key Expressions for every card that follows. Tutor Flow puts them back where they belong.</span></p>
@@ -650,7 +668,9 @@
       <button ref="{{ lightboxCloseRef }}" class="tf-lightbox-close" type="button" aria-label="Close" onClick="{{ closeLightbox }}">×</button>
       <div class="tf-lightbox-figure" style="{{ lightboxFigureStyle }}">
         <sc-if value="{{ lightboxIsVideo }}">
-          <video ref="{{ lightboxVideoRef }}" class="tf-lightbox-media" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" style="{{ lightboxMediaStyle }}"></video>
+          <div class="tf-lightbox-clip">
+            <video ref="{{ lightboxVideoRef }}" class="tf-lightbox-media" autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" style="{{ lightboxMediaStyle }}"></video>
+          </div>
         </sc-if>
         <sc-if value="{{ lightboxIsImage }}">
           <img ref="{{ lightboxImageRef }}" class="tf-lightbox-media" alt="{{ lightboxAlt }}" style="{{ lightboxMediaStyle }}" />
@@ -1660,6 +1680,62 @@ function runDemoStep(editor, step) {
   }
 }
 
+// Draws a video's captions in a bar over its bottom edge. The cues come from
+// the video's WebVTT track, kept hidden so the browser times them but leaves
+// the drawing to the page. The bar fades in once; after that only the text
+// crossfades, and a loop back to the first cue crossfades the same way.
+const CAPTION_SWAP_MS = 200;
+
+function attachClipCaptions(video, host) {
+  const trackEl = video.querySelector('track[kind="captions"]');
+  if (!trackEl || !host || video.dataset.tfCaptions) return;
+  video.dataset.tfCaptions = '1';
+  const track = trackEl.track;
+  track.mode = 'hidden';
+  const bar = document.createElement('div');
+  bar.className = 'tf-clip-cap';
+  bar.setAttribute('aria-hidden', 'true');
+  const label = document.createElement('span');
+  bar.appendChild(label);
+  host.appendChild(bar);
+
+  let shown = '';
+  let swapTimer = 0;
+  const show = (text) => {
+    if (text === shown) return;
+    clearTimeout(swapTimer);
+    if (!text) {
+      bar.classList.remove('is-on');
+    } else if (!shown) {
+      label.textContent = text;
+      label.classList.remove('is-out');
+      bar.classList.add('is-on');
+    } else {
+      label.classList.add('is-out');
+      swapTimer = setTimeout(() => {
+        label.textContent = text;
+        label.classList.remove('is-out');
+      }, CAPTION_SWAP_MS);
+    }
+    shown = text;
+  };
+  const cueText = (cue) => (cue.getCueAsHTML ? cue.getCueAsHTML().textContent : cue.text) || '';
+  const sync = () => {
+    const active = track.activeCues;
+    // Cues touch end to end, so for an instant two can be active; the later
+    // one is the one starting.
+    show(active && active.length ? cueText(active[active.length - 1]) : '');
+  };
+  track.addEventListener('cuechange', sync);
+  // Before playback starts (or if it never does), show the opening line over
+  // the poster.
+  trackEl.addEventListener('load', () => {
+    sync();
+    if (!shown && track.cues && track.cues.length) show(cueText(track.cues[0]));
+  });
+  sync();
+}
+
 class Component extends DCLogic {
   state = {
     taken: false, plan: null, openFaq: 0,
@@ -1718,6 +1794,7 @@ class Component extends DCLogic {
   setupVideos() {
     const videos = Array.from(document.querySelectorAll('video'));
     videos.forEach((v) => {
+      attachClipCaptions(v, v.closest('.tf-clip'));
       v.muted = true;
       v.defaultMuted = true;
       v.loop = true;
@@ -1906,6 +1983,7 @@ class Component extends DCLogic {
     if (!media) return;
     const isVideo = media.tagName === 'VIDEO';
     const source = isVideo ? media.querySelector('source') : null;
+    const captionTrack = isVideo ? media.querySelector('track[kind="captions"]') : null;
     const src = media.currentSrc || (source ? source.src : media.src);
     let ratio = isVideo
       ? (media.videoWidth && media.videoHeight ? media.videoWidth / media.videoHeight : 0)
@@ -1932,6 +2010,7 @@ class Component extends DCLogic {
         isVideo,
         src,
         poster: isVideo ? (media.getAttribute('poster') || '') : '',
+        captions: captionTrack ? captionTrack.src : '',
         alt: isVideo ? '' : (media.getAttribute('alt') || ''),
         caption,
         ratio
@@ -1972,6 +2051,15 @@ class Component extends DCLogic {
     if (!v || !lb) return;
     if (lb.poster) v.poster = lb.poster;
     v.src = lb.src;
+    if (lb.captions && !v.querySelector('track')) {
+      const track = document.createElement('track');
+      track.kind = 'captions';
+      track.srclang = 'en';
+      track.label = 'English';
+      track.src = lb.captions;
+      v.appendChild(track);
+      attachClipCaptions(v, v.parentElement);
+    }
     v.muted = true;
     v.defaultMuted = true;
     v.loop = true;
