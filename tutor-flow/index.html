@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tutor Flow: Feedback Aids, Scheduling Safeguards, and a Student Tracking Tool for Ringle Tutors</title>
+<title>Tutor Flow: Chrome Extension for Ringle Tutors</title>
 <meta name="description" content="Tutor Flow is a Chrome extension that takes the busywork out of Ringle feedback reports, prevents scheduling errors, and helps tutors keep track of their students." />
 <link rel="canonical" href="https://www.nativeflow.me/tutor-flow/" />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#10595B" />
-<link rel="icon" type="image/png" href="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png" />
+<link rel="icon" type="image/png" sizes="64x64" href="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark-64.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark-180.png" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
@@ -16,16 +17,18 @@
 <meta property="og:site_name" content="Tutor Flow" />
 <meta property="og:title" content="Tutor Flow: Less hassle, more flow." />
 <meta property="og:description" content="Streamline your feedback routine and get your breaks back. A Chrome extension for Ringle tutors, built by one." />
-<meta property="og:image" content="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png" />
-<meta property="og:image:alt" content="The Tutor Flow logo, a rounded teal square." />
+<meta property="og:image" content="https://www.nativeflow.me/tutor-flow/assets/og-tutor-flow.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="The Tutor Flow logo and name on a teal background, with the tagline “The Chrome extension for Ringle tutors” beside a screenshot of Calendar Defender flagging conflicts in Ringle’s recurring-slot dialog." />
 <meta property="og:locale" content="en_US" />
 
 <!-- Twitter -->
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Tutor Flow: Less hassle, more flow." />
 <meta name="twitter:description" content="Streamline your feedback routine and get your breaks back. A Chrome extension for Ringle tutors, built by one." />
-<meta name="twitter:image" content="https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png" />
-<meta name="twitter:image:alt" content="The Tutor Flow logo, a rounded teal square." />
+<meta name="twitter:image" content="https://www.nativeflow.me/tutor-flow/assets/og-tutor-flow.png" />
+<meta name="twitter:image:alt" content="The Tutor Flow logo and name on a teal background, with the tagline “The Chrome extension for Ringle tutors” beside a screenshot of Calendar Defender flagging conflicts in Ringle’s recurring-slot dialog." />
 
 <script type="application/ld+json">
 {
@@ -37,18 +40,93 @@
   "description": "A Chrome extension that takes the busywork out of Ringle feedback reports, prevents scheduling errors, and helps tutors keep track of their students.",
   "url": "https://www.nativeflow.me/tutor-flow/",
   "image": "https://www.nativeflow.me/tutor-flow/assets/tutor-flow-mark.png",
+  "installUrl": "https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk",
+  "sameAs": "https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Native Flow",
+    "url": "https://www.nativeflow.me/"
+  },
   "offers": [
     {
       "@type": "Offer",
       "name": "Annual",
       "price": "69.90",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "69.90",
+        "priceCurrency": "USD",
+        "billingDuration": "P1Y"
+      }
     },
     {
       "@type": "Offer",
       "name": "Monthly",
       "price": "6.99",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "6.99",
+        "priceCurrency": "USD",
+        "billingDuration": "P1M"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Tutor Flow change anything on Ringle’s side?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Anything Tutor Flow adds to the screen — e.g. your calendar(s) on the schedule page or any notes/comments you save inside student tracker profiles — is stored locally in your browser. Turning the extension off will revert Ringle pages to their default design."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Tutor Flow use AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Tutor Flow doesn’t write or rewrite any of your feedback, and every word in the report is still yours. What it does do is cut out steps you’d otherwise do twice, like choosing feedback blocks and Key Expressions again after class. Now you can do that in real time, while you review them with your student."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Tutor Flow made by Ringle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Tutor Flow is an independent product by Native Flow. It is not affiliated with or endorsed by Ringle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it work on other tutoring platforms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tutor Flow was designed specifically for use on the Ringle platform."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which browser do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tutor Flow runs on the desktop version of Chrome, which is Ringle’s preferred browser for tutors. It should also work on other Chromium-based browsers, but Native Flow cannot guarantee functionality with any but Chrome. Tutor Flow is not compatible with mobile or tablet browsers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I cancel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can cancel your subscription at any time by 1) clicking the link in your confirmation email, 2) visiting Creem.io’s customer portal, or 3) accessing your subscription settings from inside the Tutor Flow extension via the ‘Manage subscription’ button under the Settings tab. New subscribers who cancel during the trial period will not be charged."
+      }
     }
   ]
 }
@@ -58,6 +136,12 @@
 </head>
 <body>
 <x-dc>
+<!-- Text bindings are written so the served HTML reads correctly without
+     JavaScript. <sc-if value="{{ false }}">…</sc-if> holds the static default:
+     browsers show it, the runtime never renders it. The span beside it,
+     children="{{ … }}", is the live value the runtime fills in. Blocks that
+     start out closed (exported cards, the toast, the lightbox) carry the
+     hidden attribute, which the runtime ignores. -->
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;500&display=swap" />
@@ -171,6 +255,14 @@
   .rg-empty b { font-size: 20px; color: #10595B; font-weight: 700; }
   .rg-empty span { font-size: 13px; line-height: 1.6; max-width: 240px; }
 
+  /* FAQ: plain <details> elements, so every answer is in the page source.
+     The first one binds open to true because React drops a bare boolean
+     attribute; name="faq" keeps one answer open at a time. */
+  .tf-faq > summary { list-style: none; }
+  .tf-faq > summary::-webkit-details-marker { display: none; }
+  .tf-faq-sign::before { content: "+"; }
+  .tf-faq[open] .tf-faq-sign::before { content: "\2013"; }
+
   /* Click-to-enlarge screenshots and videos. */
   .tf-zoom { cursor: zoom-in; transition: box-shadow .15s ease; }
   .tf-zoom:hover { box-shadow: 0 4px 18px rgba(10, 61, 63, 0.12); }
@@ -216,7 +308,7 @@
   <header style="position:sticky;top:0;z-index:50;background:#10595B;border-bottom:1px solid rgba(255,255,255,.12)">
     <div style="max-width:1120px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;gap:32px">
       <a href="#top" style="display:flex;align-items:center;gap:10px;color:#ffffff;text-decoration:none">
-        <img src="assets/tutor-flow-mark.png" alt="" style="width:30px;height:30px;border-radius:12px;display:block" />
+        <img src="assets/tutor-flow-mark-180.png" alt="" style="width:30px;height:30px;border-radius:12px;display:block" />
         <span style="font-size:16px;font-weight:700;letter-spacing:-0.01em">Tutor Flow</span>
       </a>
       <nav style="display:flex;align-items:center;gap:28px;margin-left:auto">
@@ -232,6 +324,7 @@
   <section id="top" class="tf-hero" style="max-width:1120px;margin:0 auto;padding:120px 24px 104px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
     <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:76px;height:76px;border-radius:18px;display:block;box-shadow:0 2px 8px rgba(10,61,63,0.06)" />
     <div style="display:flex;flex-direction:column;gap:20px;align-items:center;max-width:840px">
+      <p class="tf-eyebrow" style="margin:0">A Chrome extension for Ringle tutors.</p>
       <h1 style="margin:0;font-size:clamp(44px,6.4vw,68px);font-weight:700;letter-spacing:-0.035em;line-height:1.05">Less hassle, more flow.</h1>
       <p style="margin:0;font-size:20px;line-height:1.55;color:#6B6258;max-width:620px">Streamline your workflow and feedback routine, so your breaks go back to being breaks and you can log off when your last student does.</p>
     </div>
@@ -239,7 +332,7 @@
       <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
       <a href="#features" style="font-size:15px;font-weight:600;color:#10595B;background:#FFFFFF;border:1px solid #E6DCCF;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#F6EFE6;text-decoration:none">Try the demo</a>
     </div>
-    <p style="margin:0;font-size:13px;color:#6B6258">A Chrome extension for Ringle tutors. Free for 10 days, then $6.99 a month or $69.90 a year. Annual subscribers get two months free compared to monthly.</p>
+    <p style="margin:0;font-size:13px;color:#6B6258">Free for 10 days, then $6.99 a month or $69.90 a year. Annual subscribers get two months free compared to monthly.</p>
   </section>
 
   <section style="background:#0A3D3F;color:#F4FBFA">
@@ -285,8 +378,7 @@
   <section id="features" style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
     <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px;order:2">
-        <span class="tf-eyebrow">Formatting Shortcuts</span>
-        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Mark mistakes without missing a word.</h2>
+        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15"><span class="tf-eyebrow" style="display:block;margin-bottom:16px;line-height:normal">Formatting Shortcuts</span> Mark mistakes without missing a word.</h2>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">A few simple shortcuts take care of bolding, insertions, corrections, and highlights, so nothing your student says slips by while you’re clicking around.</p>
         <ul class="tf-shortcuts" style="margin:8px 0 0;padding:0;list-style:none">
           <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">*word*</span><span>Type an asterisk and the closing one appears. Type your text, press <kbd class="tf-key">Tab</kbd> or <kbd class="tf-key">Enter</kbd>, and it turns bold.</span></li>
@@ -300,7 +392,7 @@
         <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;cursor:text;min-height:180px" onClick="{{ focusDemo }}">
           <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px">
             <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Lesson doc</span>
-            <span style="font-size:12px;line-height:1.5;color:#6B6258">{{ demoHint }}</span>
+            <span style="font-size:12px;line-height:1.5;color:#6B6258"><sc-if value="{{ false }}">Click to type it yourself</sc-if><span class="sc-interp" children="{{ demoHint }}"></span></span>
           </div>
           <div ref="{{ demoEditorRef }}" class="tf-editor" aria-label="Lesson doc demo" style="font-size:17px;line-height:1.7;color:#666666;min-height:176px"></div>
         </div>
@@ -337,8 +429,7 @@
 
   <section id="calendar-defender" class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:80px">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
-      <span class="tf-eyebrow">Calendar Defender</span>
-      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Get an actual overview of your schedule before you open a timeslot.</h2>
+      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15"><span class="tf-eyebrow" style="display:block;margin-bottom:20px;line-height:normal">Calendar Defender</span> Get an actual overview of your schedule before you open a timeslot.</h2>
       <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Sign in with Google and choose which calendars to show. Your events appear right on Ringle’s schedule page, slots they cover can’t be opened by an accidental click, and recurring slots are checked for conflicts before you confirm. Access is read-only, so Tutor Flow can’t change anything in your calendar.</p>
     </div>
     <div class="tf-gap-lg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
@@ -370,8 +461,7 @@
   <section id="feedback-exporter" style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
     <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
-      <span class="tf-eyebrow">Feedback Exporter</span>
-      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Bold a term in your paraphrase. It arrives as a Key Expression.</h2>
+      <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15"><span class="tf-eyebrow" style="display:block;margin-bottom:20px;line-height:normal">Feedback Exporter</span> Bold a term in your paraphrase. It arrives as a Key Expression.</h2>
       <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">No more combing through your notes after class and adding Key Expressions one . . . at . . . a time.</p>
       <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Tutor Flow brings Ringle’s purple export arrow into the classroom, so you can build the Feedback Report while you go over the transcript with your student. Bold the phrases you want them to remember and click the arrow. When you open the report, each paraphrase is already there with its Key Expressions marked. Write your message and explanations, then hit ‘Submit’. Try it below.</p>
     </div>
@@ -388,11 +478,11 @@
         <div class="rg rg-doc">
           <sc-for list="{{ blocksView }}" as="blk" hint-placeholder-count="2">
             <div class="rg-block">
-              <p class="rg-before" style="margin-bottom:0">{{ blk.before }}</p>
+              <p class="rg-before" style="margin-bottom:0"><sc-if value="{{ false }}">I think I want to buying a new laptop for my work.</sc-if><span class="sc-interp" children="{{ blk.before }}"></span></p>
               <div class="rg-after">
                 <div ref="{{ blk.editorRef }}" class="tf-editor" aria-label="Paraphrase"></div>
               </div>
-              <button class="rg-arrow" data-done="{{ blk.arrowDone }}" onClick="{{ blk.exportBlock }}" title="{{ blk.arrowTitle }}" aria-label="{{ blk.arrowTitle }}">{{ blk.arrowLabel }}</button>
+              <button class="rg-arrow" data-done="{{ blk.arrowDone }}" onClick="{{ blk.exportBlock }}" title="{{ blk.arrowTitle }}" aria-label="{{ blk.arrowTitle }}"><sc-if value="{{ false }}">→</sc-if><span class="sc-interp" children="{{ blk.arrowLabel }}"></span></button>
             </div>
           </sc-for>
           <button class="rg-new" onClick="{{ addBlock }}">
@@ -417,11 +507,11 @@
           <div class="rg-counts">
             <div>
               <div class="rg-count-cap">Feedback Count</div>
-              <div class="rg-count-val"><i></i>{{ feedbackCount }} <small>(min 3)</small></div>
+              <div class="rg-count-val"><i></i><sc-if value="{{ false }}">0</sc-if><span class="sc-interp" children="{{ feedbackCount }}"></span> <small>(min 3)</small></div>
             </div>
             <div>
               <div class="rg-count-cap">Key expressions Count</div>
-              <div class="rg-count-val"><i></i>{{ keyCount }} <small>(min 1 per feedback)</small></div>
+              <div class="rg-count-val"><i></i><sc-if value="{{ false }}">0</sc-if><span class="sc-interp" children="{{ keyCount }}"></span> <small>(min 1 per feedback)</small></div>
             </div>
           </div>
           <sc-if value="{{ noExports }}" hint-placeholder-val="{{ true }}">
@@ -430,22 +520,22 @@
               <span>Click the purple arrow next to a paraphrase to export it here.</span>
             </div>
           </sc-if>
-          <sc-if value="{{ hasExports }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ hasExports }}" hint-placeholder-val="{{ false }}" hidden>
             <sc-for list="{{ exportedView }}" as="card" hint-placeholder-count="0">
               <div class="rg-card">
                 <div class="rg-card-head">
-                  <span style="display:flex;align-items:center"><span class="rg-card-n">{{ card.title }}</span><span class="rg-cat">Words and Expressions <span>▼</span></span></span>
+                  <span style="display:flex;align-items:center"><span class="rg-card-n"><span class="sc-interp" children="{{ card.title }}"></span></span><span class="rg-cat">Words and Expressions <span>▼</span></span></span>
                   <span class="rg-card-x">✕</span>
                 </div>
                 <div class="rg-card-body">
-                  <div class="rg-row"><div class="rg-label">Before</div><div class="rg-value">{{ card.before }}</div></div>
+                  <div class="rg-row"><div class="rg-label">Before</div><div class="rg-value"><span class="sc-interp" children="{{ card.before }}"></span></div></div>
                   <div class="rg-row"><div class="rg-label">After</div><div class="rg-value"><div ref="{{ card.afterEditorRef }}" class="tf-editor" aria-label="After"></div></div></div>
                   <div class="rg-row">
                     <div class="rg-label">Key<br>Expressions</div>
                     <div class="rg-value rg-value-chips">
                       <div class="rg-chips">
                         <sc-for list="{{ card.keyExpressions }}" as="ke" hint-placeholder-count="1">
-                          <span class="rg-chip">{{ ke }}</span>
+                          <span class="rg-chip"><span class="sc-interp" children="{{ ke }}"></span></span>
                         </sc-for>
                       </div>
                     </div>
@@ -455,9 +545,9 @@
               </div>
             </sc-for>
           </sc-if>
-          <sc-if value="{{ showToast }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ showToast }}" hint-placeholder-val="{{ false }}" hidden>
             <div class="tf-toast" role="status">
-              <span class="tf-toast-text">Forgot to bold it before you exported? Tutor Flow let's you select text in the After field and press <kbd>⌘/Ctrl B</kbd> to add a Key Expression here too.</span>
+              <span class="tf-toast-text">Forgot to bold it before you exported? Tutor Flow lets you select text in the After field and press <kbd>⌘/Ctrl B</kbd> to add a Key Expression here too.</span>
               <button class="tf-toast-x" onClick="{{ dismissToast }}" aria-label="Dismiss">✕</button>
             </div>
           </sc-if>
@@ -499,8 +589,7 @@
   <section id="student-tracker">
     <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
       <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
-        <span class="tf-eyebrow">Student Tracker</span>
-        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Never go into a lesson blind.</h2>
+        <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15"><span class="tf-eyebrow" style="display:block;margin-bottom:20px;line-height:normal">Student Tracker</span> Never go into a lesson blind.</h2>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">The lesson page says “bakminjun,” and your old feedback reports are addressed to “Mike.” He remembers you, which is why he booked again. Tutor Flow makes sure you remember him too.</p>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Look up anyone you’ve taught by name or lesson ID, tag regulars and favorites, and keep notes on their level, habits, and goals. They’ll be waiting the next time he books, whether that’s next week or next spring.</p>
       </div>
@@ -590,7 +679,7 @@
           <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 170px;min-width:0">
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
               <span style="font-size:17px;font-weight:700">Annual</span>
-              <span style="{{ annualPillStyle }}">{{ annualPillText }}</span>
+              <span style="{{ annualPillStyle }}"><sc-if value="{{ false }}">Two months free</sc-if><span class="sc-interp" children="{{ annualPillText }}"></span></span>
             </div>
             <span style="font-size:14px;line-height:1.5;color:#6B6258"><s>$83.88</s> $69.90 per year</span>
           </div>
@@ -605,7 +694,7 @@
           <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 170px;min-width:0">
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
               <span style="font-size:17px;font-weight:700">Monthly</span>
-              <span style="{{ monthlyPillStyle }}">{{ monthlyPillText }}</span>
+              <span style="{{ monthlyPillStyle }}"><sc-if value="{{ false }}">Flexible</sc-if><span class="sc-interp" children="{{ monthlyPillText }}"></span></span>
             </div>
             <span style="font-size:14px;line-height:1.5;color:#6B6258">Cancel whenever you like</span>
           </div>
@@ -619,7 +708,7 @@
     <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
       <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" onClick="{{ openCheckoutToo }}" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
       <p style="margin:0;font-size:13px;color:#6B6258">Prices in USD. Tax is calculated at checkout. No payments will be processed until your 10-day trial ends.</p>
-      <p style="margin:0;font-size:13px;color:#6B6258">Already installed? <a href="{{ checkoutHref }}">Start your trial and get your license key.</a></p>
+      <p style="margin:0;font-size:13px;color:#6B6258">Already installed? <sc-if value="{{ !checkoutMonthly }}"><a href="https://www.creem.io/payment/prod_f6bRaIlzmbIYTRPH77nHN">Start your trial and get your license key.</a></sc-if><sc-if value="{{ checkoutMonthly }}" hidden><a href="https://www.creem.io/payment/prod_10rEBZy5jCi1Aj4NiJ8Gco">Start your trial and get your license key.</a></sc-if></p>
     </div>
   </section>
 
@@ -627,17 +716,48 @@
     <div class="tf-section" style="max-width:760px;margin:0 auto;padding:104px 24px;display:flex;flex-direction:column;gap:36px">
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Questions</h2>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="6">
-          <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
-            <div style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer" onClick="{{ item.toggle }}">
-              <h3 style="margin:0;font-size:16px;font-weight:600">{{ item.q }}</h3>
-              <span style="font-size:18px;color:#6B6258;line-height:1">{{ item.sign }}</span>
-            </div>
-            <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
-              <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">{{ item.a }}</p>
-            </sc-if>
-          </div>
-        </sc-for>
+        <details class="tf-faq" name="faq" open="{{ true }}" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Does Tutor Flow change anything on Ringle’s side?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">Anything Tutor Flow adds to the screen — e.g. your calendar(s) on the schedule page or any notes/comments you save inside student tracker profiles — is stored locally in your browser. Turning the extension off will revert Ringle pages to their default design.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Does Tutor Flow use AI?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">No. Tutor Flow doesn’t write or rewrite any of your feedback, and every word in the report is still yours. What it <em>does</em> do is cut out steps you’d otherwise do twice, like choosing feedback blocks and Key Expressions again after class. Now you can do that in real time, while you review them with your student.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Is Tutor Flow made by Ringle?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">No. Tutor Flow is an independent product by Native Flow. It is not affiliated with or endorsed by Ringle.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Does it work on other tutoring platforms?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">Tutor Flow was designed specifically for use on the Ringle platform.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Which browser do I need?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">Tutor Flow runs on the desktop version of Chrome, which is Ringle’s preferred browser for tutors. It should also work on other Chromium-based browsers, but Native Flow cannot guarantee functionality with any but Chrome. Tutor Flow is not compatible with mobile or tablet browsers.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">How do I cancel?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">You can cancel your subscription at any time by 1) clicking the link in your confirmation email, 2) visiting Creem.io’s <a href="https://www.creem.io/portal/orders" target="_blank" rel="noopener">customer portal</a>, or 3) accessing your subscription settings from inside the Tutor Flow extension via the ‘Manage subscription’ button under the Settings tab. New subscribers who cancel during the trial period will not be charged.</p>
+        </details>
       </div>
     </div>
   </section>
@@ -654,7 +774,7 @@
   <footer style="border-top:1px solid rgba(255,255,255,.12);background:#10595B;color:#ffffff">
     <div style="max-width:1120px;margin:0 auto;padding:40px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:24px">
       <div style="display:flex;align-items:center;gap:10px">
-        <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:24px;height:24px;border-radius:8px;display:block" />
+        <img src="assets/tutor-flow-mark-180.png" alt="Tutor Flow logo" style="width:24px;height:24px;border-radius:8px;display:block" />
         <span style="font-size:14px;font-weight:600">Tutor Flow</span>
       </div>
       <nav style="display:flex;flex-wrap:wrap;gap:20px;margin-left:auto">
@@ -665,11 +785,14 @@
         <a href="./legal-notice.html" style="font-size:14px;color:rgba(255,255,255,.75)" style-hover="color:#ffffff">Legal</a>
         <a href="mailto:support@nativeflow.me" style="font-size:14px;color:rgba(255,255,255,.75)" style-hover="color:#ffffff">support@nativeflow.me</a>
       </nav>
-      <p style="margin:0;font-size:13px;color:rgba(255,255,255,.75);width:100%">A <a href="/" style="color:rgba(255,255,255,.75)" style-hover="color:#ffffff">Native Flow</a> product.</p>
+      <div style="width:100%;display:flex;flex-direction:column;gap:6px">
+        <p style="margin:0;font-size:13px;color:rgba(255,255,255,.75)">A <a href="/" style="color:rgba(255,255,255,.75)" style-hover="color:#ffffff">Native Flow</a> product.</p>
+        <p style="margin:0;font-size:13px;color:rgba(255,255,255,.75)">Tutor Flow is an independent product by Native Flow. It is not affiliated with or endorsed by Ringle.</p>
+      </div>
     </div>
   </footer>
 
-  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}" hidden>
     <div class="tf-lightbox" role="dialog" aria-modal="true" aria-label="{{ lightboxLabel }}" onClick="{{ closeLightbox }}">
       <button ref="{{ lightboxCloseRef }}" class="tf-lightbox-close" type="button" aria-label="Close" onClick="{{ closeLightbox }}">×</button>
       <div class="tf-lightbox-figure" style="{{ lightboxFigureStyle }}">
@@ -682,7 +805,7 @@
           <img ref="{{ lightboxImageRef }}" class="tf-lightbox-media" alt="{{ lightboxAlt }}" style="{{ lightboxMediaStyle }}" />
         </sc-if>
         <sc-if value="{{ lightboxHasCaption }}">
-          <p class="tf-lightbox-caption">{{ lightboxCaption }}</p>
+          <p class="tf-lightbox-caption" children="{{ lightboxCaption }}"></p>
         </sc-if>
       </div>
     </div>
@@ -705,7 +828,9 @@ const BRAND_PURPLE = '#442DC9';
 
 // The selected plan card decides where checkout goes. The pricing button opens
 // the Chrome Web Store in one tab and this plan's Creem checkout in a second,
-// and the “Start your trial” link under it goes straight to checkout.
+// and the “Start your trial” link under it goes straight to checkout. That
+// link is written out once per plan in the markup (so the served HTML has a
+// real URL), so keep both copies in step with these.
 const CHECKOUT_LINKS = {
   annual: 'https://www.creem.io/payment/prod_f6bRaIlzmbIYTRPH77nHN',
   monthly: 'https://www.creem.io/payment/prod_10rEBZy5jCi1Aj4NiJ8Gco'
@@ -1744,7 +1869,7 @@ function attachClipCaptions(video, host) {
 
 class Component extends DCLogic {
   state = {
-    taken: false, plan: null, openFaq: 0,
+    taken: false, plan: null,
     blocks: [
       { id: 1, before: '“I think I want to buying a new laptop for my work.”', afterSrc: 'You could say you’re *thinking about getting* a new laptop for work.', exported: false },
       { id: 2, before: '“She don’t like doing homework so much.”', afterSrc: 'A more natural way to put it: she’s *not really a fan of* homework.', exported: false }
@@ -2115,15 +2240,6 @@ class Component extends DCLogic {
       borderRadius: '999px',
       padding: '4px 10px'
     });
-    const h = React.createElement;
-    const faqData = [
-      ['Does Tutor Flow change anything on Ringle’s side?', 'Anything Tutor Flow adds to the screen — e.g. your calendar(s) on the schedule page or any notes/comments you save inside student tracker profiles — is stored locally in your browser. Turning the extension off will revert Ringle pages to their default design.'],
-      ['Does Tutor Flow use AI?', ['No. Tutor Flow doesn’t write or rewrite any of your feedback, and every word in the report is still yours. What it ', h('em', { key: 'does' }, 'does'), ' do is cut out steps you’d otherwise do twice, like choosing feedback blocks and Key Expressions again after class. Now you can do that in real time, while you review them with your student.']],
-      ['Is Tutor Flow made by Ringle?', 'No. Tutor Flow is an independent product by Native Flow. It is not affiliated with or endorsed by Ringle.'],
-      ['Does it work on other tutoring platforms?', 'Tutor Flow was designed specifically for use on the Ringle platform.'],
-      ['Which browser do I need?', 'Tutor Flow runs on the desktop version of Chrome, which is Ringle’s preferred browser for tutors. It should also work on other Chromium-based browsers, but Native Flow cannot guarantee functionality with any but Chrome. Tutor Flow is not compatible with mobile or tablet browsers.'],
-      ['How do I cancel?', ['You can cancel your subscription at any time by 1) clicking the link in your confirmation email, 2) visiting Creem.io’s ', h('a', { key: 'portal', href: 'https://www.creem.io/portal/orders', target: '_blank', rel: 'noopener' }, 'customer portal'), ', or 3) accessing your subscription settings from inside the Tutor Flow extension via the ‘Manage subscription’ button under the Settings tab. New subscribers who cancel during the trial period will not be charged.']]
-    ];
 
     const blocksView = this.state.blocks.map((b) => {
       const editor = this.editorFor(b);
@@ -2163,7 +2279,7 @@ class Component extends DCLogic {
       monthlyPillStyle: pill(plan === 'monthly'),
       annualPillText: plan === 'annual' ? 'Selected' : 'Two months free',
       monthlyPillText: plan === 'monthly' ? 'Selected' : 'Flexible',
-      checkoutHref: CHECKOUT_LINKS[plan],
+      checkoutMonthly: plan === 'monthly',
       // Runs before the link's own navigation, so the checkout tab opens here
       // and the Web Store tab opens from the link itself.
       openCheckoutToo: () => {
@@ -2172,12 +2288,6 @@ class Component extends DCLogic {
       },
       pickAnnual: () => this.setState({ plan: 'annual' }),
       pickMonthly: () => this.setState({ plan: 'monthly' }),
-      faqs: faqData.map(([q, a], idx) => ({
-        q, a,
-        open: this.state.openFaq === idx,
-        sign: this.state.openFaq === idx ? '–' : '+',
-        toggle: () => this.setState((s) => ({ openFaq: s.openFaq === idx ? -1 : idx }))
-      })),
       blocksView,
       exportedView,
       showToast: this.state.toast,
