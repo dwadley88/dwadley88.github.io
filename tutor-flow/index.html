@@ -58,6 +58,12 @@
 </head>
 <body>
 <x-dc>
+<!-- Text bindings are written so the served HTML reads correctly without
+     JavaScript. <sc-if value="{{ false }}">…</sc-if> holds the static default:
+     browsers show it, the runtime never renders it. The span beside it,
+     children="{{ … }}", is the live value the runtime fills in. Blocks that
+     start out closed (exported cards, the toast, the lightbox) carry the
+     hidden attribute, which the runtime ignores. -->
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;500&display=swap" />
@@ -308,7 +314,7 @@
         <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:14px;cursor:text;min-height:180px" onClick="{{ focusDemo }}">
           <div style="display:flex;flex-direction:column;align-items:flex-start;gap:4px">
             <span style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#6B6258">Lesson doc</span>
-            <span style="font-size:12px;line-height:1.5;color:#6B6258">{{ demoHint }}</span>
+            <span style="font-size:12px;line-height:1.5;color:#6B6258"><sc-if value="{{ false }}">Click to type it yourself</sc-if><span class="sc-interp" children="{{ demoHint }}"></span></span>
           </div>
           <div ref="{{ demoEditorRef }}" class="tf-editor" aria-label="Lesson doc demo" style="font-size:17px;line-height:1.7;color:#666666;min-height:176px"></div>
         </div>
@@ -396,11 +402,11 @@
         <div class="rg rg-doc">
           <sc-for list="{{ blocksView }}" as="blk" hint-placeholder-count="2">
             <div class="rg-block">
-              <p class="rg-before" style="margin-bottom:0">{{ blk.before }}</p>
+              <p class="rg-before" style="margin-bottom:0"><sc-if value="{{ false }}">I think I want to buying a new laptop for my work.</sc-if><span class="sc-interp" children="{{ blk.before }}"></span></p>
               <div class="rg-after">
                 <div ref="{{ blk.editorRef }}" class="tf-editor" aria-label="Paraphrase"></div>
               </div>
-              <button class="rg-arrow" data-done="{{ blk.arrowDone }}" onClick="{{ blk.exportBlock }}" title="{{ blk.arrowTitle }}" aria-label="{{ blk.arrowTitle }}">{{ blk.arrowLabel }}</button>
+              <button class="rg-arrow" data-done="{{ blk.arrowDone }}" onClick="{{ blk.exportBlock }}" title="{{ blk.arrowTitle }}" aria-label="{{ blk.arrowTitle }}"><sc-if value="{{ false }}">→</sc-if><span class="sc-interp" children="{{ blk.arrowLabel }}"></span></button>
             </div>
           </sc-for>
           <button class="rg-new" onClick="{{ addBlock }}">
@@ -425,11 +431,11 @@
           <div class="rg-counts">
             <div>
               <div class="rg-count-cap">Feedback Count</div>
-              <div class="rg-count-val"><i></i>{{ feedbackCount }} <small>(min 3)</small></div>
+              <div class="rg-count-val"><i></i><sc-if value="{{ false }}">0</sc-if><span class="sc-interp" children="{{ feedbackCount }}"></span> <small>(min 3)</small></div>
             </div>
             <div>
               <div class="rg-count-cap">Key expressions Count</div>
-              <div class="rg-count-val"><i></i>{{ keyCount }} <small>(min 1 per feedback)</small></div>
+              <div class="rg-count-val"><i></i><sc-if value="{{ false }}">0</sc-if><span class="sc-interp" children="{{ keyCount }}"></span> <small>(min 1 per feedback)</small></div>
             </div>
           </div>
           <sc-if value="{{ noExports }}" hint-placeholder-val="{{ true }}">
@@ -438,22 +444,22 @@
               <span>Click the purple arrow next to a paraphrase to export it here.</span>
             </div>
           </sc-if>
-          <sc-if value="{{ hasExports }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ hasExports }}" hint-placeholder-val="{{ false }}" hidden>
             <sc-for list="{{ exportedView }}" as="card" hint-placeholder-count="0">
               <div class="rg-card">
                 <div class="rg-card-head">
-                  <span style="display:flex;align-items:center"><span class="rg-card-n">{{ card.title }}</span><span class="rg-cat">Words and Expressions <span>▼</span></span></span>
+                  <span style="display:flex;align-items:center"><span class="rg-card-n"><span class="sc-interp" children="{{ card.title }}"></span></span><span class="rg-cat">Words and Expressions <span>▼</span></span></span>
                   <span class="rg-card-x">✕</span>
                 </div>
                 <div class="rg-card-body">
-                  <div class="rg-row"><div class="rg-label">Before</div><div class="rg-value">{{ card.before }}</div></div>
+                  <div class="rg-row"><div class="rg-label">Before</div><div class="rg-value"><span class="sc-interp" children="{{ card.before }}"></span></div></div>
                   <div class="rg-row"><div class="rg-label">After</div><div class="rg-value"><div ref="{{ card.afterEditorRef }}" class="tf-editor" aria-label="After"></div></div></div>
                   <div class="rg-row">
                     <div class="rg-label">Key<br>Expressions</div>
                     <div class="rg-value rg-value-chips">
                       <div class="rg-chips">
                         <sc-for list="{{ card.keyExpressions }}" as="ke" hint-placeholder-count="1">
-                          <span class="rg-chip">{{ ke }}</span>
+                          <span class="rg-chip"><span class="sc-interp" children="{{ ke }}"></span></span>
                         </sc-for>
                       </div>
                     </div>
@@ -463,7 +469,7 @@
               </div>
             </sc-for>
           </sc-if>
-          <sc-if value="{{ showToast }}" hint-placeholder-val="{{ false }}">
+          <sc-if value="{{ showToast }}" hint-placeholder-val="{{ false }}" hidden>
             <div class="tf-toast" role="status">
               <span class="tf-toast-text">Forgot to bold it before you exported? Tutor Flow lets you select text in the After field and press <kbd>⌘/Ctrl B</kbd> to add a Key Expression here too.</span>
               <button class="tf-toast-x" onClick="{{ dismissToast }}" aria-label="Dismiss">✕</button>
@@ -598,7 +604,7 @@
           <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 170px;min-width:0">
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
               <span style="font-size:17px;font-weight:700">Annual</span>
-              <span style="{{ annualPillStyle }}">{{ annualPillText }}</span>
+              <span style="{{ annualPillStyle }}"><sc-if value="{{ false }}">Two months free</sc-if><span class="sc-interp" children="{{ annualPillText }}"></span></span>
             </div>
             <span style="font-size:14px;line-height:1.5;color:#6B6258"><s>$83.88</s> $69.90 per year</span>
           </div>
@@ -613,7 +619,7 @@
           <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 170px;min-width:0">
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
               <span style="font-size:17px;font-weight:700">Monthly</span>
-              <span style="{{ monthlyPillStyle }}">{{ monthlyPillText }}</span>
+              <span style="{{ monthlyPillStyle }}"><sc-if value="{{ false }}">Flexible</sc-if><span class="sc-interp" children="{{ monthlyPillText }}"></span></span>
             </div>
             <span style="font-size:14px;line-height:1.5;color:#6B6258">Cancel whenever you like</span>
           </div>
@@ -627,7 +633,7 @@
     <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
       <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" onClick="{{ openCheckoutToo }}" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
       <p style="margin:0;font-size:13px;color:#6B6258">Prices in USD. Tax is calculated at checkout. No payments will be processed until your 10-day trial ends.</p>
-      <p style="margin:0;font-size:13px;color:#6B6258">Already installed? <a href="{{ checkoutHref }}">Start your trial and get your license key.</a></p>
+      <p style="margin:0;font-size:13px;color:#6B6258">Already installed? <sc-if value="{{ !checkoutMonthly }}"><a href="https://www.creem.io/payment/prod_f6bRaIlzmbIYTRPH77nHN">Start your trial and get your license key.</a></sc-if><sc-if value="{{ checkoutMonthly }}" hidden><a href="https://www.creem.io/payment/prod_10rEBZy5jCi1Aj4NiJ8Gco">Start your trial and get your license key.</a></sc-if></p>
     </div>
   </section>
 
@@ -708,7 +714,7 @@
     </div>
   </footer>
 
-  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+  <sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}" hidden>
     <div class="tf-lightbox" role="dialog" aria-modal="true" aria-label="{{ lightboxLabel }}" onClick="{{ closeLightbox }}">
       <button ref="{{ lightboxCloseRef }}" class="tf-lightbox-close" type="button" aria-label="Close" onClick="{{ closeLightbox }}">×</button>
       <div class="tf-lightbox-figure" style="{{ lightboxFigureStyle }}">
@@ -721,7 +727,7 @@
           <img ref="{{ lightboxImageRef }}" class="tf-lightbox-media" alt="{{ lightboxAlt }}" style="{{ lightboxMediaStyle }}" />
         </sc-if>
         <sc-if value="{{ lightboxHasCaption }}">
-          <p class="tf-lightbox-caption">{{ lightboxCaption }}</p>
+          <p class="tf-lightbox-caption" children="{{ lightboxCaption }}"></p>
         </sc-if>
       </div>
     </div>
@@ -744,7 +750,9 @@ const BRAND_PURPLE = '#442DC9';
 
 // The selected plan card decides where checkout goes. The pricing button opens
 // the Chrome Web Store in one tab and this plan's Creem checkout in a second,
-// and the “Start your trial” link under it goes straight to checkout.
+// and the “Start your trial” link under it goes straight to checkout. That
+// link is written out once per plan in the markup (so the served HTML has a
+// real URL), so keep both copies in step with these.
 const CHECKOUT_LINKS = {
   annual: 'https://www.creem.io/payment/prod_f6bRaIlzmbIYTRPH77nHN',
   monthly: 'https://www.creem.io/payment/prod_10rEBZy5jCi1Aj4NiJ8Gco'
@@ -2193,7 +2201,7 @@ class Component extends DCLogic {
       monthlyPillStyle: pill(plan === 'monthly'),
       annualPillText: plan === 'annual' ? 'Selected' : 'Two months free',
       monthlyPillText: plan === 'monthly' ? 'Selected' : 'Flexible',
-      checkoutHref: CHECKOUT_LINKS[plan],
+      checkoutMonthly: plan === 'monthly',
       // Runs before the link's own navigation, so the checkout tab opens here
       // and the Web Store tab opens from the link itself.
       openCheckoutToo: () => {
