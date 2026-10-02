@@ -70,20 +70,19 @@
   @keyframes tfblink { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
   h1, h2, h3, p { text-wrap: pretty; }
 
-  /* Pain-point band: numbered lines split by hairlines, each linking to its fix. */
+  /* Pain-point band: lines split by hairlines, each linking to its fix. */
   .tf-pain-row { border-top: 1px solid rgba(244, 251, 250, .16); }
   .tf-pain-row:last-child { border-bottom: 1px solid rgba(244, 251, 250, .16); }
-  .tf-pain-link { display: grid; grid-template-columns: 56px minmax(0, 1fr); column-gap: 20px; row-gap: 8px; align-items: baseline; padding: 28px 0; color: #F4FBFA; text-decoration: none; }
+  .tf-pain-link { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 8px; align-items: baseline; padding: 26px 0; color: #F4FBFA; text-decoration: none; }
   .tf-pain-link:hover { color: #ffffff; text-decoration: none; }
-  .tf-pain-num { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; color: #E9B949; }
-  .tf-pain-text { font-size: 22px; line-height: 1.35; font-weight: 600; letter-spacing: -0.015em; max-width: 720px; }
-  .tf-pain-fix { grid-column: 2; font-size: 13px; font-weight: 600; color: rgba(244, 251, 250, .6); transition: color .15s ease; }
+  .tf-pain-text { font-size: 20px; line-height: 1.4; font-weight: 600; letter-spacing: -0.012em; max-width: 720px; }
+  .tf-pain-fix { font-size: 13px; font-weight: 600; color: rgba(244, 251, 250, .6); transition: color .15s ease; }
   .tf-pain-link:hover .tf-pain-fix { color: #E9B949; }
   .tf-pain-link:focus-visible { outline: 3px solid #ffffff; outline-offset: 2px; }
   @media (min-width: 860px) {
-    .tf-pain-link { grid-template-columns: 72px minmax(0, 1fr) auto; column-gap: 32px; padding: 36px 0; }
-    .tf-pain-text { font-size: 28px; }
-    .tf-pain-fix { grid-column: 3; white-space: nowrap; }
+    .tf-pain-link { grid-template-columns: minmax(0, 1fr) auto; column-gap: 40px; padding: 30px 0; }
+    .tf-pain-text { font-size: 24px; }
+    .tf-pain-fix { white-space: nowrap; }
   }
 
   /* Formatting Shortcuts list: every shortcut in one column, every
@@ -116,59 +115,59 @@
   /* Feature eyebrows. */
   .tf-eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8A6212; }
 
-  /* Feedback Exporter demo, drawn in Ringle's own palette: the docs paraphrase
-     block (black bar, blue "after" line) and the Step 3 feedback card. */
-  .rg { font-family: 'Inter', 'Noto Sans', -apple-system, 'Segoe UI', sans-serif; color: #3E426A; }
-  .rg-toolbar { display: flex; align-items: center; gap: 14px; padding: 8px 20px; height: 48px; border-bottom: 1px solid #E4E7F4; background: #ffffff; }
-  .rg-b { width: 30px; height: 30px; border: 0; border-radius: 6px; background: transparent; font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 20px; color: #6B6E8C; cursor: pointer; line-height: 1; }
-  .rg-b:hover { background: #EFF1F9; color: #3E426A; }
-  .rg-toolbar-note { font-size: 12px; color: #80839E; }
+  /* Feedback Exporter demo: Ringle's docs paraphrase block and Step 3
+     feedback card, drawn in Tutor Flow's teal and cream. */
+  .rg { font-family: 'Inter', 'Noto Sans', -apple-system, 'Segoe UI', sans-serif; color: #1A1A1A; }
+  .rg-toolbar { display: flex; align-items: center; gap: 14px; padding: 8px 20px; height: 48px; border-bottom: 1px solid #E6DCCF; background: #FBF7F0; }
+  .rg-b { width: 30px; height: 30px; border: 0; border-radius: 6px; background: transparent; font-family: Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 20px; color: #6B6258; cursor: pointer; line-height: 1; }
+  .rg-b:hover { background: #EFE5D7; color: #1A1A1A; }
+  .rg-toolbar-note { font-size: 12px; color: #6B6258; }
   .rg-doc { padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 18px; background: #ffffff; }
   .rg-block { position: relative; display: flex; flex-direction: column; gap: 4px; padding-right: 40px; }
-  .rg-before { position: relative; margin: 2px 0 0 16px; padding-left: 12px; font-size: 16px; line-height: 1.9; color: #020211; }
-  .rg-before::before { content: ""; position: absolute; left: 0; top: 5%; height: 90%; border-left: 2px solid #020211; }
-  .rg-after { position: relative; margin-left: 48px; display: flex; align-items: flex-start; font-size: 16px; line-height: 1.9; color: #0953E2; }
-  .rg-after::before { content: "\2192"; position: absolute; left: -22px; top: 0; font-size: 14px; color: #0953E2; }
+  .rg-before { position: relative; margin: 2px 0 0 16px; padding-left: 12px; font-size: 16px; line-height: 1.9; color: #0A3D3F; }
+  .rg-before::before { content: ""; position: absolute; left: 0; top: 6%; height: 88%; border-left: 2px solid #0A3D3F; }
+  .rg-after { position: relative; margin-left: 48px; display: flex; align-items: flex-start; font-size: 16px; line-height: 1.9; color: #10595B; }
+  .rg-after::before { content: "\2192"; position: absolute; left: -22px; top: 0; font-size: 14px; color: #10595B; }
   .rg-after .tf-editor { flex: 1; min-width: 0; min-height: 30px; }
-  .rg-after .tf-editor[data-empty="true"]::before { position: static; display: block; color: #8FB0EE; }
-  .rg-arrow { position: absolute; right: 0; top: 4px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: #7A5AF0; color: #ffffff; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 4px rgba(80, 60, 200, .35); }
-  .rg-arrow:hover { background: #503CC8; }
-  .rg-arrow[data-done="true"] { background: #EEEBFA; color: #503CC8; box-shadow: none; }
-  .rg-new { align-self: flex-start; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #503CC8; background: #ffffff; border: 1px solid #C9CCDE; border-radius: 5px; padding: 7px 12px; cursor: pointer; font-family: inherit; }
-  .rg-new:hover { background: #FBFBFF; }
-  .rg-new kbd { font-family: 'Noto Sans Mono', ui-monospace, monospace; font-size: 11px; color: #80839E; background: #EFF1F9; border-radius: 4px; padding: 1px 6px; }
+  .rg-after .tf-editor[data-empty="true"]::before { position: static; display: block; color: #8FB3B3; }
+  .rg-arrow { position: absolute; right: 0; top: 4px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: #10595B; color: #ffffff; font-size: 14px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .rg-arrow:hover { background: #0A3D3F; }
+  .rg-arrow[data-done="true"] { background: #DCEBE9; color: #10595B; }
+  .rg-new { align-self: flex-start; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #10595B; background: #ffffff; border: 1px solid #E6DCCF; border-radius: 10px; padding: 7px 12px; cursor: pointer; font-family: inherit; }
+  .rg-new:hover { background: #FBF7F0; }
+  .rg-new kbd { font-family: 'Noto Sans Mono', ui-monospace, monospace; font-size: 11px; color: #6B6258; background: #EFE5D7; border-radius: 5px; padding: 1px 6px; }
   .rg-report { padding: 20px 20px 24px; display: flex; flex-direction: column; background: #ffffff; min-height: 240px; }
-  .rg-step { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; }
-  .rg-step-tick { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #C9CCDE; }
-  .rg-step-label { white-space: nowrap; font-size: 13px; color: #3E426A; }
-  .rg-step-rule { height: 18px; border-right: 1px solid #E4E7F4; }
-  .rg-step-title { font-size: 18px; font-weight: 700; color: #3E426A; }
-  .rg-counts { display: flex; gap: 24px; margin-top: 16px; padding-bottom: 12px; border-bottom: 1px solid #C9CCDE; }
-  .rg-count-cap { font-size: 12px; color: #80839E; }
-  .rg-count-val { display: flex; align-items: center; gap: 6px; font-size: 14px; color: #3E426A; }
-  .rg-count-val i { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid #C9CCDE; display: inline-block; }
-  .rg-count-val small { font-size: 12px; color: #5A5E7F; }
+  .rg-step { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 10px; color: #1A1A1A; }
+  .rg-step-tick { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #D8CBB8; }
+  .rg-step-label { white-space: nowrap; font-size: 13px; }
+  .rg-step-rule { height: 18px; border-right: 1px solid #E6DCCF; }
+  .rg-step-title { font-size: 18px; font-weight: 700; }
+  .rg-counts { display: flex; gap: 24px; margin-top: 16px; padding-bottom: 12px; border-bottom: 1px solid #E6DCCF; }
+  .rg-count-cap { font-size: 12px; color: #6B6258; }
+  .rg-count-val { display: flex; align-items: center; gap: 6px; font-size: 14px; color: #1A1A1A; }
+  .rg-count-val i { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid #D8CBB8; display: inline-block; }
+  .rg-count-val small { font-size: 12px; color: #6B6258; }
   .rg-card { margin-top: 16px; }
-  .rg-card-head { display: flex; align-items: center; justify-content: space-between; padding: 4px 12px; border: 1px solid #C9CCDE; border-bottom: 0; border-radius: 5px 5px 0 0; background: #FBFBFF; min-height: 40px; }
-  .rg-card-n { white-space: nowrap; font-size: 14px; font-weight: 500; color: #3E426A; }
-  .rg-cat { white-space: nowrap; margin-left: 14px; display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid #C9CCDE; border-radius: 8px; padding: 5px 10px; font-size: 12px; font-weight: 500; color: #140F33; background: #ffffff; }
-  .rg-cat span { font-size: 9px; color: #80839E; }
-  .rg-card-x { color: #A4A7BE; font-size: 15px; }
-  .rg-card-body { padding: 12px; border: 1px solid #C9CCDE; border-top: 0; border-radius: 0 0 5px 5px; display: flex; flex-direction: column; gap: 12px; }
+  .rg-card-head { display: flex; align-items: center; justify-content: space-between; padding: 4px 12px; border: 1px solid #E6DCCF; border-bottom: 0; border-radius: 10px 10px 0 0; background: #F6EFE6; min-height: 40px; }
+  .rg-card-n { white-space: nowrap; font-size: 14px; font-weight: 500; color: #1A1A1A; }
+  .rg-cat { white-space: nowrap; margin-left: 14px; display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid #E6DCCF; border-radius: 8px; padding: 5px 10px; font-size: 12px; font-weight: 500; color: #1A1A1A; background: #ffffff; }
+  .rg-cat span { font-size: 9px; color: #6B6258; }
+  .rg-card-x { color: #9A9084; font-size: 15px; }
+  .rg-card-body { padding: 12px; border: 1px solid #E6DCCF; border-top: 0; border-radius: 0 0 10px 10px; display: flex; flex-direction: column; gap: 12px; }
   .rg-row { display: flex; }
-  .rg-label { flex: 0 0 22%; min-width: 92px; padding-top: 3px; font-size: 12px; font-weight: 700; color: #80839E; line-height: 1.3; }
-  .rg-value { flex: 1; min-width: 0; font-size: 14px; line-height: 1.6; color: #140F33; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .rg-label { flex: 0 0 22%; min-width: 92px; padding-top: 3px; font-size: 12px; font-weight: 700; color: #6B6258; line-height: 1.3; }
+  .rg-value { flex: 1; min-width: 0; font-size: 14px; line-height: 1.6; color: #1A1A1A; white-space: pre-wrap; overflow-wrap: anywhere; }
   .rg-chips { display: flex; flex-wrap: wrap; gap: 4px; }
-  .rg-chip { border: 1px solid #503CC8; border-radius: 8px; background: #EEEBFA; padding: 7px 10px; font-size: 12px; font-weight: 700; color: #503CC8; white-space: nowrap; }
-  .rg-explain { border-radius: 8px; background: #FBFBFF; padding: 12px 14px; font-size: 14px; color: #A4A7BE; min-height: 44px; }
+  .rg-chip { border: 1px solid #10595B; border-radius: 8px; background: #E3F0EE; padding: 7px 10px; font-size: 12px; font-weight: 700; color: #10595B; white-space: nowrap; }
+  .rg-explain { border-radius: 8px; background: #FBF7F0; padding: 12px 14px; font-size: 14px; color: #8A8176; min-height: 44px; }
   .tf-toast { position: sticky; bottom: 16px; z-index: 2; margin-top: 16px; display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: 12px; background: #0A3D3F; color: #F4FBFA; box-shadow: 0 8px 24px rgba(10, 61, 63, .28); animation: tffade .2s ease-out; }
   .tf-toast-text { flex: 1; font-size: 13px; line-height: 1.55; }
   .tf-toast kbd { font-family: 'Noto Sans Mono', ui-monospace, monospace; font-size: 11px; color: #0A3D3F; background: #F4FBFA; border-radius: 5px; padding: 1px 6px; white-space: nowrap; }
   .tf-toast-x { flex-shrink: 0; border: 0; background: transparent; color: rgba(244, 251, 250, .7); font-size: 14px; line-height: 1; cursor: pointer; padding: 2px; }
   .tf-toast-x:hover { color: #ffffff; }
   @media (prefers-reduced-motion: reduce) { .tf-toast { animation: none; } }
-  .rg-empty { margin-top: 16px; border: 1px dashed #C9CCDE; border-radius: 8px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; color: #80839E; }
-  .rg-empty b { font-size: 20px; color: #7A5AF0; font-weight: 700; }
+  .rg-empty { margin-top: 16px; border: 1px dashed #D8CBB8; border-radius: 10px; padding: 32px 20px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; color: #6B6258; }
+  .rg-empty b { font-size: 20px; color: #10595B; font-weight: 700; }
   .rg-empty span { font-size: 13px; line-height: 1.6; max-width: 240px; }
 
   /* Click-to-enlarge screenshots and videos. */
@@ -244,39 +243,35 @@
 
   <section style="background:#0A3D3F;color:#F4FBFA">
     <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:96px 24px;display:flex;flex-direction:column;gap:48px">
-      <h2 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.02em;max-width:640px">Four headaches <i>every</i> Ringle tutor has encountered</h2>
+      <h2 style="margin:0;font-size:30px;font-weight:700;letter-spacing:-0.02em;max-width:640px;color:#E9B949">Four headaches <i>every</i> Ringle tutor has encountered</h2>
       <ol class="tf-pain-list" style="margin:0;padding:0;list-style:none">
         <li class="tf-pain-row">
           <a href="#features" class="tf-pain-link">
-            <span class="tf-pain-num">01</span>
             <span class="tf-pain-text">You go to highlight or correct one phrase mid-lesson and totally miss what your student is saying.</span>
             <span class="tf-pain-fix">Formatting Shortcuts <span aria-hidden="true">↓</span></span>
           </a>
         </li>
         <li class="tf-pain-row">
           <a href="#calendar-defender" class="tf-pain-link">
-            <span class="tf-pain-num">02</span>
             <span class="tf-pain-text">Cancelling a lesson you double-booked just earned you a strike.</span>
             <span class="tf-pain-fix">Calendar Defender <span aria-hidden="true">↓</span></span>
           </a>
         </li>
         <li class="tf-pain-row">
           <a href="#feedback-exporter" class="tf-pain-link">
-            <span class="tf-pain-num">03</span>
             <span class="tf-pain-text">A 7-minute break for a 12-minute feedback report.</span>
             <span class="tf-pain-fix">Feedback Exporter <span aria-hidden="true">↓</span></span>
           </a>
         </li>
         <li class="tf-pain-row">
           <a href="#student-tracker" class="tf-pain-link">
-            <span class="tf-pain-num">04</span>
             <span class="tf-pain-text">“bakminjun” is back, but your last lesson was 6 months ago and you have no idea who he is.</span>
             <span class="tf-pain-fix">Student Tracker <span aria-hidden="true">↓</span></span>
           </a>
         </li>
       </ol>
       <div style="display:flex;flex-direction:column;gap:20px;padding-top:8px">
-        <p style="margin:0;font-size:15px;font-weight:600;letter-spacing:0.02em;color:rgba(244,251,250,.6)">Sound familiar?</p>
+        <p style="margin:0;font-size:clamp(32px,5vw,44px);font-weight:700;letter-spacing:-0.025em;line-height:1.1;color:#F4FBFA">Sound familiar?</p>
         <p style="margin:0;font-size:22px;line-height:1.4;font-weight:600;letter-spacing:-0.01em;max-width:640px">Tutor Flow fixes all four problems and then some, <br>on the Ringle pages you already use.</p>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
           <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#0A3D3F;background:#ffffff;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#F6EFE6;text-decoration:none">Get Tutor Flow</a>
@@ -328,7 +323,7 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
           <div class="tf-zoom tf-clip" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-            <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/active-line-center.jpg" style="width:100%;aspect-ratio:860/560;object-fit:cover;display:block">
+            <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/active-line-center.jpg" style="width:100%;aspect-ratio:860/620;object-fit:cover;display:block">
               <source src="assets/videos/active-line-center.mp4" type="video/mp4">
               <track kind="captions" srcLang="en" label="English" src="assets/videos/active-line-center.vtt">
             </video>
@@ -489,7 +484,7 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <div class="tf-zoom tf-clip" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/key-expression-repair.jpg" style="width:100%;aspect-ratio:760/640;object-fit:cover;display:block">
+          <video autoPlay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" poster="assets/videos/key-expression-repair.jpg" style="width:100%;aspect-ratio:614/540;object-fit:cover;display:block">
             <source src="assets/videos/key-expression-repair.mp4" type="video/mp4">
             <track kind="captions" srcLang="en" label="English" src="assets/videos/key-expression-repair.vtt">
           </video>
@@ -549,22 +544,22 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px">
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #0A3D3F">
-        <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">01</span>
+        <span class="tf-eyebrow">Step 1</span>
         <h3 style="margin:0;font-size:17px;font-weight:700">Install from the Chrome Web Store</h3>
         <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Add it to Chrome and pin it to the toolbar for easy access.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
-        <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">02</span>
+        <span class="tf-eyebrow">Step 2</span>
         <h3 style="margin:0;font-size:17px;font-weight:700">Start your free trial</h3>
         <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Pick a plan under <a href="#pricing">Pricing</a> and check out through Creem, our merchant of record. Nothing is charged for 10 days. Your license key arrives by email; paste it into the extension’s ‘Settings’ tab to activate. Installed first? The extension’s popup has the same trial buttons.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
-        <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">03</span>
+        <span class="tf-eyebrow">Step 3</span>
         <h3 style="margin:0;font-size:17px;font-weight:700">Connect Google Calendar</h3>
         <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Give Calendar Defender access to Google Calendar so it can display your events on Ringle’s schedule page.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
-        <span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#10595B;font-weight:500">04</span>
+        <span class="tf-eyebrow">Step 4</span>
         <h3 style="margin:0;font-size:17px;font-weight:700">Teach</h3>
         <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Open your next lesson and start teaching. Tutor Flow is ready to go.</p>
       </div>
@@ -588,28 +583,36 @@
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Pricing</h2>
       <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">Every feature is available on both plans, and the first 10 days are free.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;width:100%;max-width:720px;text-align:left">
+    <div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:520px;text-align:left">
       <div style="{{ annualCardStyle }}" onClick="{{ pickAnnual }}">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-          <span style="font-size:15px;font-weight:700">Annual</span>
-          <span style="{{ annualPillStyle }}">{{ annualPillText }}</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 16px">
+          <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 170px;min-width:0">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <span style="font-size:17px;font-weight:700">Annual</span>
+              <span style="{{ annualPillStyle }}">{{ annualPillText }}</span>
+            </div>
+            <span style="font-size:14px;line-height:1.5;color:#6B6258"><s>$83.88</s> $76.89 per year</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:4px;flex-shrink:0">
+            <span style="font-size:32px;font-weight:700;letter-spacing:-0.03em">$6.41</span>
+            <span style="font-size:15px;color:#6B6258">/ month</span>
+          </div>
         </div>
-        <div style="display:flex;align-items:baseline;gap:6px">
-          <span style="font-size:40px;font-weight:700;letter-spacing:-0.03em">$76.89</span>
-          <span style="font-size:15px;color:#6B6258">/ year</span>
-        </div>
-        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">One month free, compared with paying monthly.</p>
       </div>
       <div style="{{ monthlyCardStyle }}" onClick="{{ pickMonthly }}">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-          <span style="font-size:15px;font-weight:700">Monthly</span>
-          <span style="{{ monthlyPillStyle }}">{{ monthlyPillText }}</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 16px">
+          <div style="display:flex;flex-direction:column;gap:6px;flex:1 1 170px;min-width:0">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <span style="font-size:17px;font-weight:700">Monthly</span>
+              <span style="{{ monthlyPillStyle }}">{{ monthlyPillText }}</span>
+            </div>
+            <span style="font-size:14px;line-height:1.5;color:#6B6258">Cancel whenever you like</span>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:4px;flex-shrink:0">
+            <span style="font-size:32px;font-weight:700;letter-spacing:-0.03em">$6.99</span>
+            <span style="font-size:15px;color:#6B6258">/ month</span>
+          </div>
         </div>
-        <div style="display:flex;align-items:baseline;gap:6px">
-          <span style="font-size:40px;font-weight:700;letter-spacing:-0.03em">$6.99</span>
-          <span style="font-size:15px;color:#6B6258">/ month</span>
-        </div>
-        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Month to month, cancel whenever you like.</p>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
@@ -1477,7 +1480,7 @@ class DemoEditor {
       if (digit === '2' && this.opts.shortcuts) { e.preventDefault(); this.syncSelection(); this.correctSelection(); return; }
       if (digit === '3' && this.opts.shortcuts) { e.preventDefault(); this.syncSelection(); this.cycleHighlight(['Y']); return; }
       if (digit === '4' && this.opts.shortcuts) { e.preventDefault(); this.syncSelection(); this.cycleHighlight(['P', 'G']); return; }
-      if (key === 'b' && !e.shiftKey) { e.preventDefault(); this.syncSelection(); this.toggleBold(); return; }
+      if (key === 'b' && !e.shiftKey) { e.preventDefault(); this.syncSelection(); if (this.opts.onBold) this.opts.onBold(this); else this.toggleBold(); return; }
       if (key === 'i' || key === 'u') { e.preventDefault(); return; }
       if (key === 'z') { e.preventDefault(); if (e.shiftKey) this.redo(); else this.undo(); return; }
       if (key === 'y' && e.ctrlKey && !e.metaKey) { e.preventDefault(); this.redo(); }
@@ -1756,6 +1759,7 @@ class Component extends DCLogic {
   editors = {};
   reportEditors = {};
   reportBaseline = {};
+  reportKeys = {};
   toastSeen = false;
 
   formatEditor = new DemoEditor({
@@ -1921,18 +1925,29 @@ class Component extends DCLogic {
     let editor = this.reportEditors[block.id];
     if (!editor) {
       const source = this.editorFor(block);
+      this.reportKeys[block.id] = source.boldPhrases();
+      this.reportBaseline[block.id] = JSON.stringify(this.reportKeys[block.id]);
       editor = new DemoEditor({
         shortcuts: false,
-        onChange: () => {
-          if (this.state.toast && JSON.stringify(editor.boldPhrases()) !== this.reportBaseline[block.id]) this.dismissToast();
-          this.setState((s) => ({ rev: s.rev + 1 }));
-        }
+        // Both fields are plain text once exported. Bold only decides which
+        // phrases get a chip, so here the shortcut adds or drops a chip
+        // without touching the text.
+        onBold: (ed) => this.toggleReportKey(block.id, ed.text.slice(ed.selStart, ed.selEnd)),
+        onChange: () => this.setState((s) => ({ rev: s.rev + 1 }))
       });
-      editor.setContent({ text: source.text, marks: source.marks.map((m) => ({ ...m })) });
-      this.reportBaseline[block.id] = JSON.stringify(editor.boldPhrases());
+      editor.setContent({ text: source.text, marks: source.marks.map(() => PLAIN) });
       this.reportEditors[block.id] = editor;
     }
     return editor;
+  }
+
+  toggleReportKey(id, selected) {
+    const phrase = selected.replace(/\s+/g, ' ').trim();
+    if (!phrase) return;
+    const keys = this.reportKeys[id] || [];
+    this.reportKeys[id] = keys.includes(phrase) ? keys.filter((k) => k !== phrase) : [...keys, phrase];
+    if (this.state.toast && JSON.stringify(this.reportKeys[id]) !== this.reportBaseline[id]) this.dismissToast();
+    this.setState((st) => ({ rev: st.rev + 1 }));
   }
 
   handleExportBlock(id) {
@@ -2124,7 +2139,7 @@ class Component extends DCLogic {
 
     const exportedView = this.state.blocks.filter((b) => b.exported).map((b, i) => {
       const editor = this.reportEditorFor(b);
-      const keyExpressions = editor.boldPhrases();
+      const keyExpressions = this.reportKeys[b.id];
       return {
         id: b.id,
         title: 'Feedback ' + (i + 1),
