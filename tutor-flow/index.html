@@ -105,6 +105,17 @@
   .tf-fake-selection { background: #B4D5FE; }
   .tf-caret { display: inline-block; width: 2px; height: 1.05em; background: #10595B; margin: 0 -1px; vertical-align: -0.15em; animation: tfblink 1s step-end infinite; }
 
+  /* Video and screenshot captions. */
+  .tf-caption { margin: 0; font-size: 15px; line-height: 1.55; color: #4A433B; }
+  .tf-caption-label { display: block; margin-bottom: 2px; font-size: 13px; font-weight: 600; color: #10595B; }
+
+  /* Student Tracker screenshots: one column (capped width) until three fit legibly. */
+  .tf-tracker-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; max-width: 420px; }
+  @media (min-width: 1000px) { .tf-tracker-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: none; } }
+
+  /* Feature eyebrows. */
+  .tf-eyebrow { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #8A6212; }
+
   /* Click-to-enlarge screenshots and videos. */
   .tf-zoom { cursor: zoom-in; transition: box-shadow .15s ease; }
   .tf-zoom:hover { box-shadow: 0 4px 18px rgba(10, 61, 63, 0.12); }
@@ -211,7 +222,7 @@
   <section id="features" style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
     <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:center">
       <div style="display:flex;flex-direction:column;gap:16px;order:2">
-        <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Formatting Shortcuts</span>
+        <span class="tf-eyebrow">Formatting Shortcuts</span>
         <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Mark mistakes without missing a word.</h2>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">A few simple shortcuts take care of bolding, insertions, corrections, and highlights, so nothing your student says slips by while you’re clicking around.</p>
         <ul class="tf-shortcuts" style="margin:8px 0 0;padding:0;list-style:none">
@@ -220,8 +231,6 @@
           <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">-word</span><span>Type a hyphen before a word you can already tell is incorrect, and press <kbd class="tf-key">Tab</kbd>. It strikes out the word just like <kbd class="tf-key">⌘/Ctrl 2</kbd> would. Type your correction and press <kbd class="tf-key">Tab</kbd> again to keep typing in Ringle’s default grey.</span></li>
           <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">“ ”</span><span>Type an opening quotation mark and the closing one appears, so whatever you type goes inside the quote. Press <kbd class="tf-key">Tab</kbd> to jump past the closing mark, or <kbd class="tf-key">Enter</kbd> to start a new line after it.</span></li>
           <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌘/Ctrl 3 · 4</span><span><kbd class="tf-key">⌘/Ctrl 3</kbd> turns yellow highlighting on and off, and <kbd class="tf-key">⌘/Ctrl 4</kbd> switches between pink, green and no highlighting. These can be triggered from both the number row and the 10-key pad.</span></li>
-          <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">⌄—^</span><span>As you type, the page scrolls with you, so the line you’re on never drops out of sight.</span></li>
-          <li style="font-size:15px;line-height:1.6;color:#6B6258"><span style="font-family:'Noto Sans Mono','SF Mono',ui-monospace,monospace;font-size:13px;color:#1A1A1A;background:#EFE5D7;border:1px solid #E6DCCF;border-radius:8px;padding:2px 8px;white-space:nowrap">Tт −+</span><span>Ringle’s text size buttons have been adjusted to drastically expand size options and Tutor Flow remembers your setting between lessons.</span></li>
         </ul>
       </div>
       <div style="display:flex;flex-direction:column;gap:16px;order:1">
@@ -237,7 +246,7 @@
             <source src="assets/videos/formatting-shortcuts.mp4" type="video/mp4">
           </video>
         </div>
-        <p style="margin:0;font-size:13px;color:#9A9084">Corrections, quotations, boldings and highlights, all from the keyboard.</p>
+        <p class="tf-caption"><span class="tf-caption-label">Keyboard formatting</span><span class="tf-caption-text">Corrections, quotations, boldings and highlights, all from the keyboard.</span></p>
       </div>
       <div style="grid-column:1/-1;order:3;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;align-items:start">
         <div style="display:flex;flex-direction:column;gap:8px">
@@ -246,7 +255,7 @@
               <source src="assets/videos/zoom-override-notes.mp4" type="video/mp4">
             </video>
           </div>
-          <p style="margin:0;font-size:13px;color:#9A9084">Our expanded zoom feature makes it possible to choose the right text size for your setup, screen size, and comfort.</p>
+          <p class="tf-caption"><span class="tf-caption-label">Expanded zoom</span><span class="tf-caption-text">Ringle’s text size buttons now offer far more sizes, so you can pick what suits your screen and your eyes. Tutor Flow remembers your setting between lessons.</span></p>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px">
           <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
@@ -254,7 +263,7 @@
               <source src="assets/videos/active-line-center.mp4" type="video/mp4">
             </video>
           </div>
-          <p style="margin:0;font-size:13px;color:#9A9084">However long the transcript gets, the line you’re typing stays in view.</p>
+          <p class="tf-caption"><span class="tf-caption-label">Active line center</span><span class="tf-caption-text">As you type, the page scrolls with you, so however long the transcript gets, the line you’re on stays in view.</span></p>
         </div>
       </div>
     </div>
@@ -262,7 +271,7 @@
 
   <section id="feedback-exporter" class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
-      <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Feedback Exporter</span>
+      <span class="tf-eyebrow">Feedback Exporter</span>
       <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Bold a term in your paraphrase. It arrives as a Key Expression.</h2>
       <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">No more combing through your notes after class and adding Key Expressions one . . . at . . . a time.</p>
       <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Tutor Flow brings Ringle’s purple export arrow into the classroom, so you can build the Feedback Report while you go over the transcript with your student. Bold the phrases you want them to remember and click the arrow. When you open the report, each paraphrase is already there with its Key Expressions marked. Write your message and explanations, then hit ‘Submit’. Try it below.</p>
@@ -331,7 +340,7 @@
           <source src="assets/videos/feedback-loading-replay.mp4" type="video/mp4">
         </video>
       </div>
-      <p style="margin:0;font-size:13px;color:#9A9084">Two paraphrases exported to the Feedback Report, Key Expressions included.</p>
+      <p class="tf-caption"><span class="tf-caption-label">Paraphrase export</span><span class="tf-caption-text">Two paraphrases exported to the Feedback Report, Key Expressions included.</span></p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;align-items:start">
       <div style="display:flex;flex-direction:column;gap:8px">
@@ -340,7 +349,7 @@
             <source src="assets/videos/feedback-message-zoom.mp4" type="video/mp4">
           </video>
         </div>
-        <p style="margin:0;font-size:13px;color:#9A9084">Small screens can make it hard to comfortably read what you’re writing in your feedback message to students. Tutor Flow adds zoom buttons to the text editor to make proofreading easier on the eyes.</p>
+        <p class="tf-caption"><span class="tf-caption-label">Message zoom</span><span class="tf-caption-text">Small screens can make it hard to comfortably read what you’re writing in your feedback message to students. Tutor Flow adds zoom buttons to the text editor to make proofreading easier on the eyes.</span></p>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
@@ -348,14 +357,14 @@
             <source src="assets/videos/key-expression-repair.mp4" type="video/mp4">
           </video>
         </div>
-        <p style="margin:0;font-size:13px;color:#9A9084">Deleting feedback cards from Ringle’s Feedback Report jumbles up the Key Expressions for every card that follows. Tutor Flow’s Key Expression Repair puts them back where they belong.</p>
+        <p class="tf-caption"><span class="tf-caption-label">Key Expression Repair</span><span class="tf-caption-text">Deleting feedback cards from Ringle’s Feedback Report jumbles up the Key Expressions for every card that follows. Tutor Flow puts them back where they belong.</span></p>
       </div>
     </div>
   </section>
 
   <section id="calendar-defender" class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:80px">
     <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
-      <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Calendar Defender</span>
+      <span class="tf-eyebrow">Calendar Defender</span>
       <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Get an actual overview of your schedule before you open a timeslot.</h2>
       <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Sign in with Google and choose which calendars to show. Your events appear right on Ringle’s schedule page, slots they cover can’t be opened by an accidental click, and recurring slots are checked for conflicts before you confirm. Access is read-only, so Tutor Flow can’t change anything in your calendar.</p>
     </div>
@@ -388,17 +397,29 @@
   <section id="student-tracker" style="background:#F6EFE6;border-top:1px solid #E6DCCF;border-bottom:1px solid #E6DCCF">
     <div class="tf-section tf-gap-lg" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:48px">
       <div style="display:flex;flex-direction:column;gap:20px;max-width:680px">
-        <span style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#B8841C">Student Tracker</span>
+        <span class="tf-eyebrow">Student Tracker</span>
         <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.025em;line-height:1.15">Never go into a lesson blind.</h2>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">The lesson page says “bakminjun,” and your old feedback reports are addressed to “Mike.” He remembers you, which is why he booked again. Tutor Flow makes sure you remember him too.</p>
         <p style="margin:0;font-size:17px;line-height:1.65;color:#6B6258">Look up anyone you’ve taught by name or lesson ID, tag regulars and favorites, and keep notes on their level, habits, and goals. They’ll be waiting the next time he books, whether that’s next week or next spring.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:744px">
-        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <img src="assets/screenshots/tf-tracker-roster.png" alt="Tutor Flow’s Student Tracker panel listing three students with their lesson counts and favorite/regular flags." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+      <div class="tf-tracker-row">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+            <img src="assets/screenshots/tf-tracker-roster.png" alt="Tutor Flow’s Student Tracker roster with Mike at the top, unflagged, above three regular and favorite students." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+          </div>
+          <p class="tf-caption"><span class="tf-caption-label">Your roster</span><span class="tf-caption-text">bakminjun is back, but he’s not a regular, so he isn’t front of mind.</span></p>
         </div>
-        <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
-          <img src="assets/screenshots/tf-tracker-profile.png" alt="A single student’s Tutor Flow profile with flags, private notes, and a read-only lesson history." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+            <img src="assets/screenshots/tf-tracker-profile.png" alt="Mike’s Tutor Flow profile showing his original Ringle name, bakminjun, and his preferred name, Mike." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+          </div>
+          <p class="tf-caption"><span class="tf-caption-label">His profile</span><span class="tf-caption-text">Ringle calls him bakminjun. You know him as Mike.</span></p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="tf-zoom" role="button" tabIndex="0" aria-label="View larger" onClick="{{ zoom }}" onKeyDown="{{ zoomKey }}" style="border:1px solid #E6DCCF;border-radius:16px;overflow:hidden;background:#ffffff">
+            <img src="assets/screenshots/tf-tracker-notes.png" alt="Mike’s private notes and lesson history, with his last lesson in April 2026." style="width:100%;aspect-ratio:2/3;object-fit:cover;object-position:top;display:block" loading="lazy" />
+          </div>
+          <p class="tf-caption"><span class="tf-caption-label">Your notes</span><span class="tf-caption-text">Everything you’d have forgotten in six months, right where you left it.</span></p>
         </div>
       </div>
     </div>
@@ -1765,7 +1786,14 @@ class Component extends DCLogic {
       ratio = box.height ? box.width / box.height : 1.6;
     }
     const next = wrap.nextElementSibling;
-    const caption = next && next.tagName === 'P' ? next.textContent.trim() : '';
+    let caption = '';
+    if (next && next.tagName === 'P') {
+      const label = next.querySelector('.tf-caption-label');
+      const text = next.querySelector('.tf-caption-text');
+      caption = label && text
+        ? label.textContent.trim() + ' · ' + text.textContent.trim()
+        : next.textContent.trim();
+    }
     this.lightboxReturnFocus = wrap;
     this.lightboxStartTime = isVideo ? media.currentTime : 0;
     this.lightboxScrollLock = document.documentElement.style.overflow;
