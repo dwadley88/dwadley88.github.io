@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9WFYY8WG5M"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9WFYY8WG5M');
-</script>
+<script src="/tutor-flow/assets/consent.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — Tutor Flow</title>
@@ -61,7 +53,7 @@
 
 <main>
   <h1>Privacy Policy — Tutor Flow</h1>
-  <p class="updated">Last updated: 2026-09-15</p>
+  <p class="updated">Last updated: 2026-10-06</p>
   <p class="contact">Contact: <a href="mailto:support@nativeflow.me">support@nativeflow.me</a></p>
 
   <h2>Overview</h2>
@@ -78,7 +70,7 @@
     <li><strong>License and subscription status</strong> — your license key, activation status, and expiry date, so the extension knows it’s activated. The key is masked (only the last few characters shown) anywhere it appears.</li>
     <li><strong>Google Calendar data</strong> — if you connect your Google account, the extension reads your calendar list and events to display your schedule, and your Google name and email so you can see which account is connected. It doesn’t read, write, or modify anything else in your Google account.</li>
   </ul>
-  <p>The extension does <strong>not</strong> collect analytics, usage tracking, advertising identifiers, or browsing history outside of the Ringle platform pages it operates on.</p>
+  <p>The <em>extension</em> does <strong>not</strong> collect analytics, usage tracking, advertising identifiers, or browsing history outside of the Ringle platform pages it operates on.</p>
 
   <h2>Where this data is stored</h2>
   <p>Your lesson content, student notes, drafts, and diagnostic logs are stored locally in your browser, on your own device. None of it is transmitted to or stored on any server we operate — it never leaves your machine except in the situations below. Two things do leave: your license key and subscription status, which we need to verify against our license server, and — only if you switch error reporting on — redacted technical details of a failure, which go to Sentry and never include your lesson or student data.</p>
@@ -91,7 +83,7 @@
     <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>The Tutor Flow license server</strong> (a small backend service we run) — your license key is sent here to activate and periodically re-verify your subscription. This service talks to Creem, our payment processor, on our behalf. It never sees your lesson content, student notes, or calendar data — it only stores your license key’s associated customer ID, subscription/activation status, and (if you use a referral code) which customer referred which.</li>
     <li style="margin-bottom: 8px; font-size: 16px; line-height: 1.7; color: #3A342C;"><strong>Sentry, our error-tracking service</strong> — <strong>only if you switch on “Send error reports” in the extension’s Settings tab.</strong> It is off by default and stays off until you turn it on; you can turn it off again at any time, and nothing is sent while it is off. See “Error reporting” below for exactly what an error report contains, and “Sending a diagnostic” for the separate, more detailed report you can choose to send when a feature stops working.</li>
   </ol>
-  <p>No data is sent to any analytics service or advertiser, and none to any third party beyond Google, Ringle, our own license server, and — only with error reporting switched on — Sentry, as described above. The extension has no usage tracking, no advertising identifiers, and no way to report on what you do with it.</p>
+  <p>The extension sends no data to any analytics service or advertiser, and none to any third party beyond Google, Ringle, our own license server, and — only with error reporting switched on — Sentry, as described above. The extension has no usage tracking, no advertising identifiers, and no way to report on what you do with it. (This website is separate from the extension, and uses optional analytics only if you accept them; see “This website” below.)</p>
 
   <h2>How we protect your data</h2>
   <p>The data at stake here is your Google Calendar data and profile, and your license key. Here’s what protects each of them:</p>
@@ -137,6 +129,18 @@
   <p>Diagnostics require error reporting to be switched on. Switching it off deletes anything still waiting to be sent.</p>
   <p>Sentry processes this data on our behalf as a service provider, on servers in the European Union. Turning the setting off stops anything further being sent; reports already sent are retained by Sentry for a limited period and then deleted. If you would like a report deleted sooner, email <a href="mailto:support@nativeflow.me">support@nativeflow.me</a>.</p>
 
+  <h2 id="website">This website and cookies</h2>
+  <p>This section covers this website (nativeflow.me/tutor-flow), not the Chrome extension. The extension is described in the sections above and doesn’t use Google Analytics or any cookies.</p>
+  <p>With your permission, this website uses <strong>Google Analytics 4</strong>, provided by Google Ireland Limited (Google LLC in the US), to count visits and see which pages are useful. Nothing is loaded and no analytics cookies are set unless you click “Accept analytics” in the banner. If you decline, or ignore the banner, no analytics run.</p>
+  <ul>
+    <li><strong>What is collected, if you accept:</strong> pages viewed, approximate location (country/city level), browser and device type, referring page, and a random identifier stored in first-party cookies (<code>_ga</code> and <code>_ga_*</code>, which last up to two years). We don’t send your name, email or any account details to Google Analytics.</li>
+    <li><strong>Why:</strong> to understand and improve the site. The legal basis is your consent (GDPR Art. 6(1)(a) and the ePrivacy rules), which you can withdraw at any time.</li>
+    <li><strong>Changing your mind:</strong> use “Cookie settings” in the footer of any page to accept or decline again. Declining removes the analytics cookies from this site. Your choice is remembered in your browser’s local storage under the key <code>tf_analytics_consent</code>.</li>
+    <li><strong>Transfers:</strong> Google may process this data in the United States and other countries, under its standard contractual clauses and the EU–US Data Privacy Framework where applicable. See <a href="https://policies.google.com/technologies/partner-sites">how Google uses data</a> and <a href="https://tools.google.com/dlpage/gaoptout">Google’s opt-out add-on</a>.</li>
+    <li><strong>Other cookies:</strong> this site sets no advertising cookies and uses no other tracking. Fonts load from Google Fonts, which receives your IP address when the page loads.</li>
+  </ul>
+  <p>You can ask us to access or delete data we hold about you, or complain to your local data-protection authority, by emailing <a href="mailto:support@nativeflow.me">support@nativeflow.me</a>.</p>
+
   <h2>Data retention and your control over it</h2>
   <ul>
     <li>Everything stored locally stays on your device until you remove it — by uninstalling the extension, clearing your browser’s extension storage, or using the extension’s built-in tools.</li>
@@ -179,6 +183,7 @@
       <a href="./changelog.html">Changelog</a>
       <a href="./terms-of-service.html">Terms</a>
       <a href="./legal-notice.html">Legal</a>
+      <a href="#" data-cookie-settings>Cookie settings</a>
       <a href="mailto:support@nativeflow.me">support@nativeflow.me</a>
     </nav>
     <p>A <a href="/">Native Flow</a> product.</p>
