@@ -81,10 +81,9 @@
     b.setAttribute('role', 'dialog');
     b.setAttribute('aria-label', 'Cookie preferences');
     b.innerHTML =
-      '<p>We’d like to use Google Analytics cookies to see which pages of this site are useful. ' +
-      'It’s optional and off unless you accept. The Tutor Flow extension itself isn’t affected. ' +
-      '<a href="/tutor-flow/privacy-policy.html#website">Details</a></p>' +
-      '<div class="tf-row"><button type="button" class="tf-yes">Accept analytics</button>' +
+      '<p>We use cookies to analyze site traffic and improve this website. You can accept or decline analytics cookies. ' +
+      'See our <a href="/tutor-flow/privacy-policy.html#website">Privacy Policy</a> for details.</p>' +
+      '<div class="tf-row"><button type="button" class="tf-yes">Accept</button>' +
       '<button type="button" class="tf-no">Decline</button></div>';
     b.querySelector('.tf-yes').onclick = function () { choose('granted'); };
     b.querySelector('.tf-no').onclick = function () { choose('denied'); };
