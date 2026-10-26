@@ -51,7 +51,13 @@
   "offers": [
     {
       "@type": "Offer",
-      "name": "Annual",
+      "name": "Free",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    {
+      "@type": "Offer",
+      "name": "Premium Annual",
       "price": "69.90",
       "priceCurrency": "USD",
       "priceSpecification": {
@@ -63,7 +69,7 @@
     },
     {
       "@type": "Offer",
-      "name": "Monthly",
+      "name": "Premium Monthly",
       "price": "6.99",
       "priceCurrency": "USD",
       "priceSpecification": {
@@ -119,6 +125,14 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Tutor Flow runs on the desktop version of Chrome, which is Ringle’s preferred browser for tutors. It should also work on other Chromium-based browsers, but Native Flow cannot guarantee functionality with any but Chrome. Tutor Flow is not compatible with mobile or tablet browsers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free plan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tutor Flow’s Free plan includes the Formatting Shortcuts and Calendar Defender with one Google Calendar, with no license and no time limit. Premium adds the Feedback Exporter and other feedback report tools, the Student Tracker, and Calendar Defender with multiple calendars, holiday overlays, Manual Blocks and recurring-slot conflict checks. First-time subscribers can try Premium free for 10 days."
       }
     },
     {
@@ -333,7 +347,7 @@
       <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
       <a href="#features" style="font-size:15px;font-weight:600;color:#10595B;background:#FFFFFF;border:1px solid #E6DCCF;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#F6EFE6;text-decoration:none">Try the demo</a>
     </div>
-    <p style="margin:0;font-size:13px;color:#6B6258">Free for 10 days, then $6.99 a month or $69.90 a year. Annual subscribers get two months free compared to monthly.</p>
+    <p style="margin:0;font-size:13px;color:#6B6258">Free to use. Premium is free for 10 days, then $6.99 a month or $69.90 a year, and annual subscribers get two months free compared to monthly.</p>
   </section>
 
   <section style="background:#0A3D3F;color:#F4FBFA">
@@ -370,7 +384,7 @@
         <p style="margin:0;font-size:22px;line-height:1.4;font-weight:600;letter-spacing:-0.01em;max-width:640px">Tutor Flow fixes all four problems and then some, <br>on the Ringle pages you already use.</p>
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:16px">
           <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#0A3D3F;background:#ffffff;padding:14px 24px;border-radius:12px;text-decoration:none" style-hover="background:#F6EFE6;text-decoration:none">Get Tutor Flow</a>
-          <span style="font-size:13px;color:rgba(244,251,250,.7)">Free for 10 days</span>
+          <span style="font-size:13px;color:rgba(244,251,250,.7)">Free to use, with a 10-day Premium trial</span>
         </div>
       </div>
     </div>
@@ -641,8 +655,8 @@
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
         <span class="tf-eyebrow">Step 2</span>
-        <h3 style="margin:0;font-size:17px;font-weight:700">Start your free trial</h3>
-        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Pick a plan under <a href="#pricing">Pricing</a> and check out through Creem, our merchant of record. Nothing is charged for 10 days. Your license key arrives by email; paste it into the extension’s ‘Settings’ tab to activate. Installed first? The extension’s popup has the same trial buttons.</p>
+        <h3 style="margin:0;font-size:17px;font-weight:700">Try Premium free (optional)</h3>
+        <p style="margin:0;font-size:14px;line-height:1.6;color:#6B6258">Tutor Flow’s Free plan works without a license. To unlock Premium, pick a plan under <a href="#pricing">Pricing</a> and check out through Creem, our merchant of record. Nothing is charged for 10 days. Your license key arrives by email; paste it into the extension’s ‘Settings’ tab to activate. Installed first? The extension’s popup has the same trial buttons.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px;padding-top:20px;border-top:2px solid #E6DCCF">
         <span class="tf-eyebrow">Step 3</span>
@@ -672,7 +686,32 @@
   <section id="pricing" class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:44px;align-items:center;text-align:center">
     <div style="display:flex;flex-direction:column;gap:14px;max-width:560px">
       <h2 style="margin:0;font-size:32px;font-weight:700;letter-spacing:-0.025em">Pricing</h2>
-      <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">Every feature is available on both plans, and the first 10 days are free.</p>
+      <p style="margin:0;font-size:17px;line-height:1.6;color:#6B6258">Tutor Flow is free to use. Premium unlocks the rest, every feature is included on both Premium plans, and the first 10 days are free.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;width:100%;max-width:760px;text-align:left">
+      <div style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;padding:26px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+          <span style="font-size:17px;font-weight:700">Free</span>
+          <span style="font-size:32px;font-weight:700;letter-spacing:-0.03em">$0</span>
+        </div>
+        <p style="margin:0;font-size:14px;line-height:1.5;color:#6B6258">No license needed, and no trial clock.</p>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Formatting Shortcuts for bold, corrections, highlights and active-line centering</span></li>
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Calendar Defender with one Google Calendar</span></li>
+        </ul>
+      </div>
+      <div style="background:#ffffff;border:2px solid #10595B;border-radius:16px;padding:25px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+          <span style="font-size:17px;font-weight:700">Premium</span>
+          <span style="font-size:14px;color:#6B6258">from $5.83 / month</span>
+        </div>
+        <p style="margin:0;font-size:14px;line-height:1.5;color:#6B6258">Everything in Free, plus:</p>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Feedback Exporter and the other feedback report tools</span></li>
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Student Tracker</span></li>
+          <li style="display:flex;gap:12px;font-size:15px;line-height:1.6;color:#6B6258"><span style="color:#10595B;font-weight:700">·</span><span>Calendar Defender with as many calendars as you like, holiday overlays, Manual Blocks and recurring-slot conflict checks</span></li>
+        </ul>
+      </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px;width:100%;max-width:520px;text-align:left">
       <div style="{{ annualCardStyle }}" onClick="{{ pickAnnual }}">
@@ -708,7 +747,7 @@
     </div>
     <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
       <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" onClick="{{ openCheckoutToo }}" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
-      <p style="margin:0;font-size:13px;color:#6B6258">Prices in USD. Tax is calculated at checkout. No payments will be processed until your 10-day trial ends.</p>
+      <p style="margin:0;font-size:13px;color:#6B6258">Prices in USD. Tax is calculated at checkout. No payments will be processed until your 10-day Premium trial ends.</p>
       <p style="margin:0;font-size:13px;color:#6B6258">Already installed? <sc-if value="{{ !checkoutMonthly }}"><a href="https://www.creem.io/payment/prod_f6bRaIlzmbIYTRPH77nHN">Start your trial and get your license key.</a></sc-if><sc-if value="{{ checkoutMonthly }}" hidden><a href="https://www.creem.io/payment/prod_10rEBZy5jCi1Aj4NiJ8Gco">Start your trial and get your license key.</a></sc-if></p>
     </div>
   </section>
@@ -754,6 +793,13 @@
         </details>
         <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
           <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
+            <h3 style="margin:0;font-size:16px;font-weight:600">Is there a free plan?</h3>
+            <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
+          </summary>
+          <p style="margin:0;padding:0 22px 22px;font-size:15px;line-height:1.65;color:#6B6258">Yes. Tutor Flow’s Free plan includes the Formatting Shortcuts and Calendar Defender with one Google Calendar, with no license and no time limit. Premium adds the Feedback Exporter and other feedback report tools, the Student Tracker, and Calendar Defender with multiple calendars, holiday overlays, Manual Blocks and recurring-slot conflict checks. First-time subscribers can try Premium free for 10 days.</p>
+        </details>
+        <details class="tf-faq" name="faq" style="background:#ffffff;border:1px solid #E6DCCF;border-radius:16px;overflow:hidden">
+          <summary style="padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer">
             <h3 style="margin:0;font-size:16px;font-weight:600">How do I cancel?</h3>
             <span class="tf-faq-sign" aria-hidden="true" style="font-size:18px;color:#6B6258;line-height:1"></span>
           </summary>
@@ -767,7 +813,7 @@
     <div class="tf-section" style="max-width:1120px;margin:0 auto;padding:112px 24px;display:flex;flex-direction:column;gap:24px;align-items:center;text-align:center">
       <img src="assets/tutor-flow-mark.png" alt="Tutor Flow logo" style="width:56px;height:56px;border-radius:14px;display:block" />
       <h2 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-0.03em">Less hassle, more flow.</h2>
-      <p style="margin:0;font-size:17px;color:#6B6258;max-width:460px">Try it free for 10 days and say goodbye to backlogged feedback reports.</p>
+      <p style="margin:0;font-size:17px;color:#6B6258;max-width:460px">Install it free, try Premium for 10 days, and say goodbye to backlogged feedback reports.</p>
       <a href="https://chromewebstore.google.com/detail/ochafmbljgmbhefgkmiljfllpfhniimk" target="_blank" rel="noopener" style="font-size:15px;font-weight:600;color:#ffffff;background:#10595B;padding:14px 28px;border-radius:12px;text-decoration:none;margin-top:4px" style-hover="background:#0A3D3F;text-decoration:none">Get Tutor Flow</a>
     </div>
   </section>
